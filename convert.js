@@ -1,18 +1,11 @@
-﻿var translit   = require('./translit.js');
+﻿var config   = require('./config.js');
+var translit   = require('./translit.js');
 var str_pad = require('locutus/php/strings/str_pad');
 
 var debug=0;
 
 var mysql      = require('mysql');
-var pool = mysql.createPool({//mysql.createConnection({
-  host     : 'localhost',
-  user     : '',
-  password : '',
-  database : '',
-  dateStrings: true,
-  multipleStatements: true
-//  ,debug: true
-});
+var pool = mysql.createPool(config.mysql);
 
 var args = [];
 process.argv.forEach(function (val, index, array) {
