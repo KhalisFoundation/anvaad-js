@@ -152,7 +152,7 @@ function translit(gurb) {
 			'panjavaa',
 			'chhayvaa',
 			'satvaa',
-			'atthmaa',
+			'atthvaa',
 			'nauvaa',
 			'dasvaa',
 			'gayaarvaa',
