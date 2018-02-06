@@ -1,1 +1,1 @@
-# paaras-js
+# anvaad-js :: ਅਨੁਵਾਦ-js
