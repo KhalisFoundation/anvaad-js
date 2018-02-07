@@ -70,24 +70,44 @@ query('SELECT ID, Gurmukhi, Punjabi FROM Banis_Custom WHERE Updated > "' + lastC
 
 // Verse
 query('UPDATE converter_last SET lastCheck=NOW()');
-query('SELECT ID, Gurmukhi, Punjabi FROM Verse WHERE Updated > "' + lastChecked + '" ORDER BY ID')
-.forEach(function(row) {
-    let eng = translit(row.Gurmukhi);
-    query('UPDATE Verse SET ' + 
-            'Transliteration=?, FirstLetterEng=?, GurmukhiUni=?, PunjabiUni=?, FirstLetterStr=?, ' +
-            'MainLetters=?, Updated=? WHERE ID=?',
-        [
-        eng,
-        firstLetters(eng,1),
-        convert(row.Gurmukhi),
-        convert(row.Punjabi).replace(/"/g, '\\\"'),
-        ascii(firstLetters(row.Gurmukhi,0)),
-        mainLetters(row.Gurmukhi),
-        lastChecked,
-        row.ID
-        ]);
-});
 
+let count = query('SELECT count(*) cnt FROM Verse')[0]['cnt'];
+for (i = 0; i < count; i = i + 2000) {
+  console.log('SELECT ID, Gurmukhi, Punjabi, Transliteration, FirstLetterEng, ' +
+        'GurmukhiUni, PunjabiUni, FirstLetterStr, MainLetters ' +
+        'FROM Verse ORDER BY ID LIMIT ' + i + ',' + (i + 2000))
+  .forEach(function(row) {
+      let eng = translit(row.Gurmukhi);
+      let rowVals = [
+              row.Transliteration, 
+              row.FirstLetterEng, 
+              row.GurmukhiUni, 
+              row.PunjabiUni, 
+              row.FirstLetterStr,
+              row.MainLetters,
+              lastChecked,
+              row.ID
+          ];
+      let vals = [
+              eng,
+              firstLetters(eng,1),
+              convert(row.Gurmukhi),
+              convert(row.Punjabi).replace(/"/g, '\\\"'),
+              ascii(firstLetters(row.Gurmukhi,0)),
+              mainLetters(row.Gurmukhi),
+              lastChecked,
+              row.ID
+          ];
+
+      if(vals.join() != rowVals.join()) {
+        query('UPDATE Verse SET ' + 
+                'Transliteration=?, FirstLetterEng=?, ' +
+                'GurmukhiUni=?, PunjabiUni=?, FirstLetterStr=?, ' +
+                'MainLetters=?, Updated=? WHERE ID=?',
+            vals);
+      }
+  });
+}
 
 // functions
 
