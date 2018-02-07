@@ -4,217 +4,92 @@ var str_pad = require('locutus/php/strings/str_pad');
 
 var debug=0;
 
-var mysql      = require('mysql');
-var pool = mysql.createPool(config.mysql);
+const syncsql      = require('sync-sql');
+const mysql        = syncsql.mysql;
 
 var args = [];
 process.argv.forEach(function (val, index, array) {
   args.push(val);
 });
+
+function query (sql,params) {
+  let result = mysql(config.mysql,sql,params);
+  if(result.success) {
+    return result.data.rows;
+  }
+  else {
+    console.error('SQL Failure: ' + sql);
+    process.exit(1);
+  }
+}
  
 var verseVals = [];
-var banisVals = [];
 var baniCustomVals = [];
-var baniBookmarksVals = [];
-var lastChecked;
 
-pool.getConnection(function(err, connection) {
-        if(err) throw err;
-        connection.query('SELECT lastCheck from converter_last limit 1', function(err, rows, fields) {
-        if (err) throw err;
-        connection.release();
+// get last checked
+var lastChecked = query('SELECT lastCheck from converter_last limit 1')[0]['lastCheck'];
+debug && console.log('Last Checked: ' + lastChecked);
 
-        lastChecked = rows[0].lastCheck;
-	debug && console.log('Last Checked: ' + lastChecked);
-        Banis();
-});});
+// banis
+query('SELECT ID, Gurmukhi FROM Banis WHERE Updated > "' + lastChecked + '" ORDER BY ID')
+  .forEach(function(row) {
+    query('UPDATE Banis SET ' + 
+          'Transliteration=?' +
+          ', GurmukhiUni=?' + 
+          ', Updated=?' +
+          ' WHERE ID=?',
+          [translit(row.Gurmukhi),convert(row.Gurmukhi),lastChecked,row.ID]
+      );
+  });
 
-function updateLastCheck() {
-    pool.getConnection(function(err, connection) {
-            if(err) throw err;
-            connection.query('UPDATE converter_last SET lastCheck=NOW()', function(err, rows, fields) {
-                if (err) throw err;
-                connection.release();
-        });
-    });
-}
+// bookmarks
+query('SELECT ID, Gurmukhi FROM Banis_Bookmarks WHERE Updated > "' + lastChecked + '" ORDER BY ID')
+  .forEach(function(row) {
+    query('UPDATE Banis_Bookmarks SET ' + 
+        'Transliteration=?' +
+        ', GurmukhiUni=?' + 
+        ', Updated=?' + 
+        '" WHERE ID=?',
+          [translit(row.Gurmukhi),convert(row.Gurmukhi),lastChecked,row.ID]
+      );
+  });
 
-function Verse() {
-    pool.getConnection(function(err, connection) {
-        if(err) throw err;
-	updateLastCheck();
-    connection.query('SELECT ID, Gurmukhi, Punjabi FROM Verse WHERE Updated > "' + lastChecked + '" ORDER BY ID;', function(err, rows, fields) {
-        if (err) throw err;
-        connection.release();
-        [].forEach.call(rows, function(row) {
-            var eng = translit(row.Gurmukhi);
-            verseVals.push([
-                eng,
-                firstLetters(eng,1),
-                convert(row.Gurmukhi),
-                convert(row.Punjabi).replace(/"/g, '\\\"'),
-                ascii(firstLetters(row.Gurmukhi,0)),
-                mainLetters(row.Gurmukhi),
-                row.ID
-                ]);
-        })
-        writeVerseChanges();
-    });});
-}
 
-function writeVerseChanges() {
-    var i,valSlice;//,chunk = 20;
-    var valSize=verseVals.length;
-    pool.getConnection(function(err, connection) {
-                if(err) throw err;
+// Banis Custom
+query('SELECT ID, Gurmukhi, Punjabi FROM Banis_Custom WHERE Updated > "' + lastChecked + '" ORDER BY ID')
+.forEach(function(row) {
+  query('UPDATE Banis_Custom SET ' + 
+        'Transliteration=?' +
+        ', GurmukhiUni=?' + 
+        ', PunjabiUni=?' +
+        ', Updated=?' +  + 
+        ' WHERE ID=?',
+        [translit(row.Gurmukhi),convert(row.Gurmukhi),convert(row.Punjabi).replace(/"/g, '\\\"'),lastChecked,row.ID]
+    );
+});
 
-        for (i=0; i<valSize; i++) {
-            var query = 'UPDATE Verse SET ' + 
+// Verse
+query('UPDATE converter_last SET lastCheck=NOW()');
+query('SELECT ID, Gurmukhi, Punjabi FROM Verse WHERE Updated > "' + lastChecked + '" ORDER BY ID')
+.forEach(function(row) {
+    let eng = translit(row.Gurmukhi);
+    query('UPDATE Verse SET ' + 
             'Transliteration=?, FirstLetterEng=?, GurmukhiUni=?, PunjabiUni=?, FirstLetterStr=?, ' +
-            'MainLetters=?, Updated="' + lastChecked + '" WHERE ID=?'
+            'MainLetters=?, Updated=? WHERE ID=?'
+        [
+        eng,
+        firstLetters(eng,1),
+        convert(row.Gurmukhi),
+        convert(row.Punjabi).replace(/"/g, '\\\"'),
+        ascii(firstLetters(row.Gurmukhi,0)),
+        mainLetters(row.Gurmukhi),
+        lastChecked,
+        row.ID
+        ]);
+});
 
-	    debug && console.log(query);
-            debug && console.log(verseVals[i]);        
-            connection.query(query,verseVals[i],function(err, res, f) {
-                    if (err) {
-                debug && console.log(query);
-                throw err;
-                }
-            });
-        }
-        connection.release();
-    });
 
-}
-
-function Banis() {
-    pool.getConnection(function(err, connection) {
-        if(err) throw err;
-        connection.query('SELECT ID, Gurmukhi FROM Banis WHERE Updated > "' + lastChecked + '" ORDER BY ID', function(err, rows, fields) {
-            if (err) throw err;
-            connection.release();
-            [].forEach.call(rows, function(row) {
-                var eng = translit(row.Gurmukhi);
-                banisVals.push([
-                    eng,
-                    convert(row.Gurmukhi),
-                    row.ID
-                    ]);
-            })
-            writeBanisChanges();
-        });
-    });
-}
-
-function writeBanisChanges() {
-    var i,valSlice;//,chunk = 20;
-    var valSize=banisVals.length;
-    pool.getConnection(function(err, connection) {
-        if(err) throw err;
-
-        for (i=0; i<valSize; i++) {
-            var query = 'UPDATE Banis SET ' + 
-            'Transliteration=?, GurmukhiUni=?, Updated="' + lastChecked + '" WHERE ID=?'
-
-            //console.log(banisVals[i]);        
-            connection.query(query,banisVals[i],function(err, res, f) {
-                    if (err) {
-                //console.log(query);
-                throw err;
-                }
-            });
-        }
-        connection.release();
-        Bookmarks();
-    });
-
-}
-
-function Bookmarks() {
-    pool.getConnection(function(err, connection) {
-        if(err) throw err;
-        connection.query('SELECT ID, Gurmukhi FROM Banis_Bookmarks WHERE Updated > "' + lastChecked + '" ORDER BY ID', function(err, rows, fields) {
-            if (err) throw err;
-            connection.release();
-            [].forEach.call(rows, function(row) {
-                var eng = translit(row.Gurmukhi);
-                baniBookmarksVals.push([
-                    eng,
-                    convert(row.Gurmukhi),
-                    row.ID
-                    ]);
-            })
-            writeBookmarksChanges();
-        });
-    });
-}
-
-function writeBookmarksChanges() {
-    var i,valSlice;//,chunk = 20;
-    var valSize=baniBookmarksVals.length;
-    pool.getConnection(function(err, connection) {
-                if(err) throw err;
-
-        for (i=0; i<valSize; i++) {
-            var query = 'UPDATE Banis_Bookmarks SET ' + 
-            'Transliteration=?, GurmukhiUni=?, Updated="' + lastChecked + '" WHERE ID=?'
-
-            // console.log(vals[i]);        
-            connection.query(query,baniBookmarksVals[i],function(err, res, f) {
-                    if (err) {
-                //console.log(query);
-                throw err;
-                }
-            });
-        }
-        connection.release();
-        BanisCustom();
-    });
-
-}
-
-function BanisCustom() {
-    pool.getConnection(function(err, connection) {
-        if(err) throw err;
-    connection.query('SELECT ID, Gurmukhi, Punjabi FROM Banis_Custom WHERE Updated > "' + lastChecked + '" ORDER BY ID', function(err, rows, fields) {
-        if (err) throw err;
-        connection.release();
-        [].forEach.call(rows, function(row) {
-            var eng = translit(row.Gurmukhi);
-            baniCustomVals.push([
-                eng,
-                convert(row.Gurmukhi),
-                convert(row.Punjabi).replace(/"/g, '\\\"'),
-                row.ID
-                ]);
-        })
-            writeBanisCustomChanges();
-    });});
-}
-
-function writeBanisCustomChanges() {
-    var i,valSlice;//,chunk = 20;
-    var valSize=baniCustomVals.length;
-    pool.getConnection(function(err, connection) {
-                if(err) throw err;
-
-        for (i=0; i<valSize; i++) {
-            var query = 'UPDATE Banis_Custom SET ' + 
-            'Transliteration=?, GurmukhiUni=?, PunjabiUni=?, Updated="' + lastChecked + '" WHERE ID=?'
-
-            // console.log(vals[i]);        
-            connection.query(query,baniCustomVals[i],function(err, res, f) {
-                    if (err) {
-                //console.log(query);
-                throw err;
-                }
-            });
-        }
-        connection.release();
-        Verse();
-    });
-
-}
+// functions
 
 function mainLetters(words)
 {
