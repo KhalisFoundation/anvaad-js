@@ -357,33 +357,19 @@ function translit(gurb) {
 	    ["ah ","eh "],
 	    ["eee","e'ee"],
 	    ["uu","au"],
-	    ["Aih","ahai"]
-	  ];
-
-	// replace step 4 values
-	step4.forEach(function(e) {
-		gurb = str_replace(e[0], e[1], gurb);
-	});
-
-	debug && console.log('step 4');
-	debug && console.log(gurb);
-
-	//**********************
-	//		STEP 5
-	//**********************	
-
-
-	const step5 = [
+	    ["Aih","ahai"],
 			["aaa","aa"],
 	    ["ii","i"],
 	    ["eay","ey"],
 	    ["jIA","jee"],
 	    ["a'eh","eh"],
-	    ["u "," "]
+	    ["u "," "],
+	    ["Re'ee","Reeay"],
+	    ["re'ee","reeay"]
 	  ];
 
-	// replace step 5 values
-	step5.forEach(function(e) {
+	// replace step 4 values
+	step4.forEach(function(e) {
 		gurb = str_replace(e[0], e[1], gurb);
 	});
 
