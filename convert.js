@@ -73,7 +73,7 @@ query('UPDATE converter_last SET lastCheck=NOW()');
 
 let count = query('SELECT count(*) cnt FROM Verse')[0]['cnt'];
 for (i = 0; i < count; i = i + 2000) {
-  console.log('SELECT ID, Gurmukhi, Punjabi, Transliteration, FirstLetterEng, ' +
+query('SELECT ID, Gurmukhi, Punjabi, Transliteration, FirstLetterEng, ' +
         'GurmukhiUni, PunjabiUni, FirstLetterStr, MainLetters ' +
         'FROM Verse ORDER BY ID LIMIT ' + i + ',' + (i + 2000))
   .forEach(function(row) {
