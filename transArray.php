@@ -179,14 +179,17 @@ $step5Arry = array(
 
 function splitarry ($arry)
 {
-	$keys = array();
-	$values = array();
+	$arryout = array();
 	foreach($arry as $k => $v)
 	{
-		$keys[] = $k;
-		$values[] = $v;
+		$arryout[] = array($k,$v);
 	}
-	return array($keys,$values);
+	return $arryout;
+}
+
+function long_json($x)
+{
+        return str_replace('"],','"],'."\n    ",json_encode($x));
 }
 
 $step1Arry = splitarry($step1Arry);
@@ -194,12 +197,8 @@ $step2Arry = splitarry($step2Arry);
 $step4Arry = splitarry($step4Arry);
 $step5Arry = splitarry($step5Arry);
 
-print 'var step1Keys = ' . json_encode($step1Arry[0]) . ";\n";
-print 'var step1Values = ' . json_encode($step1Arry[1]) . ";\n";
-print 'var step2Keys = ' . json_encode($step2Arry[0]) . ";\n";
-print 'var step2Values = ' . json_encode($step2Arry[1]) . ";\n";
-print 'var step4Keys = ' . json_encode($step4Arry[0]) . ";\n";
-print 'var step4Values = ' . json_encode($step4Arry[1]) . ";\n";
-print 'var step5Keys = ' . json_encode($step5Arry[0]) . ";\n";
-print 'var step5Values = ' . json_encode($step5Arry[1]) . ";\n";
+print 'var step1 = ' . long_json($step1Arry) . ";\n";
+print 'var step2 = ' . long_json($step2Arry) . ";\n";
+print 'var step4 = ' . long_json($step4Arry) . ";\n";
+print 'var step5 = ' . long_json($step5Arry) . ";\n";
 ?>

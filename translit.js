@@ -11,6 +11,7 @@ var is_numeric = require('locutus/php/var/is_numeric');
 
 var debug=0;
 
+
 if(debug===1) {
 	var g = "CMqu ] ijau jwnhu iqau rwKu hir pRB qyirAw ] kyqy gnau AsMK Avgx myirAw ] AsMK Avgx Kqy Pyry inqpRiq sd BUlIAY ] moh mgn ibkrwl mwieAw qau pRswdI GUlIAY ] lUk krq ibkwr ibKVy pRB nyr hU qy nyirAw ] ibnvMiq nwnk dieAw Dwrhu kwiF Bvjl PyirAw ]1] rwgu sUhI mhlw 5 Gru 5 pVqwl <> siqgur pRswid ] pRIiq pRIiq gurIAw mohn lwlnw ] jip mn goibMd eykY Avru nhI ko lyKY sMq lwgu mnih Cwfu duibDw kI kurIAw ]1] rhwau ] inrgun hrIAw srgun DrIAw Aink koTrIAw iBMn iBMn iBMn iBn krIAw ] ivic mn kotvrIAw ] inj mMdir iprIAw ] qhw Awnd krIAw ] nh mrIAw nh jrIAw ]1] ikrqin jurIAw bhu ibiD iPrIAw pr kau ihrIAw ] ibKnw iGrIAw ] Ab swDU sMig prIAw ] hir duAwrY KrIAw ] drsnu krIAw ] nwnk gur imrIAw ] bhuir n iPrIAw ]2]1]44] ";
 	g = g+"ibhwgVw mhlw 4 ] jig suik®qu kIriq nwmu hY myrI ijMduVIey hir kIriq hir min Dwry rwm ] hir hir nwmu pivqu hY myrI ijMduVIey jip hir hir nwmu auDwry rwm ] sB iklivK pwp duK kitAw myrI ijMduVIey mlu gurmuiK nwim auqwry rwm ] vf puMnI hir iDAwieAw jn nwnk hm mUrK mugD insqwry rwm ]1] jo hir nwmu iDAwiedy myrI ijMduVIey iqnw pMcy vsgiq Awey rwm ] AMqir nv iniD nwmu hY myrI ijMduVIey guru siqguru AlKu lKwey rwm ] guir Awsw mnsw pUrIAw myrI ijMduVIey hir imilAw BuK sB jwey rwm ] Duir msqik hir pRiB iliKAw myrI ijMduVIey jn nwnk hir gux gwey rwm ]2] hm pwpI blvMcIAw myrI ijMduVIey prdRohI Tg mwieAw rwm ] vfBwgI guru pwieAw myrI ijMduVIey guir pUrY giq imiq pwieAw rwm ] guir AMimRqu hir muiK coieAw myrI ijMduVIey iPir mrdw bhuiV jIvwieAw rwm ] jn nwnk siqgur jo imly myrI ijMduVIey iqn ky sB duK gvwieAw rwm ]3] Aiq aUqmu hir nwmu hY myrI ijMduVIey ijqu jipAY pwp gvwqy rwm ] piqq pivqR guir hir kIey myrI ijMduVIey chu kuMfI chu juig jwqy rwm ] haumY mYlu sB auqrI myrI ijMduVIey hir AMimRiq hir sir nwqy rwm ] AprwDI pwpI auDry myrI ijMduVIey jn nwnk iKnu hir rwqy rwm ]4]3] ";
@@ -18,25 +19,28 @@ if(debug===1) {
 	console.log(translit(g));
 }
 
+
 function translit(gurb) {
-
-	//generated from transArray.php
-	var step1Keys = ["\u00da","\u02c6","\u00cd","vYY","\u0152","\u2020","ey"];
-	var step1Values = [":","N","vY","vY","\u0153","t","e"];
-	var step2Keys = ["!","\"","#","$","%","&","'","(",")","*","+",",","-",".","\/",0,1,2,3,4,5,6,7,8,9,":",";","<","=",">","?","@","A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","[","\\","]","^","_","`","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z","{","|","}","~","\u00a1","\u00a2","\u00a3","\u00a4","\u00a5","\u00a7","\u00a8","\u00aa","\u00ae","\u00b0","\u00b1","\u00b4","\u00b5","\u00b6","\u00b7","\u00bf","\u00c5","\u00c6","\u00c7","\u00cd","\u00ce","\u00cf","\u00d2","\u00d3","\u00d4","\u00d8","\u00da","\u00e5","\u00e6","\u00e7","\u00fc","\u0152","\u0153","\u0192","\u02c6","\u02dc","\u2013","\u2014","\u2018","\u2019","\u201a","\u201c","\u201d","\u2020","\u2022","\u2026","\u2030"];
-	var step2Values = ["!","\"","#","$","%","ph","'","(",")","i","+",",","-",".","-","0","1","2","3","4","5","6","7","8","9",":",";","ik","=","Oankaar","?","(h)","a","bh","chh","dh","o","dd","gh","h","ee","jh","kh","l","(n)","(n)","au","f","thh","r","sh","tt","oo","R","aa(n)","y","ai","g(h)","|","n(j)","||","kh","_","","u","b","ch","dh","e","dd","g","h","i","j","k","l","m","n","o","p","t","r","s","tt","u","v","aa","nn","ay","z","{","n(g)","}","\u2019,\u00a0","ikOankaar\u00a0","\u00a2","\u00a3","","\u00a5","hoo","oo","","r","","\u00b1","ye","n","\u00b6","\u00b7","x","ik","Oankaar","","vY","y","y","||","","","",":","Oankaar","","ch","u","","t","noo(n)","(n)","n","\u2013","\u2014","'","'","","\"","\"","T","\u2022","\u2026",""];
-	var step4Keys = ["(N)","ah ","eee","uu","Aih"];
-	var step4Values = ["n","eh ","e'ee","au","ahai"];
-	var step5Keys = ["aaa","ii","eay","jIA","a'eh","u "];
-	var step5Values = ["aa","i","ey","jee","eh"," "];
-
 
 	//**********************
 	//		STEP 1
 	//**********************
 
 	//replace step 1 values
-	gurb = str_replace(step1Keys, step1Values, gurb);
+
+	const step1 = [
+			["\u00da",":"],
+	    ["\u02c6","N"],
+	    ["\u00cd","vY"],
+	    ["vYY","vY"],
+	    ["\u0152","\u0153"],
+	    ["\u2020","t"],
+	    ["ey","e"]
+	  ];
+
+	step1.forEach(function(e) {
+		gurb = str_replace(e[0], e[1], gurb);
+	});
 
 	// replaces all html to normal text
 	gurb = html_entity_decode(gurb, 'ENT_QUOTES', 'UTF-8');
@@ -68,6 +72,158 @@ function translit(gurb) {
 		//**********************
 		//		STEP 2
 		//**********************
+
+
+		var step2 = [
+				["!","!"],
+		    ["\"","\""],
+		    ["#","#"],
+		    ["$","$"],
+		    ["%","%"],
+		    ["&","ph"],
+		    ["'","'"],
+		    ["(","("],
+		    [")",")"],
+		    ["*","i"],
+		    ["+","+"],
+		    [",",","],
+		    ["-","-"],
+		    [".","."],
+		    ["\/","-"],
+		    [0,"0"],
+		    [1,"1"],
+		    [2,"2"],
+		    [3,"3"],
+		    [4,"4"],
+		    [5,"5"],
+		    [6,"6"],
+		    [7,"7"],
+		    [8,"8"],
+		    [9,"9"],
+		    [":",":"],
+		    [";",";"],
+		    ["<","ik"],
+		    ["=","="],
+		    [">","Oankaar"],
+		    ["?","?"],
+		    ["@","(h)"],
+		    ["A","a"],
+		    ["B","bh"],
+		    ["C","chh"],
+		    ["D","dh"],
+		    ["E","o"],
+		    ["F","dd"],
+		    ["G","gh"],
+		    ["H","h"],
+		    ["I","ee"],
+		    ["J","jh"],
+		    ["K","kh"],
+		    ["L","l"],
+		    ["M","(n)"],
+		    ["N","(n)"],
+		    ["O","au"],
+		    ["P","f"],
+		    ["Q","thh"],
+		    ["R","r"],
+		    ["S","sh"],
+		    ["T","tt"],
+		    ["U","oo"],
+		    ["V","R"],
+		    ["W","aa(n)"],
+		    ["X","y"],
+		    ["Y","ai"],
+		    ["Z","g(h)"],
+		    ["[","|"],
+		    ["\\","n(j)"],
+		    ["]","||"],
+		    ["^","kh"],
+		    ["_","_"],
+		    ["`",""],
+		    ["a","u"],
+		    ["b","b"],
+		    ["c","ch"],
+		    ["d","dh"],
+		    ["e","e"],
+		    ["f","dd"],
+		    ["g","g"],
+		    ["h","h"],
+		    ["i","i"],
+		    ["j","j"],
+		    ["k","k"],
+		    ["l","l"],
+		    ["m","m"],
+		    ["n","n"],
+		    ["o","o"],
+		    ["p","p"],
+		    ["q","t"],
+		    ["r","r"],
+		    ["s","s"],
+		    ["t","tt"],
+		    ["u","u"],
+		    ["v","v"],
+		    ["w","aa"],
+		    ["x","nn"],
+		    ["y","ay"],
+		    ["z","z"],
+		    ["{","{"],
+		    ["|","n(g)"],
+		    ["}","}"],
+		    ["~","\u2019,\u00a0"],
+		    ["\u00a1","ikOankaar\u00a0"],
+		    ["\u00a2","\u00a2"],
+		    ["\u00a3","\u00a3"],
+		    ["\u00a4",""],
+		    ["\u00a5","\u00a5"],
+		    ["\u00a7","hoo"],
+		    ["\u00a8","oo"],
+		    ["\u00aa",""],
+		    ["\u00ae","r"],
+		    ["\u00b0",""],
+		    ["\u00b1","\u00b1"],
+		    ["\u00b4","ye"],
+		    ["\u00b5","n"],
+		    ["\u00b6","\u00b6"],
+		    ["\u00b7","\u00b7"],
+		    ["\u00bf","x"],
+		    ["\u00c5","ik"],
+		    ["\u00c6","Oankaar"],
+		    ["\u00c7",""],
+		    ["\u00cd","vY"],
+		    ["\u00ce","y"],
+		    ["\u00cf","y"],
+		    ["\u00d2","||"],
+		    ["\u00d3",""],
+		    ["\u00d4",""],
+		    ["\u00d8",""],
+		    ["\u00da",":"],
+		    ["\u00e5","Oankaar"],
+		    ["\u00e6",""],
+		    ["\u00e7","ch"],
+		    ["\u00fc","u"],
+		    ["\u0152",""],
+		    ["\u0153","t"],
+		    ["\u0192","noo(n)"],
+		    ["\u02c6","(n)"],
+		    ["\u02dc","n"],
+		    ["\u2013","\u2013"],
+		    ["\u2014","\u2014"],
+		    ["\u2018","'"],
+		    ["\u2019","'"],
+		    ["\u201a",""],
+		    ["\u201c","\""],
+		    ["\u201d","\""],
+		    ["\u2020","T"],
+		    ["\u2022","\u2022"],
+		    ["\u2026","\u2026"],
+		    ["\u2030",""]
+		  ];
+
+		let step2Keys = [];
+		let step2Values = [];
+		step2.forEach(function(e) {
+			step2Keys.push(e[0]);
+			step2Values.push(e[1]);
+		});
 
 		//if its not a space, do the step2 replacement, if it doesnt exist, check if its a number, otherwise delete it
 		if(thisLetter != ' ') {
@@ -195,8 +351,19 @@ function translit(gurb) {
 	//		STEP 4
 	//**********************	
 
+
+	const step4 = [
+			["(N)","n"],
+	    ["ah ","eh "],
+	    ["eee","e'ee"],
+	    ["uu","au"],
+	    ["Aih","ahai"]
+	  ];
+
 	// replace step 4 values
-	gurb = str_replace(step4Keys, step4Values, gurb);
+	step4.forEach(function(e) {
+		gurb = str_replace(e[0], e[1], gurb);
+	});
 
 	debug && console.log('step 4');
 	debug && console.log(gurb);
@@ -205,9 +372,23 @@ function translit(gurb) {
 	//		STEP 5
 	//**********************	
 
-	// replace step 5 values
 
-	gurb = str_replace(step5Keys, step5Values, gurb);
+	const step5 = [
+			["aaa","aa"],
+	    ["ii","i"],
+	    ["eay","ey"],
+	    ["jIA","jee"],
+	    ["a'eh","eh"],
+	    ["u "," "]
+	  ];
+
+	// replace step 5 values
+	step5.forEach(function(e) {
+		gurb = str_replace(e[0], e[1], gurb);
+	});
+
+	debug && console.log('completed');
+	debug && console.log('-------------------------------------------------------------');
 
 	// return transliterated string
 	return gurb;
