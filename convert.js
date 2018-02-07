@@ -2,7 +2,7 @@
 var translit   = require('./translit.js');
 var str_pad = require('locutus/php/strings/str_pad');
 
-var debug=1;
+var debug=0;
 
 const syncsql      = require('sync-sql');
 const mysql        = syncsql.mysql;
