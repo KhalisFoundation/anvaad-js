@@ -4,6 +4,7 @@
   "description": "Utilities to prime Gurmukhi script for search. Unicode, first letters, main letters",
   "main": "index.js",
   "dependencies": {
+    "locutus": "^2.0.9",
     "sync-sql": "^1.0.2"
   },
   "devDependencies": {
