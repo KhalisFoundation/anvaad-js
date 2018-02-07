@@ -75,7 +75,7 @@ query('SELECT ID, Gurmukhi, Punjabi FROM Verse WHERE Updated > "' + lastChecked 
     let eng = translit(row.Gurmukhi);
     query('UPDATE Verse SET ' + 
             'Transliteration=?, FirstLetterEng=?, GurmukhiUni=?, PunjabiUni=?, FirstLetterStr=?, ' +
-            'MainLetters=?, Updated=? WHERE ID=?'
+            'MainLetters=?, Updated=? WHERE ID=?',
         [
         eng,
         firstLetters(eng,1),
