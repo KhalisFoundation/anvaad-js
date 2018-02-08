@@ -1,9 +1,6 @@
 ﻿const config = require('./config.js');
 const translit = require('./translit.js');
 const { mysql } = require('sync-sql');
-const padStart = require('string.prototype.padstart');
-
-padStart.shim();
 
 const debug = 0;
 
@@ -115,7 +112,7 @@ function mainLetters(words) {
 }
 
 function ascii(a) {
-  return `,${a.split('').map(c => c.charCodeAt(0).padStart(3, '0')).join(',')},`;
+  return `,${a.split('').map(c => String(c.charCodeAt(0)).padStart(3, '0')).join(',')},`;
 }
 
 function firstLetters(words, eng) {

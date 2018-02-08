@@ -5,7 +5,6 @@
   "main": "index.js",
   "dependencies": {
     "locutus": "^2.0.9",
-    "string.prototype.padstart": "^3.0.0",
     "sync-sql": "^1.0.2"
   },
   "devDependencies": {
