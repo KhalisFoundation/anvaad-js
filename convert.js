@@ -1,6 +1,9 @@
 ﻿const config = require('./config.js');
 const translit = require('./translit.js');
 const { mysql } = require('sync-sql');
+const padStart = require('string.prototype.padstart');
+
+padStart.shim();
 
 const debug = 0;
 
