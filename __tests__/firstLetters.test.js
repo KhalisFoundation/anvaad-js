@@ -1,4 +1,4 @@
-const firstLetters = require('./firstLetters');
+const firstLetters = require('../firstLetters');
 
 describe('firstLetters', () => {
   it('Should return first letters of each word', () => {

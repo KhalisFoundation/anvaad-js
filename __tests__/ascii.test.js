@@ -1,4 +1,4 @@
-const ascii = require('./ascii');
+const ascii = require('../ascii');
 
 describe('ascii', () => {
   it('Should return ascii codes of each letter', () => {

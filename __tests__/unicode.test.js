@@ -1,4 +1,4 @@
-const unicode = require('./unicode');
+const unicode = require('../unicode');
 
 describe('unicode', () => {
   it('Should return unicode of ascii', () => {

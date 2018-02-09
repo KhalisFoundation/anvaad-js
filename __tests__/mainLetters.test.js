@@ -1,4 +1,4 @@
-const mainLetters = require('./mainLetters');
+const mainLetters = require('../mainLetters');
 
 describe('mainLetters', () => {
   it('Should remove vowel symbols', () => {

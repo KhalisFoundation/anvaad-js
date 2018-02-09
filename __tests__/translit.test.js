@@ -1,4 +1,4 @@
-const unicode = require('./translit');
+const unicode = require('../translit');
 
 describe('translit', () => {
   it('Should return transliteration of Gurmukhi', () => {
