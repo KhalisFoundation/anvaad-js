@@ -1,6 +1,16 @@
-// extract instructions with grep "//" translit.js | sed 's/^.*\/\///'
-// npm install locutus
 const unescape = require('lodash.unescape');
+
+/**
+ * Returns a transliteration of Gurmukhi script
+ *
+ * @since 1.0.0
+ * @param {string} gurmukhi The string from to generate transliteration
+ * @returns {string} Returns a string of text
+ * @example
+ *
+ * translit('Awie imlu gurisK Awie imlu qU myry gurU ky ipAwry ]');
+ * // => 'aai mil gurasikh aai mil too mayray guroo kay piaaaray ||'
+ */
 
 function translit(gurmukhi) {
   let trans = gurmukhi;
