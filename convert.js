@@ -1,568 +1,439 @@
-﻿var config   = require('./config.js');
-var translit   = require('./translit.js');
-var str_pad = require('locutus/php/strings/str_pad');
+﻿const config = require('./config.js');
+const translit = require('./translit.js');
+const { mysql } = require('sync-sql');
 
-var debug=0;
+const debug = 0;
 
-const syncsql      = require('sync-sql');
-const mysql        = syncsql.mysql;
+const args = [];
+process.argv.forEach(val => args.push(val));
 
-var args = [];
-process.argv.forEach(function (val, index, array) {
-  args.push(val);
-});
-
-function query (sql,params) {
-  let result = mysql(config.mysql,sql,params);
-  if(result.success) {
+function query(sql, params) {
+  const result = mysql(config.mysql, sql, params);
+  if (result.success) {
     return result.data.rows;
   }
-  else {
-    console.error('SQL Failure: ' + sql);
-    process.exit(1);
-  }
+
+  console.error(`SQL Failure: ${sql}`);
+  process.exit(1);
 }
- 
-var verseVals = [];
-var baniCustomVals = [];
 
 // get last checked
-var lastChecked = query('SELECT lastCheck from converter_last limit 1')[0]['lastCheck'];
-debug && console.log('Last Checked: ' + lastChecked);
+const lastChecked = query('SELECT lastCheck from converter_last limit 1')[0].lastCheck;
+debug && console.log(`Last Checked: ${lastChecked}`);
 
 // banis
-query('SELECT ID, Gurmukhi FROM Banis WHERE Updated > "' + lastChecked + '" ORDER BY ID')
-  .forEach(function(row) {
-    query('UPDATE Banis SET ' + 
+query(`SELECT ID, Gurmukhi FROM Banis WHERE Updated > "${lastChecked}" ORDER BY ID`)
+  .forEach((row) => {
+    query(
+      'UPDATE Banis SET ' +
           'Transliteration=?' +
-          ', GurmukhiUni=?' + 
+          ', GurmukhiUni=?' +
           ', Updated=?' +
           ' WHERE ID=?',
-          [translit(row.Gurmukhi),convert(row.Gurmukhi),lastChecked,row.ID]
-      );
+      [translit(row.Gurmukhi), convert(row.Gurmukhi), lastChecked, row.ID],
+    );
   });
 
 // bookmarks
-query('SELECT ID, Gurmukhi FROM Banis_Bookmarks WHERE Updated > "' + lastChecked + '" ORDER BY ID')
-  .forEach(function(row) {
-    query('UPDATE Banis_Bookmarks SET ' + 
+query(`SELECT ID, Gurmukhi FROM Banis_Bookmarks WHERE Updated > "${lastChecked}" ORDER BY ID`)
+  .forEach((row) => {
+    query(
+      'UPDATE Banis_Bookmarks SET ' +
         'Transliteration=?' +
-        ', GurmukhiUni=?' + 
-        ', Updated=?' + 
+        ', GurmukhiUni=?' +
+        ', Updated=?' +
         '" WHERE ID=?',
-          [translit(row.Gurmukhi),convert(row.Gurmukhi),lastChecked,row.ID]
-      );
+      [translit(row.Gurmukhi), convert(row.Gurmukhi), lastChecked, row.ID],
+    );
   });
 
 
 // Banis Custom
-query('SELECT ID, Gurmukhi, Punjabi FROM Banis_Custom WHERE Updated > "' + lastChecked + '" ORDER BY ID')
-.forEach(function(row) {
-  query('UPDATE Banis_Custom SET ' + 
+query(`SELECT ID, Gurmukhi, Punjabi FROM Banis_Custom WHERE Updated > "${lastChecked}" ORDER BY ID`)
+  .forEach((row) => {
+    query(
+      'UPDATE Banis_Custom SET ' +
         'Transliteration=?' +
-        ', GurmukhiUni=?' + 
+        ', GurmukhiUni=?' +
         ', PunjabiUni=?' +
-        ', Updated=?' +  + 
+        ', Updated=?' +
         ' WHERE ID=?',
-        [translit(row.Gurmukhi),convert(row.Gurmukhi),convert(row.Punjabi).replace(/"/g, '\\\"'),lastChecked,row.ID]
+      [translit(row.Gurmukhi), convert(row.Gurmukhi), convert(row.Punjabi).replace(/"/g, '\\\"'), lastChecked, row.ID],
     );
-});
+  });
 
 // Verse
 query('UPDATE converter_last SET lastCheck=NOW()');
 
-let count = query('SELECT count(*) cnt FROM Verse')[0]['cnt'];
-for (i = 0; i < count; i = i + 2000) {
-query('SELECT ID, Gurmukhi, Punjabi, Transliteration, FirstLetterEng, ' +
+const count = query('SELECT count(*) cnt FROM Verse')[0].cnt;
+for (let i = 0; i < count; i += 2000) {
+  query(`${'SELECT ID, Gurmukhi, Punjabi, Transliteration, FirstLetterEng, ' +
         'GurmukhiUni, PunjabiUni, FirstLetterStr, MainLetters ' +
-        'FROM Verse ORDER BY ID LIMIT ' + i + ',' + (i + 2000))
-  .forEach(function(row) {
-      let eng = translit(row.Gurmukhi);
-      let rowVals = [
-              row.Transliteration, 
-              row.FirstLetterEng, 
-              row.GurmukhiUni, 
-              row.PunjabiUni, 
-              row.FirstLetterStr,
-              row.MainLetters,
-              lastChecked,
-              row.ID
-          ];
-      let vals = [
-              eng,
-              firstLetters(eng,1),
-              convert(row.Gurmukhi),
-              convert(row.Punjabi).replace(/"/g, '\\\"'),
-              ascii(firstLetters(row.Gurmukhi,0)),
-              mainLetters(row.Gurmukhi),
-              lastChecked,
-              row.ID
-          ];
+        'FROM Verse ORDER BY ID LIMIT '}${i},${i + 2000}`)
+    .forEach((row) => {
+      const eng = translit(row.Gurmukhi);
+      const rowVals = [
+        row.Transliteration,
+        row.FirstLetterEng,
+        row.GurmukhiUni,
+        row.PunjabiUni,
+        row.FirstLetterStr,
+        row.MainLetters,
+        lastChecked,
+        row.ID,
+      ];
+      const vals = [
+        eng,
+        firstLetters(eng, 1),
+        convert(row.Gurmukhi),
+        convert(row.Punjabi).replace(/"/g, '\\\"'),
+        ascii(firstLetters(row.Gurmukhi, 0)),
+        mainLetters(row.Gurmukhi),
+        lastChecked,
+        row.ID,
+      ];
 
-      if(vals.join() != rowVals.join()) {
-        query('UPDATE Verse SET ' + 
+      if (vals.join() !== rowVals.join()) {
+        query(
+          'UPDATE Verse SET ' +
                 'Transliteration=?, FirstLetterEng=?, ' +
                 'GurmukhiUni=?, PunjabiUni=?, FirstLetterStr=?, ' +
                 'MainLetters=?, Updated=? WHERE ID=?',
-            vals);
+          vals,
+        );
       }
-  });
+    });
 }
 
 // functions
 
-function mainLetters(words)
-{
-    return words.replace(/[^A-Za-z ]/g,'').replace(/[uUiIyYwWoOMNØRH@~®`]/g,'').trim();
+function mainLetters(words) {
+  return words.replace(/[^A-Za-z ]/g, '').replace(/[uUiIyYwWoOMNØRH@~®`]/g, '').trim();
 }
 
-function ascii (a) {
-    return ','+a.split('').map(function (c) {return str_pad(c.charCodeAt(0),3,0,'STR_PAD_LEFT')}).join(',')+','; 
+function ascii(a) {
+  return `,${a.split('').map(c => String(c.charCodeAt(0)).padStart(3, '0')).join(',')},`;
 }
 
-function firstLetters(words, eng)
-{
-    if (!words) { return ''; }
+function firstLetters(words, eng) {
+  if (!words) { return ''; }
 
-    words = words.replace(/\]/g,'').replace(/rhwa/g,'').replace(/[0-9]/g, '');
+  const newWords = words.replace(/\]/g, '').replace(/rhwa/g, '').replace(/[0-9]/g, '');
 
-    var first_letter = function(x){ 
-    if (x) { 
-        if (x[0] == 'i' && !eng) return x[1];
-        else {
-            if (x[0] == '|') return '';
-            else return x[0];
+  const firstLetter = function (x) {
+    if (x) {
+      if (x[0] === 'i' && !eng) return x[1];
+
+      if (x[0] === '|') return '';
+      return x[0];
+    } return '';
+  };
+
+  return newWords.split(' ').map(firstLetter).join('');
+}
+
+function convert(panFontTxt) {
+  if (!panFontTxt) return '';
+  const lineNumToConvert = 1;
+  const conversionType = 1;
+
+  const panFontTxtNewLineSplitarray = panFontTxt.replace('Ø', '').replace('>', '').split('\n');
+  let convertedText = '';
+
+  let nextLineToConvert = 1;
+
+  for (let i = 0; i < panFontTxtNewLineSplitarray.length; i += 1) {
+    if (nextLineToConvert === (i + 1)) {
+      const panFontTxtcharArray = removeUnwantedChars(panFontTxtNewLineSplitarray[i]).split('');
+
+      for (let j = 0; j < panFontTxtcharArray.length; j += 1) {
+        const currentChar = panFontTxtcharArray[j];
+        const nextChar = panFontTxtcharArray[j + 1];
+        const nextNextChar = panFontTxtcharArray[j + 2];
+
+        if (conversionType === 2) {
+          if (currentChar === ' ') {
+            continue;
+          }
         }
-    } else { return ''; }
-    };
 
-    return words.split(' ').map(first_letter).join('');
-}
-
-function convert(panFontTxt)
-{
-    if (!panFontTxt) return "";
-    var lineNumToConvert = 1;
-    var conversionType = 1;
-    
-    var panFontTxt_NewLineSplitarray = panFontTxt.replace("Ø","").replace(">","").split("\n");
-    var convertedText = "";
-    
-    var nextLineToConvert = 1;
-    
-    for (var i = 0;i<panFontTxt_NewLineSplitarray.length;i++)
-    {
-        if(nextLineToConvert == (i + 1))
-        {
-            var panFontTxt_charArray = removeUnwantedChars(panFontTxt_NewLineSplitarray[i]).split("");
-            
-            for(var j = 0; j < panFontTxt_charArray.length; j++)
-            {
-                var currentChar = panFontTxt_charArray[j];
-                var nextChar = panFontTxt_charArray[j+1];
-                var nextNextChar = panFontTxt_charArray[j+2];
-
-                if(conversionType == 2)
-                {
-                    if(currentChar == ' ')
-                    {
-                        continue;
-                    }
-                }
-                
-                if(currentChar == 'i')
-                {
-                    if(nextChar != null)
-                    {
-                        if(nextChar == 'e')
-                        {
-                            convertedText += 'ਇ';
-                        }
-                        else if(nextNextChar == 'R' || nextNextChar == 'H' ||
-                                nextNextChar == 'Í' || nextNextChar == 'ç' ||
-                                nextNextChar == '†' || nextNextChar == 'œ' ||
-                                nextNextChar == '~' || nextNextChar == '®')
-                        {
-                                convertedText += convertText(nextChar);
-                                convertedText += convertText(nextNextChar);
-                                convertedText += 'ਿ';
-                                j = j + 1;
-                        }
-                        else
-                        {
-                            convertedText += convertText(nextChar);
-                            convertedText += 'ਿ';
-                        }
-                        j = j + 1;
-                    }
-                    else
-                    {
-                        convertedText += convertText(currentChar);
-                    }
-                }
-                else if(currentChar == 'a')
-                {
-                    switch (nextChar)
-                    {
-                        case 'u':
-                          convertedText += 'ਉ';
-                          j = j + 1;
-                          break;
-                        case 'U':
-                          convertedText += 'ਊ';
-                          j = j + 1;
-                          break;
-                        default:
-                          convertedText += convertText(currentChar);
-                    }
-                }
-                else if(currentChar == 'A')
-                {
-                    switch (nextChar)
-                    {
-                        case 'w':
-                          convertedText += 'ਆ';
-                          j = j + 1;
-                          break;
-                        case 'W':
-                          convertedText += 'ਆਂ';
-                          j = j + 1;
-                          break;
-                        case 'Y':
-                          convertedText += 'ਐ';
-                          j = j + 1;
-                          break;
-                        case 'O':
-                          convertedText += 'ਔ';
-                          j = j + 1;
-                          break;
-                        default:
-                          convertedText += convertText(currentChar);
-                    }
-                }
-                else if(currentChar == 'e')
-                {
-                    switch (nextChar)
-                    {
-                        case 'I':
-                          convertedText += 'ਈ';
-                          j = j + 1;
-                          break;
-                        case 'y':
-                          convertedText += 'ਏ';
-                          j = j + 1;
-                          break;
-                        default:
-                          convertedText += convertText(currentChar);
-                    }
-                }
-                else if(currentChar == 'u' && nextChar == 'o')
-                {
-                    convertedText += 'ੋੁ';
-                    j = j + 1;
-                }
-                else if((currentChar == '@' && nextChar == 'Y') || (currentChar == '@' && nextChar == 'y') || (currentChar == '@' && nextChar == 'o') || (currentChar == '@' && nextChar == 'O'))
-                {
-                    convertedText += convertText(nextChar);
-                    convertedText += '੍';
-                    j = j + 1;
-                }
-                else if(currentChar == '@' && nextChar == 'w')
-                {
-                    convertedText += '੍ਹ';
-                    convertedText += convertText(nextChar);
-                    j = j + 1;
-                }
-                else if((currentChar == 'N' && nextChar == 'I') || (currentChar == 'M' && (nextChar == 'U' || nextChar == 'u' || nextChar=='ü')) || (currentChar == 'ˆ' && nextChar == 'I') || (currentChar == 'N' && nextChar == 'y') )
-                {
-                    convertedText += convertText(nextChar);
-                    convertedText += convertText(currentChar);
-                    j = j + 1;
-                }
-                else
-                {
-                    convertedText += convertText(currentChar);
-                }
-            }   
-            
-            if(i != panFontTxt_NewLineSplitarray.length - 1)
-            {
-                nextLineToConvert = nextLineToConvert + lineNumToConvert;
+        if (currentChar === 'i') {
+          if (nextChar != null) {
+            if (nextChar === 'e') {
+              convertedText += 'ਇ';
+            } else if (nextNextChar === 'R' || nextNextChar === 'H' ||
+                                nextNextChar === 'Í' || nextNextChar === 'ç' ||
+                                nextNextChar === '†' || nextNextChar === 'œ' ||
+                                nextNextChar === '~' || nextNextChar === '®') {
+              convertedText += convertText(nextChar);
+              convertedText += convertText(nextNextChar);
+              convertedText += 'ਿ';
+              j += 1;
+            } else {
+              convertedText += convertText(nextChar);
+              convertedText += 'ਿ';
             }
+            j += 1;
+          } else {
+            convertedText += convertText(currentChar);
+          }
+        } else if (currentChar === 'a') {
+          switch (nextChar) {
+            case 'u':
+              convertedText += 'ਉ';
+              j += 1;
+              break;
+            case 'U':
+              convertedText += 'ਊ';
+              j += 1;
+              break;
+            default:
+              convertedText += convertText(currentChar);
+          }
+        } else if (currentChar === 'A') {
+          switch (nextChar) {
+            case 'w':
+              convertedText += 'ਆ';
+              j += 1;
+              break;
+            case 'W':
+              convertedText += 'ਆਂ';
+              j += 1;
+              break;
+            case 'Y':
+              convertedText += 'ਐ';
+              j += 1;
+              break;
+            case 'O':
+              convertedText += 'ਔ';
+              j += 1;
+              break;
+            default:
+              convertedText += convertText(currentChar);
+          }
+        } else if (currentChar === 'e') {
+          switch (nextChar) {
+            case 'I':
+              convertedText += 'ਈ';
+              j += 1;
+              break;
+            case 'y':
+              convertedText += 'ਏ';
+              j += 1;
+              break;
+            default:
+              convertedText += convertText(currentChar);
+          }
+        } else if (currentChar === 'u' && nextChar === 'o') {
+          convertedText += 'ੋੁ';
+          j += 1;
+        } else if ((currentChar === '@' && nextChar === 'Y') || (currentChar === '@' && nextChar === 'y') || (currentChar === '@' && nextChar === 'o') || (currentChar === '@' && nextChar === 'O')) {
+          convertedText += convertText(nextChar);
+          convertedText += '੍';
+          j += 1;
+        } else if (currentChar === '@' && nextChar === 'w') {
+          convertedText += '੍ਹ';
+          convertedText += convertText(nextChar);
+          j += 1;
+        } else if ((currentChar === 'N' && nextChar === 'I') || (currentChar === 'M' && (nextChar === 'U' || nextChar === 'u' || nextChar === 'ü')) || (currentChar === 'ˆ' && nextChar === 'I') || (currentChar === 'N' && nextChar === 'y')) {
+          convertedText += convertText(nextChar);
+          convertedText += convertText(currentChar);
+          j += 1;
+        } else {
+          convertedText += convertText(currentChar);
         }
-        else
-        {
-            convertedText += panFontTxt_NewLineSplitarray[i];
-        }
-        
-        if(i != panFontTxt_NewLineSplitarray.length - 1)
-        {
-            convertedText += "\n";
-        }
+      }
+
+      if (i !== panFontTxtNewLineSplitarray.length - 1) {
+        nextLineToConvert += lineNumToConvert;
+      }
+    } else {
+      convertedText += panFontTxtNewLineSplitarray[i];
     }
-    
-    return convertedText;
+
+    if (i !== panFontTxtNewLineSplitarray.length - 1) {
+      convertedText += '\n';
+    }
+  }
+
+  return convertedText;
 }
 
-function convertText(charToConvert){ 
-     switch (charToConvert)
-    {
-        case 'a':
-                return 'ੳ';
-                break;
-        case 'A':
-              return 'ਅ';
-              break;
-        case 's':
-              return 'ਸ';
-              break;
-        case 'S':
-              return 'ਸ਼';
-              break;
-        case 'd':
-              return 'ਦ';
-              break;
-        case 'D':
-              return 'ਧ';
-              break;
-        case 'f':
-              return 'ਡ';
-              break;
-        case 'F':
-              return 'ਢ';
-              break;
-        case 'g':
-              return 'ਗ';
-              break;
-        case 'G':
-              return 'ਘ';
-              break;
-        case 'h':
-              return 'ਹ';
-              break;
-        case 'H':
-              return '੍ਹ';
-              break;
-        case 'j':
-              return 'ਜ';
-              break;
-        case 'J':
-              return 'ਝ';
-              break;
-        case 'k':
-              return 'ਕ';
-              break;
-        case 'K':
-              return 'ਖ';
-              break;
-        case 'l':
-              return 'ਲ';
-              break;
-        case 'L':
-              return 'ਲ਼';
-              break;
-        case 'q':
-              return 'ਤ';
-              break;
-        case 'Q':
-              return 'ਥ';
-              break;
-        case 'w':
-              return 'ਾ';
-              break;
-        case 'W':
-              return 'ਾਂ';
-              break;
-        case 'e':
-              return 'ੲ';
-              break;
-        case 'E':
-              return 'ਓ';
-              break;
-        case 'r':
-              return 'ਰ';
-              break;
-        case 'R':
-        case '®':
-              return '੍ਰ';
-              break;
-        case 't':
-              return 'ਟ';
-              break;
-        case 'T':
-              return 'ਠ';
-              break;
-        case 'y':
-              return 'ੇ';
-              break;
-        case 'Y':
-              return 'ੈ';
-              break;
-        case 'u':
-        case 'ü':
-              return 'ੁ';
-              break;
-        case 'U':
-              return 'ੂ';
-              break;
-        case 'i':
-              return 'ਿ';
-              break;
-        case 'I':
-              return 'ੀ';
-              break;
-        case 'o':
-              return 'ੋ';
-              break;
-        case 'O':
-              return 'ੌ';
-              break;
-        case 'p':
-              return 'ਪ';
-              break;
-        case 'P':
-              return 'ਫ';
-              break;
-        case 'z':
-              return 'ਜ਼';
-              break;
-        case 'z':
-              return 'ਗ਼';
-              break;
-        case 'Z':
-              return 'ਗ਼';
-              break;
-        case 'x':
-              return 'ਣ';
-              break;
-        case 'X':
-              return 'ਯ';
-              break;
-        case 'c':
-              return 'ਚ';
-              break;
-        case 'C':
-              return 'ਛ';
-              break;
-        case 'v':
-              return 'ਵ';
-              break;
-        case 'V':
-              return 'ੜ';
-              break;
-        case 'b':
-              return 'ਬ';
-              break;
-        case 'B':
-              return 'ਭ';
-              break;
-        case 'n':
-              return 'ਨ';
-              break;
-        case 'ƒ':
-              return 'ਨੂੰ';
-              break;
-        case 'N':
-        case 'ˆ':
-              return 'ਂ';
-              break;
-        case 'm':
-              return 'ਮ';
-              break;
-        case 'M':
-        case 'µ':
-              return 'ੰ';
-              break;
-        case '`':
-        case '~':
-              return 'ੱ';
-              break;
-        case 'Í':
-              return '੍ਵ'
-              break;
-        case 'ç':
-              return '੍ਚ'
-              break;
-        case '†':
-              return '੍ਟ'
-              break;
-        case 'œ':
-              return '੍ਤ'
-              break;
-        case '˜':
-              return '੍ਨ'
-              break;
-        case '´':
-              return '੍ਯ'
-              break;
-        case '1':
-              return '੧';
-              break;
-        case '2':
-              return '੨';
-              break;
-        case '3':
-              return '੩';
-              break;
-        case '4':
-              return '੪';
-              break;
-        case '5':
-              return '੫';
-              break;
-        case '6':
-              return '੬';
-              break;
-        case '^':
-              return 'ਖ਼';
-              break;
-        case '7':
-              return '੭';
-              break;
-        case '&':
-              return 'ਫ਼';
-              break;
-        case '8':
-              return '੮';
-              break;
-        case '9':
-              return '੯';
-              break;
-        case '0':
-              return '੦';
-              break;
-        case '\\':
-              return 'ਞ';
-              break;
-        case '|':
-              return 'ਙ';
-              break;
-        case '[':
-                    return '।';
-                    break;
-        case ']':
-              return '॥';
-              break;
-        case '<':
-              return 'ੴ';
-              break;
-        case 'Ú':
-              return 'ਃ';
-              break;
-        case '@':
-              return '੍ਹ';
-              break;
-        case '‚':
-              return '❁';
-              break;
-        default:
-          return charToConvert;
-    }
-} 
+function convertText(charToConvert) {
+  switch (charToConvert) {
+    case 'a':
+      return 'ੳ';
+    case 'A':
+      return 'ਅ';
+    case 's':
+      return 'ਸ';
+    case 'S':
+      return 'ਸ਼';
+    case 'd':
+      return 'ਦ';
+    case 'D':
+      return 'ਧ';
+    case 'f':
+      return 'ਡ';
+    case 'F':
+      return 'ਢ';
+    case 'g':
+      return 'ਗ';
+    case 'G':
+      return 'ਘ';
+    case 'h':
+      return 'ਹ';
+    case 'H':
+      return '੍ਹ';
+    case 'j':
+      return 'ਜ';
+    case 'J':
+      return 'ਝ';
+    case 'k':
+      return 'ਕ';
+    case 'K':
+      return 'ਖ';
+    case 'l':
+      return 'ਲ';
+    case 'L':
+      return 'ਲ਼';
+    case 'q':
+      return 'ਤ';
+    case 'Q':
+      return 'ਥ';
+    case 'w':
+      return 'ਾ';
+    case 'W':
+      return 'ਾਂ';
+    case 'e':
+      return 'ੲ';
+    case 'E':
+      return 'ਓ';
+    case 'r':
+      return 'ਰ';
+    case 'R':
+    case '®':
+      return '੍ਰ';
+    case 't':
+      return 'ਟ';
+    case 'T':
+      return 'ਠ';
+    case 'y':
+      return 'ੇ';
+    case 'Y':
+      return 'ੈ';
+    case 'u':
+    case 'ü':
+      return 'ੁ';
+    case 'U':
+      return 'ੂ';
+    case 'i':
+      return 'ਿ';
+    case 'I':
+      return 'ੀ';
+    case 'o':
+      return 'ੋ';
+    case 'O':
+      return 'ੌ';
+    case 'p':
+      return 'ਪ';
+    case 'P':
+      return 'ਫ';
+    case 'z':
+      return 'ਜ਼';
+    case 'Z':
+      return 'ਗ਼';
+    case 'x':
+      return 'ਣ';
+    case 'X':
+      return 'ਯ';
+    case 'c':
+      return 'ਚ';
+    case 'C':
+      return 'ਛ';
+    case 'v':
+      return 'ਵ';
+    case 'V':
+      return 'ੜ';
+    case 'b':
+      return 'ਬ';
+    case 'B':
+      return 'ਭ';
+    case 'n':
+      return 'ਨ';
+    case 'ƒ':
+      return 'ਨੂੰ';
+    case 'N':
+    case 'ˆ':
+      return 'ਂ';
+    case 'm':
+      return 'ਮ';
+    case 'M':
+    case 'µ':
+      return 'ੰ';
+    case '`':
+    case '~':
+      return 'ੱ';
+    case 'Í':
+      return '੍ਵ';
+    case 'ç':
+      return '੍ਚ';
+    case '†':
+      return '੍ਟ';
+    case 'œ':
+      return '੍ਤ';
+    case '˜':
+      return '੍ਨ';
+    case '´':
+      return '੍ਯ';
+    case '1':
+      return '੧';
+    case '2':
+      return '੨';
+    case '3':
+      return '੩';
+    case '4':
+      return '੪';
+    case '5':
+      return '੫';
+    case '6':
+      return '੬';
+    case '^':
+      return 'ਖ਼';
+    case '7':
+      return '੭';
+    case '&':
+      return 'ਫ਼';
+    case '8':
+      return '੮';
+    case '9':
+      return '੯';
+    case '0':
+      return '੦';
+    case '\\':
+      return 'ਞ';
+    case '|':
+      return 'ਙ';
+    case '[':
+      return '।';
+    case ']':
+      return '॥';
+    case '<':
+      return 'ੴ';
+    case 'Ú':
+      return 'ਃ';
+    case '@':
+      return '੍ਹ';
+    case '‚':
+      return '❁';
+    default:
+      return charToConvert;
+  }
+}
 
-function removeUnwantedChars(str){ 
-    str = str.replace(/>/gi, "");
-    str = str.replace(/Ø/gi, "");
-    return str;
+function removeUnwantedChars(str) {
+  let newStr = str.replace(/>/gi, '');
+  newStr = newStr.replace(/Ø/gi, '');
+  return newStr;
 }
 

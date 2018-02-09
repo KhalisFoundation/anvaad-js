@@ -1,0 +1,33 @@
+{
+  "name": "anvaad-js",
+  "version": "1.0.0",
+  "description": "Utilities to prime Gurmukhi script for search. Unicode, first letters, main letters",
+  "main": "index.js",
+  "dependencies": {
+    "locutus": "^2.0.9",
+    "sync-sql": "^1.0.2"
+  },
+  "devDependencies": {
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.8.0"
+  },
+  "scripts": {
+    "test": "eslint *.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khalisfoundation/anvaad-js.git"
+  },
+  "keywords": [
+    "gurmukhi",
+    "gurbani",
+    "unicode"
+  ],
+  "author": "Khalis, Inc. <techsupport@khalisfoundation.org>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/khalisfoundation/anvaad-js/issues"
+  },
+  "homepage": "https://github.com/khalisfoundation/anvaad-js#readme"
+}
