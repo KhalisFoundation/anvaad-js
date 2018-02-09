@@ -3,11 +3,12 @@
  *
  * @since 1.0.0
  * @param {string} words The string from which to get first letters
+ * @param {boolean=} [eng=false] Whether the string is English
  * @returns {string} Returns a single string of characters
  * @example
  *
  * firstLetters('Awie imlu gurisK Awie imlu qU myry gurU ky ipAwry ]');
- * // => 'Ae ml grsK Ae ml q mr gr k pAr'
+ * // => 'AmgAmqmgkp'
  */
 
 function firstLetters(words = null, eng = false) {

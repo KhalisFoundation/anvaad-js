@@ -1,15 +1,3 @@
-/**
- * Convert Gurmukhi script to Unicode
- *
- * @since 1.0.0
- * @param {string} text Gurbani Akhar script to be converted
- * @returns {string} Returns unicode text
- * @example
- *
- * mainLetters('Awie imlu gurisK Awie imlu qU myry gurU ky ipAwry ]');
- * // => 'Ae ml grsK Ae ml q mr gr k pAr'
- */
-
 const mapping = {
   a: 'ੳ',
   A: 'ਅ',
@@ -98,6 +86,18 @@ const mapping = {
   '‚': '❁',
   ' ': ' ',
 };
+
+/**
+ * Convert Gurmukhi script to Unicode
+ *
+ * @since 1.0.0
+ * @param {string} text Gurbani Akhar script to be converted
+ * @returns {string} Returns unicode text
+ * @example
+ *
+ * unicode('Awie imlu gurisK Awie imlu qU myry gurU ky ipAwry ]');
+ * // => 'ਆਇ ਮਿਲੁ ਗੁਰਸਿਖ ਆਇ ਮਿਲੁ ਤੂ ਮੇਰੇ ਗੁਰੂ ਕੇ ਪਿਆਰੇ ॥'
+ */
 
 function unicode(text) {
   if (!text) return '';
