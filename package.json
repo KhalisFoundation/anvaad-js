@@ -15,10 +15,13 @@
     "eslint-config-airbnb-base": "^12.1.0",
     "eslint-plugin-import": "^2.8.0",
     "jest": "^22.2.1",
+    "npm-run-all": "^4.1.2",
     "webpack": "^3.10.0"
   },
   "scripts": {
-    "test": "jest; eslint *.js",
+    "test": "npm-run-all -p -c test:*",
+    "test:unit": "jest",
+    "test:lint": "eslint *.js",
     "build": "webpack -p"
   },
   "repository": {
@@ -40,5 +43,12 @@
     "presets": [
       "env"
     ]
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "env": {
+      "jest": true,
+      "node": true
+    }
   }
 }
