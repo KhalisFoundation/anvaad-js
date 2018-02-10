@@ -243,7 +243,7 @@ function translit(gurmukhi) {
         thisLetter !== 'ay' &&
       // 2.2. next letter:
       nextLetter && nextLetter !== '' && // 2.2.1. It is not empty; end of line
-      'iaeouyw'.indexOf(nextLetter.toLowerCase()) === false && // 2.2.2. It does not exist in this string (capital or lowercase): "iaeouyw"
+      'iaeouyw'.indexOf(nextLetter.toLowerCase()) === -1 && // 2.2.2. It does not exist in this string (capital or lowercase): "iaeouyw"
       '@ HRªÅÆÇÍÏÒÓÔØÚåæçüŒœ:[]()'.indexOf(nextLetter) === -1 && // 2.2.3. It does not exist in this string (case sensitive): "@ HRªÅÆÇÍÏÒÓÔØÚåæçüŒœ:[]()"
       // 2.3. THIS IS NOT TRUE:
       !(
