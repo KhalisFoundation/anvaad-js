@@ -18,7 +18,7 @@
     "webpack": "^3.10.0"
   },
   "scripts": {
-    "test": "jest && eslint *.js",
+    "test": "jest; eslint *.js",
     "build": "webpack -p"
   },
   "repository": {
