@@ -1,3 +1,5 @@
+/* eslint no-useless-escape: 0 */
+
 const unescape = require('lodash.unescape');
 
 /**

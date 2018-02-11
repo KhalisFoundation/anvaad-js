@@ -5,4 +5,8 @@ describe('firstLetters', () => {
     expect(firstLetters('Awie imlu gurisK Awie imlu qU myry gurU ky ipAwry ]'))
       .toBe('AmgAmqmgkp');
   });
+  it('Should return an empty string when no argument', () => {
+    expect(firstLetters())
+      .toBe('');
+  });
 });

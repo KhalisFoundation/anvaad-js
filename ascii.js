@@ -1,3 +1,7 @@
+const padStart = require('string.prototype.padstart');
+
+padStart.shim();
+
 /**
  * Returns a comma-separated string of ascii codes for a
  * string of Gurmukhi characters

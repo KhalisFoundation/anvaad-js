@@ -22,7 +22,6 @@ function firstLetters(words = null, eng = false) {
   function firstLetter(word) {
     if (word) {
       if (word[0] === 'i' && !eng) return word[1];
-      if (word[0] === '|') return '';
       return word[0];
     }
     return '';
