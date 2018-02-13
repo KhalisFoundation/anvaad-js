@@ -19,9 +19,9 @@
     "webpack": "^3.10.0"
   },
   "scripts": {
-    "test": "npm-run-all -p -c test:*",
-    "test:unit": "jest",
-    "test:lint": "eslint *.js",
+    "test": "jest && yarn lint",
+    "lint": "eslint .",
+    "coverage": "jest --coverage",
     "build": "webpack -p"
   },
   "repository": {

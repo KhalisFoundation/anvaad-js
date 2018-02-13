@@ -1,8 +1,10 @@
 # anvaad-js :: ਅਨੁਵਾਦ-ਜੇਅੈਸ
 
+[![Build Status](https://travis-ci.org/KhalisFoundation/anvaad-js.svg?branch=master)](https://travis-ci.org/KhalisFoundation/anvaad-js) [![Coverage Status](https://coveralls.io/repos/github/KhalisFoundation/anvaad-js/badge.svg)](https://coveralls.io/github/KhalisFoundation/anvaad-js)
+
 ### Testing
 
-Run ```npm test```
+Run ```yarn test```
 
 
 ### Table of Contents
