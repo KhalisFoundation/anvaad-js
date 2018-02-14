@@ -27,7 +27,7 @@ function firstLetters(words = null, eng = false) {
     return '';
   }
 
-  return newWords.split(' ').map(firstLetter).join('');
+  return newWords.split(' ').map(firstLetter).join('').replace(/\|/g, '');
 }
 
 module.exports = firstLetters;
