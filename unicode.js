@@ -197,7 +197,7 @@ function unicode(text) {
       convertedText += mapping[currentChar];
       j += 1;
     } else {
-      convertedText += mapping[currentChar];
+      convertedText += mapping[currentChar] || currentChar;
     }
   }
 
