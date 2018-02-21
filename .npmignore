@@ -1,0 +1,8 @@
+coverage
+src
+webpack.config.js
+yarn.lock
+.vscode
+.editorconfig
+.eslintignore
+.travis.yml
