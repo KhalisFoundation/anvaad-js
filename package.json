@@ -1,7 +1,8 @@
 {
   "name": "anvaad-js",
   "version": "1.0.4",
-  "description": "Utilities to prime Gurmukhi script for search. Unicode, first letters, main letters",
+  "description":
+    "Utilities to prime Gurmukhi script for search. Unicode, first letters, main letters",
   "main": "dist/index.js",
   "dependencies": {
     "lodash.unescape": "^4.0.1",
@@ -28,11 +29,7 @@
     "type": "git",
     "url": "git+https://github.com/khalisfoundation/anvaad-js.git"
   },
-  "keywords": [
-    "gurmukhi",
-    "gurbani",
-    "unicode"
-  ],
+  "keywords": ["gurmukhi", "gurbani", "unicode"],
   "author": "Khalis, Inc. <techsupport@khalisfoundation.org>",
   "license": "SEE LICENSE IN LICENSE.md",
   "bugs": {
@@ -40,9 +37,7 @@
   },
   "homepage": "https://github.com/khalisfoundation/anvaad-js#readme",
   "babel": {
-    "presets": [
-      "env"
-    ]
+    "presets": ["env"]
   },
   "eslintConfig": {
     "extends": "airbnb-base",
@@ -50,5 +45,9 @@
       "jest": true,
       "node": true
     }
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5"
   }
 }
