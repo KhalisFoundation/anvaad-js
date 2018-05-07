@@ -239,8 +239,7 @@ module.exports = (gurmukhi) => {
         thisLetter !== 'ye' &&
         thisLetter !== 'noo(n)' &&
         thisLetter !== step2Values[step2Keys.indexOf('<')] &&
-        thisLetter !== step2Values[step2Keys.indexOf('>')] &&
-        //thisLetter !== 'ay' &&
+        thisLetter !== step2Values[step2Keys.indexOf('>')] && // thisLetter !== 'ay' &&
       // 2.2. next letter:
       nextLetter && nextLetter !== '' && // 2.2.1. It is not empty; end of line
       'iaeouyw'.indexOf(nextLetter.toLowerCase()) === -1 && // 2.2.2. It does not exist in this string (capital or lowercase): "iaeouyw"
@@ -352,7 +351,7 @@ module.exports = (gurmukhi) => {
     ['(N)', 'n'],
     ['ah ', 'eh '],
     ['eee', "e'ee"],
-    //below this is from balpreet k
+    // below this is from balpreet k
     ['Aih', 'ahai'],
     ['ii', 'i'],
     ['eay', 'ey'],
@@ -360,7 +359,7 @@ module.exports = (gurmukhi) => {
     ["a'eh", 'eh'],
     ["Re'ee", "Re'e"],
     ["re'ee", "re'e"],
-     //to here
+    // to here
     ['aaa', 'aa'],
   ];
 
