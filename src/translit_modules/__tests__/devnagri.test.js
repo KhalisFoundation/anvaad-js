@@ -1,7 +1,7 @@
 /* globals describe, it, expect */
 
-/* Use https://www.lexilogos.com/keyboard/devanagari.htm to add Hindi Unicode */
-const lib = require('../hindi');
+/* Use https://www.lexilogos.com/keyboard/devanagari.htm to add devnagri Unicode */
+const lib = require('../devnagri');
 
 const tests = [
   ['soriT mhlw 5 ]', 'सोरठि महला ५ ॥'],
@@ -73,7 +73,7 @@ const tests = [
   ],
 ];
 
-describe('hindi()', () => {
+describe('devnagri()', () => {
   tests.forEach(([input, output]) => {
     it(`handles "${input}"`, () => {
       expect(lib(input)).toBe(output);

@@ -67,12 +67,12 @@ const map = [
 ];
 
 module.exports = gurmukhi =>
-  map.reduce((_str, [gurmukhiLetter, hindiUnicode]) => {
+  map.reduce((_str, [gurmukhiLetter, devnagriUnicode]) => {
     let str = _str;
 
     str = str.replace(/<>/gi, 'ੴ');
 
-    // Gurakhar places i before the letter it's applied to, while hindi unicode placed it after.
+    // Gurakhar places i before the letter it's applied to, while devnagri unicode placed it after.
     if (gurmukhiLetter === 'i') {
       str = str.replace(/i./gm, full =>
         full
@@ -83,7 +83,7 @@ module.exports = gurmukhi =>
     }
 
     while (str.includes(gurmukhiLetter)) {
-      str = str.replace(gurmukhiLetter, hindiUnicode, 'g');
+      str = str.replace(gurmukhiLetter, devnagriUnicode, 'g');
     }
 
     return str;
