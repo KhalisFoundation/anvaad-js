@@ -15,6 +15,8 @@ const map = [
   ['g', 'ग'],
   ['G', 'घ'],
   ['|', 'ङ'],
+  ['V', 'ड'],
+  ['F', 'ढ'],
   ['c', 'च'],
   ['C', 'छ'],
   ['j', 'ज'],
@@ -23,7 +25,7 @@ const map = [
   ['t', 'ट'],
   ['T', 'ठ'],
   ['f', 'ड'],
-  ['D', 'ढ'],
+  ['D', 'ध'],
   ['x', 'ण'],
   ['q', 'त'],
   ['Q', 'थ'],
@@ -48,20 +50,27 @@ const map = [
   ['G', 'ज्ञ'],
   ['A', 'अ'],
   ['Aw', 'आ'],
+  ['a', 'उ'],
   ['w', 'ा'],
+  ['W', 'ां'],
   ['I', 'ी'],
   ['u', 'ु'],
   ['U', 'ू'],
   ['y', 'े'],
   ['Y', 'ै'],
+  ['e', 'इ'],
   ['o', 'ो'],
   ['O', 'ौ'],
-  [']', '||'],
+  ['M', ' ं'],
+  ['R', ' ्र'],
+  [']', '॥'],
 ];
 
 module.exports = gurmukhi =>
   map.reduce((_str, [gurmukhiLetter, hindiUnicode]) => {
     let str = _str;
+
+    str = str.replace(/<>/gi, 'ੴ');
 
     // Gurakhar places i before the letter it's applied to, while hindi unicode placed it after.
     if (gurmukhiLetter === 'i') {
