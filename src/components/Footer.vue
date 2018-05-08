@@ -1,6 +1,6 @@
 <template>
     <div class="footer">
-        <a href="https://github.com/khalisfoudation/anvaad-js" target="_blank">GitHub</a>
+        <a href="https://github.com/khalisfoundation/anvaad-js" target="_blank">GitHub</a>
         <div>&copy; <a href="https://khalisfoundation.org/" target="_blank">Khalis Foundation</a> {{ new Date().getFullYear() }}</div>
     </div>
 </template>
