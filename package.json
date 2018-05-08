@@ -8,6 +8,7 @@
     "build": "vue-cli-service build && rm -rf css img js && mv dist/* ./",
     "lint": "vue-cli-service lint"
   },
+  "pre-push": ["pre-push"],
   "dependencies": {
     "anvaad-js": "^1.0.3",
     "vue": "^2.5.16"
