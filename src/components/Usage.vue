@@ -1,11 +1,12 @@
 <template>
   <div class="usage">
     <h4 :id="name">{{name}}</h4>
+    <p>{{ description }}</p>
     <code>
         console.assert(
-            {{name}}(
+            {{name}}("
             <input type="text" v-model="input" placeholder="Awie imlu gurisK Awie imlu qU myry gurU ky ipAwry ]" />
-            )
+            ")
                 ===
             '{{ callFn(input) }}'
         );
@@ -19,7 +20,8 @@ import * as anvaad from "anvaad-js";
 export default {
   name: "Usage",
   props: {
-    name: String
+    name: String,
+    description: String
   },
   data: () => ({
     input: ""

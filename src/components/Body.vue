@@ -7,11 +7,11 @@
 
     <h3>Usage</h3>
 
-    <Usage name="ascii" />
-    <Usage name="firstLetters" />
-    <Usage name="mainLetters" />
-    <Usage name="translit.english" />
-    <Usage name="unicode" />
+    <Usage name="ascii" description="Returns a comma-separated string of ascii codes for a string of Gurmukhi characters." />
+    <Usage name="firstLetters" description="Retrieve the first letter of each word from a string." />
+    <Usage name="mainLetters" description="Removes vowel symbols from a Gurmukhi string." />
+    <Usage name="translit.english" description="Returns an english transliteration of Gurmukhi script" />
+    <Usage name="unicode" description="Convert Gurmukhi script to Unicode" />
   </div>
 </template>
 
