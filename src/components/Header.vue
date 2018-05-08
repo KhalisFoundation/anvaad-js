@@ -1,5 +1,9 @@
 <template>
-  <div class="hello">
+  <div class="header">
+    <a href="http://banidb.com/" target="_blank">
+      <img alt="BaniDB logo" src="../assets/logo.png">
+    </a>
+
     <h1> Welcome to anvaad-js (ਅਨੁਵਾਦ-ਜੇਅੈਸ) </h1>
 
     <p>A JavaScript utility to translit gurmukhi, and convert it between ascii to unicode with ease!</p>
@@ -14,6 +18,12 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+.header {
+  background: linear-gradient(45deg, #fa9d1d, #00669b);
+  background-position: fixed;
+  padding: 10vh 0;
+  color: white;
+}
 h3 {
   margin: 40px 0 0;
 }
