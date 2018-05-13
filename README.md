@@ -2,10 +2,41 @@
 
 [![Build Status](https://travis-ci.org/KhalisFoundation/anvaad-js.svg?branch=master)](https://travis-ci.org/KhalisFoundation/anvaad-js) [![Coverage Status](https://coveralls.io/repos/github/KhalisFoundation/anvaad-js/badge.svg)](https://coveralls.io/github/KhalisFoundation/anvaad-js)
 
-### Testing
+## Playground 
 
-Run ```yarn test```
+Visit [playground](https://khalisfoundation.github.io/anvaad-js/) website to try the API methods.
 
+## Installation
+
+```bash
+# npm
+npm install anvaad-js
+# yarn
+yarn add anvaad-js
+```
+
+## Usage
+
+```javascript
+import * as anvaad from 'anvaad-js' // ES2015 module syntax
+// import { unicode } from 'anvaad-js' // ES2015 module destructuring syntax
+// const anvaad = require('anvaad-js') // common-js require syntax
+
+anvaad.unicode('myry');
+```
+
+## Testing
+
+We use [jest](https://facebook.github.io/jest/) for our tests. Run them using npm/yarn
+
+```bash
+# npm
+npm run test
+# yarn
+yarn test
+```
+
+## API Documentation
 
 ### Table of Contents
 
@@ -121,3 +152,110 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 **Meta**
 
 -   **since**: 1.0.0
+
+**Notes**
+
+All letter conversions at a minimum must address the following letters that are utilized within gurbani ascii fonts:
+```
+´
+`
+^
+¨
+~
+<
+>
+|
+µ
+ 
+-
+,
+:
+!
+?
+/
+'
+‘
+’
+(
+)
+[
+]
+®
+@
+¤
+\
+&
+˜
+†
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+a
+A
+b
+B
+c
+C
+ç
+d
+D
+e
+E
+f
+F
+g
+G
+h
+H
+i
+I
+Í
+î
+Î
+j
+J
+k
+K
+l
+L
+m
+M
+n
+N
+o
+O
+Ø
+œ
+p
+P
+q
+Q
+r
+R
+s
+S
+t
+T
+ŧ
+u
+U
+Ú
+ü
+v
+V
+w
+W
+x
+X
+y
+Y
+z
+Z
+```
