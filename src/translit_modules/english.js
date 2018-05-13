@@ -105,12 +105,12 @@ module.exports = (gurmukhi) => {
       ['I', 'ee'],
       ['J', 'jh'],
       ['K', 'kh'],
-      ['L', 'l'],
+      ['L', 'lh'],
       ['M', '(n)'],
       ['N', '(n)'],
       ['O', 'au'],
       ['P', 'f'],
-      ['Q', 'thh'],
+      ['Q', 'th'],
       ['R', 'r'],
       ['S', 'sh'],
       ['T', 'tt'],
@@ -118,14 +118,14 @@ module.exports = (gurmukhi) => {
       ['V', 'R'],
       ['W', 'aa(n)'],
       ['X', 'y'],
-      ['Y', 'ai'],
+      ['Y', 'AI'],
       ['Z', 'g(h)'],
       ['[', '|'],
       ['\\', 'n(j)'],
       [']', '||'],
-      ['^', 'kh'],
+      ['^', 'khh'],
       ['_', '_'],
-      ['`', ''],
+      ['`', "'"],
       ['a', 'u'],
       ['b', 'b'],
       ['c', 'ch'],
@@ -145,18 +145,18 @@ module.exports = (gurmukhi) => {
       ['q', 't'],
       ['r', 'r'],
       ['s', 's'],
-      ['t', 'tt'],
+      ['t', 'T'],
       ['u', 'u'],
       ['v', 'v'],
       ['w', 'aa'],
-      ['x', 'nn'],
-      ['y', 'ay'],
+      ['x', 'N'],
+      ['y', 'e'],
       ['z', 'z'],
       ['{', '{'],
       ['|', 'n(g)'],
       ['}', '}'],
-      ['~', '\u2019,\u00a0'],
-      ['\u00a1', 'ikOankaar\u00a0'],
+      ['~', "'"],
+      ['\u00a1', 'ikOankaar'],
       ['\u00a2', '\u00a2'],
       ['\u00a3', '\u00a3'],
       ['\u00a4', ''],
@@ -168,7 +168,7 @@ module.exports = (gurmukhi) => {
       ['\u00b0', ''],
       ['\u00b1', '\u00b1'],
       ['\u00b4', 'ye'],
-      ['\u00b5', 'n'],
+      ['\u00b5', '(n)'],
       ['\u00b6', '\u00b6'],
       ['\u00b7', '\u00b7'],
       ['\u00bf', 'x'],
@@ -230,7 +230,7 @@ module.exports = (gurmukhi) => {
     if (
     // 2.1. current letter:
       thisLetter !== '' && // 2.1.1. Is not empty
-      'aeou ooaiee'.indexOf(thisLetter.toLowerCase()) === -1 && // 2.1.2. does not exist in this string (capital or lowercase): "aeou ooaiee"
+      'aeiou ooaiee'.indexOf(thisLetter.toLowerCase()) === -1 && // 2.1.2. does not exist in this string (capital or lowercase): "aeou ooaiee"
       /^[a-zA-Z]+$/.test(thisLetter) && // 2.1.3. It is alphanumeric
         // 2.1.4. It is not "(n)", "(N)", "hoo", "ye", "noo(n)", "ik", "Oankaar", "ay"
         thisLetter !== step2Values[step2Keys.indexOf('N')] &&
@@ -239,12 +239,11 @@ module.exports = (gurmukhi) => {
         thisLetter !== 'ye' &&
         thisLetter !== 'noo(n)' &&
         thisLetter !== step2Values[step2Keys.indexOf('<')] &&
-        thisLetter !== step2Values[step2Keys.indexOf('>')] &&
-        thisLetter !== 'ay' &&
+        thisLetter !== step2Values[step2Keys.indexOf('>')] && // thisLetter !== 'ay' &&
       // 2.2. next letter:
       nextLetter && nextLetter !== '' && // 2.2.1. It is not empty; end of line
       'iaeouyw'.indexOf(nextLetter.toLowerCase()) === -1 && // 2.2.2. It does not exist in this string (capital or lowercase): "iaeouyw"
-      '@ HRªÅÆÇÍÏÒÓÔØÚåæçüŒœ:[]()'.indexOf(nextLetter) === -1 && // 2.2.3. It does not exist in this string (case sensitive): "@ HRªÅÆÇÍÏÒÓÔØÚåæçüŒœ:[]()"
+      'I@ HRªÅÆÇÍÏÒÓÔØÚåæçüŒœ:[]()'.indexOf(nextLetter) === -1 && // 2.2.3. It does not exist in this string (case sensitive): "@ HRªÅÆÇÍÏÒÓÔØÚåæçüŒœ:[]()"
       // 2.3. THIS IS NOT TRUE:
       !(
         nextLetter.toLowerCase().indexOf('i') > -1 && // 2.3.0 nextLetter is i
@@ -331,19 +330,37 @@ module.exports = (gurmukhi) => {
 
 
   const step4 = [
+    ['uu', 'au'],
+    [' ju ', '\* JU \*'],
+    [' su ', '\* SU \*'],
+    ['ahu ', '\*AHU \*'],
+    ['au ', '\*AU \*'],
+    ['u ', ' '],
+    ['\\* JU \\*', ' ju '],
+    ['\\* SU \\*', ' su '],
+    ['\\*AHU \\*', 'ahu '],
+    ['\\*AU \\*', 'au '],
+    ['hi ', '\*HI \*'],
+    ['i ', ' '],
+    ['\\*HI \\*', 'hi '],
+    ['ai', 'i'],
+    ['AI', 'ai'],
+    ['aaa', 'aa'],
+    [' n ', ' na '],
+    [' t ', ' ta '],
     ['(N)', 'n'],
     ['ah ', 'eh '],
     ['eee', "e'ee"],
-    ['uu', 'au'],
+    // below this is from balpreet k
     ['Aih', 'ahai'],
-    ['aaa', 'aa'],
     ['ii', 'i'],
     ['eay', 'ey'],
     ['jIA', 'jee'],
     ["a'eh", 'eh'],
-    ['u ', ' '],
-    ["Re'ee", 'Reeay'],
-    ["re'ee", 'reeay'],
+    ["Re'ee", "Re'e"],
+    ["re'ee", "re'e"],
+    // to here
+    ['aaa', 'aa'],
   ];
 
   // replace step 4 values
