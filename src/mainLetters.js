@@ -10,7 +10,7 @@
  * // => 'Ae ml grsK Ae ml q mr gr k pAr'
  */
 
-function mainLetters(words) {
+function mainLetters(words = '') {
   return words
     .replace(/[^A-Za-z ]/g, '')
     .replace(/[uUiIyYwWoOMNØRH@~®`]/g, '')

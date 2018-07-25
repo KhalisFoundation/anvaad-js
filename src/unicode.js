@@ -99,9 +99,7 @@ const mapping = {
  * // => 'ਆਇ ਮਿਲੁ ਗੁਰਸਿਖ ਆਇ ਮਿਲੁ ਤੂ ਮੇਰੇ ਗੁਰੂ ਕੇ ਪਿਆਰੇ ॥'
  */
 
-function unicode(text) {
-  if (!text) return '';
-
+function unicode(text = '') {
   let convertedText = '';
 
   const chars = text
