@@ -11,9 +11,7 @@
  * // => 'AmgAmqmgkp'
  */
 
-function firstLetters(words = null, eng = false) {
-  if (!words) { return ''; }
-
+function firstLetters(words = '', eng = false) {
   const newWords = words
     .replace(/\]/g, '')
     .replace(/rhwa/g, '')

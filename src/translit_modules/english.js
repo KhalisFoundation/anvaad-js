@@ -14,7 +14,7 @@ const unescape = require('lodash.unescape');
  * // => 'aai mil gurasikh aai mil too mayray guroo kay piaaaray ||'
  */
 
-module.exports = (gurmukhi) => {
+module.exports = (gurmukhi = '') => {
   let trans = gurmukhi;
   //* *********************
   //    STEP 1

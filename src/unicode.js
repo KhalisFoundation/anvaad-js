@@ -33,6 +33,7 @@ const mapping = {
   u: 'ੁ',
   ü: 'ੁ',
   U: 'ੂ',
+  '¨': 'ੂ',
   i: 'ਿ',
   I: 'ੀ',
   o: 'ੋ',
@@ -58,12 +59,14 @@ const mapping = {
   µ: 'ੰ',
   '`': 'ੱ',
   '~': 'ੱ',
+  '¤': 'ੱ',
   Í: '੍ਵ',
   ç: '੍ਚ',
   '†': '੍ਟ',
   œ: '੍ਤ',
   '˜': '੍ਨ',
   '´': '੍ਯ',
+  Î: '੍ਯ',
   1: '੧',
   2: '੨',
   3: '੩',
@@ -99,9 +102,7 @@ const mapping = {
  * // => 'ਆਇ ਮਿਲੁ ਗੁਰਸਿਖ ਆਇ ਮਿਲੁ ਤੂ ਮੇਰੇ ਗੁਰੂ ਕੇ ਪਿਆਰੇ ॥'
  */
 
-function unicode(text) {
-  if (!text) return '';
-
+function unicode(text = '') {
   let convertedText = '';
 
   const chars = text
