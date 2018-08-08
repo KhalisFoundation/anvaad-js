@@ -11,6 +11,9 @@
  */
 
 function mainLetters(words = '') {
+  if (words === '' || typeof words !== 'string') {
+    return words;
+  }
   return words
     .replace(/[^A-Za-z ]/g, '')
     .replace(/[uUiIyYwWoOMNØRH@~®`]/g, '')

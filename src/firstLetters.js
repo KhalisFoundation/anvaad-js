@@ -12,6 +12,9 @@
  */
 
 function firstLetters(words = '', eng = false) {
+  if (words === '' || typeof words !== 'string') {
+    return words;
+  }
   const newWords = words
     .replace(/\]/g, '')
     .replace(/rhwa/g, '')

@@ -133,4 +133,14 @@ describe('unicode', () => {
     expect(unicode('Xky dwnh muMgo idZr nu^d nIm ]45]'))
       .toBe('ਯਕੇ ਦਾਨਹ ਮੁੰਗੋ ਦਿਗ਼ਰ ਨੁਖ਼ਦ ਨੀਮ ॥੪੫॥');
   });
+
+  it('Should return an empty string when no argument', () => {
+    expect(unicode())
+      .toBe('');
+  });
+
+  it('Should return null when passed as an argument', () => {
+    expect(unicode(null))
+      .toBeNull();
+  });
 });
