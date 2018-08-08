@@ -103,6 +103,9 @@ const mapping = {
  */
 
 function unicode(text = '') {
+  if (text === '' || typeof text !== 'string') {
+    return text;
+  }
   let convertedText = '';
 
   const chars = text

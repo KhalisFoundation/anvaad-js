@@ -15,6 +15,9 @@ const unescape = require('lodash.unescape');
  */
 
 module.exports = (gurmukhi = '') => {
+  if (gurmukhi === '' || typeof gurmukhi !== 'string') {
+    return gurmukhi;
+  }
   let trans = gurmukhi;
   //* *********************
   //    STEP 1

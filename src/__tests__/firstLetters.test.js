@@ -15,4 +15,9 @@ describe('firstLetters', () => {
     expect(firstLetters())
       .toBe('');
   });
+
+  it('Should return null when passed as an argument', () => {
+    expect(firstLetters(null))
+      .toBeNull();
+  });
 });
