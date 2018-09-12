@@ -327,6 +327,15 @@ module.exports = (gurmukhi = '') => {
   const regex5 = /aie\s+|$/gm;
   trans = trans.replace(regex5, full => full.replace('ie', 'ey'));
 
+  // 9. remove extra vowels in specific words
+  // 9.1 guramukh, gurabani, guradhev, gurasikh
+  const regex6 = /gura[dmbs][a-zA-Z]+/gm;
+  trans = trans.replace(regex6, full => full.replace('gura', 'gur'));
+  // 9.2 manamukh
+  const regex7 = /mana[m][a-zA-Z]+/gm;
+  trans = trans.replace(regex7, full => full.replace('mana', 'man'));
+
+
   //* *********************
   //    STEP 4
   //* *********************
