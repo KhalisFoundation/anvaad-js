@@ -373,6 +373,7 @@ module.exports = (gurmukhi = '') => {
     ["re'ee", "re'e"],
     // to here
     ['aaa', 'aa'],
+    [' au', ' u'],
   ];
 
   // replace step 4 values
