@@ -67,7 +67,7 @@ module.exports = (gurmukhi) => {
             ['G','Gʰə̀'],
             ['|','N'],
             ['c','t͡ʃ'],
-            ['C','t͡ɕ'],
+            ['C','ɕ'],
             ['j','d͡ʒ'],
             ['z','z'],
             ['J','ɖ͡ʐ'],
@@ -89,7 +89,7 @@ module.exports = (gurmukhi) => {
             ['B','ɓʰə̀'],
             ['m','m'],
             ['X','j'],
-            ['r','ɾ'],
+            ['r','r'],
             ['l','l'],
             ['L','lʰ'],
             ['v','ʋ'],
@@ -141,12 +141,12 @@ module.exports = (gurmukhi) => {
             ['O','ɒ'],
             ['Ø',''],
             ['œ','t̪'],
-            ['R','ʳ'],
+            ['R','ɹ'],
             ['ŧ',''],
-            ['u','ɵ'],
+            ['u','ʊ'],
             ['U','u'],
             ['Ú',':'],
-            ['ü','ɵ'],
+            ['ü','ʊ'],
             ['w','ɑ'],
             ['W','ɑⁿ'],
             ['y','e'],
@@ -179,7 +179,7 @@ module.exports = (gurmukhi) => {
     if (
     // 2.1. current letter:
       thisLetter !== '' && // 2.1.1. Is not empty
-      'əeɔɵ uæij'.indexOf(thisLetter.toLowerCase()) === -1 && // 2.1.2. does not exist in this string (capital or lowercase): "aeou ooaiee"
+      'əɑeɔɵ uæijɪə̀'.indexOf(thisLetter) === -1 && // 2.1.2. does not exist in this string (capital or lowercase): "aeou ooaiee"
       /^[a-zA-Z]+$/.test(thisLetter) && // 2.1.3. It is alphanumeric
         // 2.1.4. It is not "(n)", "(N)", "hoo", "ye", "noo(n)", "ik", "Oankaar", "ay"
         thisLetter !== step2Values[step2Keys.indexOf('N')] &&
@@ -190,15 +190,15 @@ module.exports = (gurmukhi) => {
         thisLetter !== 'e' &&
       // 2.2. next letter:
       nextLetter && nextLetter !== '' && // 2.2.1. It is not empty; end of line
-      'iaeouyw'.indexOf(nextLetter.toLowerCase()) === -1 && // 2.2.2. It does not exist in this string (capital or lowercase): "iaeouyw"
-      '@ HRªÅÆÇÍÏÒÓÔØÚåæçüŒœ:[]()'.indexOf(nextLetter) === -1 && // 2.2.3. It does not exist in this string (case sensitive): "@ HRªÅÆÇÍÏÒÓÔØÚåæçüŒœ:[]()"
+      'iaɑeouywɪə̀'.indexOf(nextLetter.toLowerCase()) === -1 && // 2.2.2. It does not exist in this string (capital or lowercase): "iaeouyw"
+      '@ HRªÅÆÇÍÏÒÓÔØÚåæçüŒœ:ɪ[]()'.indexOf(nextLetter) === -1 //&& // 2.2.3. It does not exist in this string (case sensitive): "@ HRªÅÆÇÍÏÒÓÔØÚåæçüŒœ:[]()"
       // 2.3. THIS IS NOT TRUE:
-      !(
-        nextLetter.toLowerCase().indexOf('i') > -1 && // 2.3.0 nextLetter is i
-        // 2.3.1 letter after the next letter:
-        trans[x + 2] && // 2.3.1.1 It exists
-        trans[x + 2] === ' ' // 2.3.1.2 It is " "
-      )
+      // !(
+      //   nextLetter.indexOf('ɪ') > -1 && // 2.3.0 nextLetter is i
+      //   // 2.3.1 letter after the next letter:
+      //   trans[x + 2] && // 2.3.1.1 It exists
+      //   trans[x + 2] === ' ' // 2.3.1.2 It is " "
+      // )
     ) {
       thisLetter = `${thisLetter}ə`;
     }
@@ -218,33 +218,60 @@ module.exports = (gurmukhi) => {
 
   // 5. If a number is preceeded by ‘m:’, ‘mhlw’, ‘mhlu’, ‘Gr’, Transliterate numerals as:
   // regex values account for current state of translit
-  const regex2 = /((m:|mahalaa|mahalu|ghar|gharu)\s*([0-9]0?))/gm;
+  const regex2 = /((m:|məhəlɑ|məhəlɵ|Gʰə̀ɾɵ|Gʰə̀ɾ)\s*([0-9]0?))/gm;
 
   function translitNumbers(full, full2, header, num) {
     const formalNumbers = [' ',
-      'pehilaa',
-      'doojaa',
-      'teejaa',
-      'chauthhaa',
-      'panjavaa',
-      'chhayvaa',
-      'satvaa',
-      'atthvaa',
-      'nauvaa',
-      'dasvaa',
-      'gayaarvaa',
-      'baarvaa',
-      'tayrvaa',
-      'chaudavaa',
-      'pandaravaa',
-      'solavaa',
-      'sataaravaa',
+    'pəhɪlɑ',
+    'd̪ud͡ʒɑ',
+    't̪id͡ʒɑ',
+    't͡ʃɵɵt̪ʰɑ',
+    'pəŋd͡ʒʋɑ',
+    't͡ɕeʋɑ',
+    'sət̪ʋɑ',
+    'əʈʰʋɑ',
+    'nɑʋɑ',
+    'd̪səʋɑ',
+    'Gɪəɑɾʋɑ',
+    'bɑɾhəʋɑ',
+    't̪eɾʋɑ',
+    't͡ʃɒd̪ʰʋɑ',
+    'pəŋd̪ʰɾʋɑ',
+    'sɔlʰʋɑ',
+    'sət̪ɑɾʋɑ',
     ];
 
     return `${header.replace('m:', 'mahalaa')} ${formalNumbers[num]}`;
   }
 
   trans = trans.replace(regex2, translitNumbers);
+
+
+  const regex3 = /ə̀[iaɑeouywɪə̀]/gm;
+  trans = trans.replace(regex3, full => full.replace('ə̀', ''));
+
+
+ //* *********************
+  //    STEP 4
+  //* *********************
+
+
+  const step4 = [
+    ['ə̀ɔ', 'ɔ'],
+    ['eiə', 'ei'],
+    ['ŋ', 'ən'],
+    [' n ', ' nə '],
+    ['əə', 'ə'],
+    ['əi', 'i'],
+    ['eɪə','ɪ'],
+    ['ʊ ', ' '],
+    ['əæ', 'æ'],
+  ];
+
+  // replace step 4 values
+  step4.forEach((e) => {
+    trans = trans.replace(new RegExp(e[0], 'g'), e[1]);
+  });
 
   // return transliterated string
   return trans;
