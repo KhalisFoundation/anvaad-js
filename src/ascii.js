@@ -15,7 +15,10 @@ padStart.shim();
  * // => ',065,109,103,065,109,113,109,103,107,112,'
  */
 
-function ascii(string) {
+function ascii(string = '') {
+  if (string === '' || typeof string !== 'string') {
+    return string;
+  }
   return `,${
     string
       .split('')
