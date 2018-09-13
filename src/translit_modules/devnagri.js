@@ -61,9 +61,49 @@ const map = [
   ['e', 'इ'],
   ['o', 'ो'],
   ['O', 'ौ'],
-  ['M', ' ं'],
-  ['R', ' ्र'],
+  ['M', 'ं'],
+  ['R', '्र'],
   [']', '॥'],
+  ['!', '!'],
+  ['&', ''], // phapha pair bindi
+  ["'", "'"],
+  ['(', '('],
+  [')', ')'],
+  [',', ','],
+  ['-', '-'],
+  ['/', '/'],
+  [':', ':'],
+  ['<', 'ੴ'],
+  ['>', ''],
+  ['?', '?'],
+  ['@', ''], // halant
+  ['E', ''], // open oora
+  ['H', ''], // pair haha
+  ['L', ''], // lala pair bindi
+  ['N', ''], // tippee
+  ['Z', ''], // gaga pair bindi
+  ['[', '।'],
+  ['^', ''], // khakha pair bindi
+  ['`', ''], // adhak over letter
+  ['z', ''], // jaja pair bindi zaza
+  ['~', ''], // adhak after letter
+  ['¤', ''], // adhak after letter
+  ['¨', 'ू'],
+  ['®', '्र'],
+  ['´', ''], // yakash (pair yaya)
+  ['µ', 'ं'], // bindi
+  ['Í', ''], // pair vava
+  ['Î', ''], // half yaya
+  ['Ø', ''], // extra top line (extender)
+  ['Ú', ':'],
+  ['ç', ''], // pair chacha
+  ['ü', 'ु'],
+  ['œ', ''], // pair tata
+  ['ŧ', ''], // bad char
+  ['˜', ''], // pair nana
+  ['‘', '‘'],
+  ['’', '’'],
+  ['†', ''], // pair tanka
 ];
 
 module.exports = gurmukhi =>
@@ -72,15 +112,15 @@ module.exports = gurmukhi =>
 
     str = str.replace(/<>/gi, 'ੴ');
 
-    // Gurakhar places i before the letter it's applied to, while devnagri unicode placed it after.
-    if (gurmukhiLetter === 'i') {
-      str = str.replace(/i./gm, full =>
-        full
-          .split('')
-          .reverse()
-          .join('')
-      );
-    }
+    // // Gurakhar places i before the letter it's applied to, while devnagri unicode placed it after.
+    // if (gurmukhiLetter === 'i') {
+    //   str = str.replace(/i./gm, full =>
+    //     full
+    //       .split('')
+    //       .reverse()
+    //       .join('')
+    //   );
+    // }
 
     while (str.includes(gurmukhiLetter)) {
       str = str.replace(gurmukhiLetter, devnagriUnicode, 'g');
