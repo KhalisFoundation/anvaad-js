@@ -2,10 +2,41 @@
 
 [![Build Status](https://travis-ci.org/KhalisFoundation/anvaad-js.svg?branch=master)](https://travis-ci.org/KhalisFoundation/anvaad-js) [![Coverage Status](https://coveralls.io/repos/github/KhalisFoundation/anvaad-js/badge.svg)](https://coveralls.io/github/KhalisFoundation/anvaad-js)
 
-### Testing
+## Playground 
 
-Run ```yarn test```
+Visit [playground](https://khalisfoundation.github.io/anvaad-js/) website to try the API methods.
 
+## Installation
+
+```bash
+# npm
+npm install anvaad-js
+# yarn
+yarn add anvaad-js
+```
+
+## Usage
+
+```javascript
+import * as anvaad from 'anvaad-js' // ES2015 module syntax
+// import { unicode } from 'anvaad-js' // ES2015 module destructuring syntax
+// const anvaad = require('anvaad-js') // common-js require syntax
+
+anvaad.unicode('myry');
+```
+
+## Testing
+
+We use [jest](https://facebook.github.io/jest/) for our tests. Run them using npm/yarn
+
+```bash
+# npm
+npm run test
+# yarn
+yarn test
+```
+
+## API Documentation
 
 ### Table of Contents
 
