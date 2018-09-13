@@ -47,7 +47,7 @@ module.exports = (gurmukhi) => {
 
     const step2 = [
             ['E','o'],
-            ['au','ɵ'],
+            ['au','o'],
             ['aU','u'],
             ['A','ə'],
             ['Aw','ɑ'],
@@ -86,7 +86,7 @@ module.exports = (gurmukhi) => {
             ['P','f'],
             ['&','ɸ'],
             ['b','b'],
-            ['B','ɓʰə̀'],
+            ['B','ɓ'],
             ['m','m'],
             ['X','j'],
             ['r','r'],
@@ -180,7 +180,7 @@ module.exports = (gurmukhi) => {
     // 2.1. current letter:
       thisLetter !== '' && // 2.1.1. Is not empty
       'əɑeɔɵ uæijɪə̀'.indexOf(thisLetter) === -1 && // 2.1.2. does not exist in this string (capital or lowercase): "aeou ooaiee"
-      /^[a-zA-Z]+$/.test(thisLetter) && // 2.1.3. It is alphanumeric
+      (/^[a-zA-Z]+$/.test(thisLetter) || step2Values.indexOf(thisLetter) > -1) && // 2.1.3. It is alphanumeric
         // 2.1.4. It is not "(n)", "(N)", "hoo", "ye", "noo(n)", "ik", "Oankaar", "ay"
         thisLetter !== step2Values[step2Keys.indexOf('N')] &&
         thisLetter !== step2Values[step2Keys.indexOf('M')] &&
@@ -247,7 +247,7 @@ module.exports = (gurmukhi) => {
   trans = trans.replace(regex2, translitNumbers);
 
 
-  const regex3 = /ə̀[iaɑeouywɪə̀]/gm;
+  const regex3 = /ə̀[iaɑeouywɪəʊ̀ɔ]/gm;
   trans = trans.replace(regex3, full => full.replace('ə̀', ''));
 
 
@@ -257,10 +257,10 @@ module.exports = (gurmukhi) => {
 
 
   const step4 = [
-    ['ə̀ɔ', 'ɔ'],
     ['eiə', 'ei'],
     ['ŋ', 'ən'],
     [' n ', ' nə '],
+    [' k ', ' kə '],
     ['əə', 'ə'],
     ['əi', 'i'],
     ['eɪə','ɪ'],
