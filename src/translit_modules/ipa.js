@@ -179,7 +179,7 @@ module.exports = (gurmukhi) => {
     if (
     // 2.1. current letter:
       thisLetter !== '' && // 2.1.1. Is not empty
-      'əɑeɔɵ uæijɪə̀'.indexOf(thisLetter) === -1 && // 2.1.2. does not exist in this string (capital or lowercase): "aeou ooaiee"
+      'əɑeɔɵ uæijɪəɛʊ̀'.indexOf(thisLetter) === -1 && // 2.1.2. does not exist in this string (capital or lowercase): "aeou ooaiee"
       (/^[a-zA-Z]+$/.test(thisLetter) || step2Values.indexOf(thisLetter) > -1) && // 2.1.3. It is alphanumeric
         // 2.1.4. It is not "(n)", "(N)", "hoo", "ye", "noo(n)", "ik", "Oankaar", "ay"
         thisLetter !== step2Values[step2Keys.indexOf('N')] &&
@@ -190,7 +190,7 @@ module.exports = (gurmukhi) => {
         thisLetter !== 'e' &&
       // 2.2. next letter:
       nextLetter && nextLetter !== '' && // 2.2.1. It is not empty; end of line
-      'iaɑeouywɪə̀'.indexOf(nextLetter.toLowerCase()) === -1 && // 2.2.2. It does not exist in this string (capital or lowercase): "iaeouyw"
+      'iaɑeouywɪə̀ɛʊ'.indexOf(nextLetter.toLowerCase()) === -1 && // 2.2.2. It does not exist in this string (capital or lowercase): "iaeouyw"
       '@ HRªÅÆÇÍÏÒÓÔØÚåæçüŒœ:ɪ[]()'.indexOf(nextLetter) === -1 //&& // 2.2.3. It does not exist in this string (case sensitive): "@ HRªÅÆÇÍÏÒÓÔØÚåæçüŒœ:[]()"
       // 2.3. THIS IS NOT TRUE:
       // !(
