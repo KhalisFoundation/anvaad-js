@@ -266,9 +266,9 @@ module.exports = (gurmukhi) => {
     ['ɑeih', 'ɑɪæh'],
     [' \\.', '.'],
     // words
-    ['nisɑɳ', 'niʂɑɳ'],
-    ['səbəd', 'ʂəbəd'],
-    ['d̪ərəsən', 'd̪ərəʂən'],
+    // ['nisɑɳ', 'niʂɑɳ'],
+    // ['səbəd', 'ʂəbəd'],
+    // ['d̪ərəsən', 'd̪ərəʂən'],
   ];
 
   // replace step 4 values
