@@ -255,7 +255,7 @@ module.exports = (gurmukhi) => {
     ['(?!(\s)).rəɓ(?!(\s)).', full => full.replace('rəɓ', 'rɓ')],
     // letter fixes
     ['eiə', 'ei'],
-    //['ŋ', 'ən'],
+    // ['ŋ', 'ən'], // not sure why this rule is here but removed because it breaks things
     [' n ', ' nə '],
     [' k ', ' kə '],
     ['əə', 'ə'],
@@ -264,6 +264,7 @@ module.exports = (gurmukhi) => {
     ['ʊ ', ' '],
     ['əæ', 'æ'],
     ['ɑeih', 'ɑɪæh'],
+    [' \\.', '.'],
     // words
     ['nisɑɳ', 'niʂɑɳ'],
     ['səbəd', 'ʂəbəd'],
