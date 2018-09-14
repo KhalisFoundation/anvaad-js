@@ -92,8 +92,8 @@ const map = [
   ['^', 'ख़'], // khakha pair bindi
   ['`', 'ँ'], // adhak over letter
   ['z', 'ज़'], // jaja pair bindi zaza
-  ['~', ''ँ'], // adhak after letter
-  ['¤', ''ँ'], // adhak after letter
+  ['~', 'ँ'], // adhak after letter
+  ['¤', 'ँ'], // adhak after letter
   ['´', 'य्'], // yakash (pair yaya)
   ['µ', 'ं'], // bindi
   ['Í', 'व्'], // pair vava
