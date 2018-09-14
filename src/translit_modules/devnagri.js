@@ -82,7 +82,7 @@ const map = [
   ['Ú', ':'],
   ['ü', 'ु'],
   ['‘', '‘'],
-  ['’', '’'],  
+  ['’', '’'],
   ['@', ''], // halant
   ['E', 'ऄ'], // open oora
   ['H', 'ह्'], // pair haha
@@ -112,15 +112,15 @@ module.exports = gurmukhi =>
 
     str = str.replace(/<>/gi, 'ੴ');
 
-    // // Gurakhar places i before the letter it's applied to, while devnagri unicode placed it after.
-    // if (gurmukhiLetter === 'i') {
-    //   str = str.replace(/i./gm, full =>
-    //     full
-    //       .split('')
-    //       .reverse()
-    //       .join('')
-    //   );
-    // }
+    // Gurakhar places i before the letter it's applied to, while devnagri unicode placed it after.
+    if (gurmukhiLetter === 'i') {
+      str = str.replace(/i./gm, full =>
+        full
+          .split('')
+          .reverse()
+          .join('')
+      );
+    }
 
     while (str.includes(gurmukhiLetter)) {
       str = str.replace(gurmukhiLetter, devnagriUnicode, 'g');

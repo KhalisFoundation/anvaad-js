@@ -28,7 +28,11 @@
     "type": "git",
     "url": "git+https://github.com/khalisfoundation/anvaad-js.git"
   },
-  "keywords": ["gurmukhi", "gurbani", "unicode"],
+  "keywords": [
+    "gurmukhi",
+    "gurbani",
+    "unicode"
+  ],
   "author": "Khalis, Inc. <techsupport@khalisfoundation.org>",
   "license": "SEE LICENSE IN LICENSE.md",
   "bugs": {
@@ -36,7 +40,9 @@
   },
   "homepage": "https://github.com/khalisfoundation/anvaad-js#readme",
   "babel": {
-    "presets": ["env"]
+    "presets": [
+      "env"
+    ]
   },
   "eslintConfig": {
     "extends": "airbnb-base",
@@ -44,6 +50,9 @@
       "jest": true,
       "node": true
     }
+  },
+  "jest": {
+    "testURL": "http://localhost"
   },
   "prettier": {
     "singleQuote": true,
