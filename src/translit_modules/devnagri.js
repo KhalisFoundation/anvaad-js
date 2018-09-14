@@ -76,34 +76,34 @@ const map = [
   ['<', 'ੴ'],
   ['>', ''],
   ['?', '?'],
-  ['@', ''], // halant
-  ['E', ''], // open oora
-  ['H', ''], // pair haha
-  ['L', ''], // lala pair bindi
-  ['N', ''], // tippee
-  ['Z', ''], // gaga pair bindi
   ['[', '।'],
-  ['^', ''], // khakha pair bindi
-  ['`', ''], // adhak over letter
-  ['z', ''], // jaja pair bindi zaza
-  ['~', ''], // adhak after letter
-  ['¤', ''], // adhak after letter
   ['¨', 'ू'],
   ['®', '्र'],
-  ['´', ''], // yakash (pair yaya)
-  ['µ', 'ं'], // bindi
-  ['Í', ''], // pair vava
-  ['Î', ''], // half yaya
-  ['Ø', ''], // extra top line (extender)
   ['Ú', ':'],
-  ['ç', ''], // pair chacha
   ['ü', 'ु'],
-  ['œ', ''], // pair tata
-  ['ŧ', ''], // bad char
-  ['˜', ''], // pair nana
   ['‘', '‘'],
-  ['’', '’'],
-  ['†', ''], // pair tanka
+  ['’', '’'],  
+  ['@', ''], // halant
+  ['E', 'ऄ'], // open oora
+  ['H', 'ह्'], // pair haha
+  ['L', 'ऴ'], // lala pair bindi
+  ['N', 'ं'], // tippee
+  ['Z', 'ग़'], // gaga pair bindi
+  ['^', 'ख़'], // khakha pair bindi
+  ['`', 'ँ'], // adhak over letter
+  ['z', 'ज़'], // jaja pair bindi zaza
+  ['~', ''ँ'], // adhak after letter
+  ['¤', ''ँ'], // adhak after letter
+  ['´', 'य्'], // yakash (pair yaya)
+  ['µ', 'ं'], // bindi
+  ['Í', 'व्'], // pair vava
+  ['Î', 'य्'], // half yaya
+  ['Ø', ''], // extra top line (extender)
+  ['ç', 'च्'], // pair chacha
+  ['œ', 'त्'], // pair tata
+  ['ŧ', ''], // bad char
+  ['˜', 'न्'], // pair nana
+  ['†', 'ट्'], // pair tanka
 ];
 
 module.exports = gurmukhi =>
