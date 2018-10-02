@@ -119,7 +119,7 @@ describe('unicode', () => {
       .toBe('ਕਿਧੌ ਸੰਖਨੀ ਚਿਤ੍ਰਨੀ ਪਦਮਨੀ ਹੈ ॥੨੩॥੧੯੧॥');
 
     expect(unicode('kvnu jogu kaunu g´wnu D´wnu kvn ibiD ausœiq krIAY ]'))
-      .toBe('ਕਵਨੁ ਜੋਗੁ ਕਉਨੁ ਗ੍ਯਾਨੁ ਧ੍ਯਾਨੁ ਕਵਨ ਬਿਧਿ ਉਸ੍ਤਤਿ ਕਰੀਐ ॥');
+      .toBe('ਕਵਨੁ ਜੋਗੁ ਕਉਨੁ ਗੵਾਨੁ ਧੵਾਨੁ ਕਵਨ ਬਿਧਿ ਉਸ੍ਤਤਿ ਕਰੀਐ ॥');
 
     /* expect(unicode('lY AkR¨r kau Awpny sMg kihXo Ary kwnRh khMŧ kau pDwirXo ]'))
       .toBe('ਲੈ ਅਕ੍ਰੂਰ ਕਉ ਆਪਨੇ ਸੰਗ ਕਹਿਯੋ ਅਰੇ ਕਾਨ੍ਰਹ ਕਹੰŧ ਕਉ ਪਧਾਰਿਯੋ ॥'); */
