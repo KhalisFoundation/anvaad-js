@@ -1,6 +1,7 @@
 /* load modules */
 const languages = {};
 languages.english = require('./translit_modules/english');
+languages.devnagri = require('./translit_modules/devnagri');
 
 /**
  * Returns a transliteration of Gurmukhi script
