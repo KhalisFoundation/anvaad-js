@@ -118,8 +118,7 @@ module.exports = gurmukhi =>
         full
           .split('')
           .reverse()
-          .join('')
-      );
+          .join(''));
     }
 
     while (str.includes(gurmukhiLetter)) {

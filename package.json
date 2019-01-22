@@ -53,9 +53,5 @@
   },
   "jest": {
     "testURL": "http://localhost"
-  },
-  "prettier": {
-    "singleQuote": true,
-    "trailingComma": "es5"
   }
 }
