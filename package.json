@@ -34,7 +34,7 @@
     "unicode"
   ],
   "author": "Khalis, Inc. <techsupport@khalisfoundation.org>",
-  "license": "SEE LICENSE IN LICENSE.md",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/khalisfoundation/anvaad-js/issues"
   },
