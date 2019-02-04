@@ -10,8 +10,8 @@ const unescape = require('lodash.unescape');
  * @returns {string} Returns a string of text
  * @example
  *
- * translit('Awie imlu gurisK Awie imlu qU myry gurU ky ipAwry ]');
- * // => 'aai mil gursikh aai mil too mere guroo ke piaare ||'
+ * translit('Awie imlu gurisK Awie imlu qU myry gurU ky ipAwry ]', 'ipa');
+ * // => "əɑeɪ mɪl Gʊrəsɪkʰ əɑeɪ mɪl t̪u mere Gʊru ke pɪəɑre."
  */
 
 module.exports = (gurmukhi) => {
