@@ -22,7 +22,8 @@
     "test": "jest && yarn lint",
     "lint": "eslint .",
     "coverage": "jest --coverage",
-    "build": "webpack -p"
+    "build": "webpack -p",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
