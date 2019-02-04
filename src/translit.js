@@ -2,6 +2,7 @@
 const languages = {};
 languages.english = require('./translit_modules/english');
 languages.devnagri = require('./translit_modules/devnagri');
+languages.ipa = require('./translit_modules/ipa');
 
 /**
  * Returns a transliteration of Gurmukhi script
