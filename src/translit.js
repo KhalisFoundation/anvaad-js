@@ -2,6 +2,7 @@
 const languages = {};
 languages.english = require('./translit_modules/english');
 languages.devnagri = require('./translit_modules/devnagri');
+languages.ipa = require('./translit_modules/ipa');
 
 /**
  * Returns a transliteration of Gurmukhi script
@@ -12,7 +13,7 @@ languages.devnagri = require('./translit_modules/devnagri');
  * @example
  *
  * translit('Awie imlu gurisK Awie imlu qU myry gurU ky ipAwry ]');
- * // => 'aai mil gurasikh aai mil too mayray guroo kay piaaaray ||'
+ * // => 'aai mil gursikh aai mil too mere guroo ke piaare ||'
  */
 
 function translit(gurmukhi, language = 'english') {

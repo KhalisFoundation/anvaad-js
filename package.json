@@ -1,7 +1,7 @@
 {
   "name": "anvaad-js",
-  "version": "1.0.9",
-  "description": "Utilities to prime Gurmukhi script for search. Unicode, first letters, main letters",
+  "version": "1.1.0",
+  "description": "Utilities to prime Gurmukhi script for search. Unicode, first letters, main letters, transliteration.",
   "main": "dist/index.js",
   "dependencies": {
     "lodash.unescape": "^4.0.1",
