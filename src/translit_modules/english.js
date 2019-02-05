@@ -11,7 +11,7 @@ const unescape = require('lodash.unescape');
  * @example
  *
  * translit('Awie imlu gurisK Awie imlu qU myry gurU ky ipAwry ]');
- * // => 'aai mil gurasikh aai mil too mayray guroo kay piaaaray ||'
+ * // => 'aai mil gursikh aai mil too mere guroo ke piaare ||'
  */
 
 module.exports = (gurmukhi = '') => {
@@ -327,6 +327,15 @@ module.exports = (gurmukhi = '') => {
   const regex5 = /aie\s+|$/gm;
   trans = trans.replace(regex5, full => full.replace('ie', 'ey'));
 
+  // 9. remove extra vowels in specific words
+  // 9.1 guramukh, gurabani, guradhev, gurasikh
+  const regex6 = /gura[dmbs][a-zA-Z]+/gm;
+  trans = trans.replace(regex6, full => full.replace('gura', 'gur'));
+  // 9.2 manamukh
+  const regex7 = /mana[m][a-zA-Z]+/gm;
+  trans = trans.replace(regex7, full => full.replace('mana', 'man'));
+
+
   //* *********************
   //    STEP 4
   //* *********************
@@ -364,6 +373,7 @@ module.exports = (gurmukhi = '') => {
     ["re'ee", "re'e"],
     // to here
     ['aaa', 'aa'],
+    [' au', ' u'],
   ];
 
   // replace step 4 values
