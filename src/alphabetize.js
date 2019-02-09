@@ -78,11 +78,20 @@ const sorted = {
   V: 'ੜ',
 };
 
+const matraFixes = [
+  ['[ਉ, ਊ]', 'ੳ'],
+  ['[ਆ, ਆਂ, ਐ, ਔ]', 'ਅ'],
+  ['[ਈ, ਏ]', 'ੲ'],
+];
+
 let sortedValues;
 
 const customSort = (firstEl, secondEl) => {
   const firstIndex = sortedValues.indexOf(firstEl[0]);
   const secondIndex = sortedValues.indexOf(secondEl[0]);
+  if (firstIndex === secondIndex) {
+    return customSort(firstEl.substr(1), secondEl.substr(1));
+  }
   return firstIndex > secondIndex;
 };
 
@@ -96,8 +105,12 @@ function alphabetize(sentenceArray, type = 'english') {
   }
   const sentenceObj = {};
   sentenceArray.forEach((sentence) => {
-    // removes matras from the shabad
-    const arr = sentence.split('').filter(a => sortedValues.indexOf(a) > 0);
+    // Ignores matras from the shabad
+    let newSentence;
+    matraFixes.forEach((e) => {
+      newSentence = sentence.replace(new RegExp(e[0], 'g'), e[1]);
+    });
+    const arr = newSentence.split('').filter(a => sortedValues.indexOf(a) > 0);
     sentenceObj[sentence] = arr.join('');
   });
 
