@@ -40,8 +40,6 @@
  * ]
 */
 
-const firstLetters = require('./firstLetters');
-
 const sorted = {
   a: 'ੳ',
   A: 'ਅ',
@@ -80,33 +78,32 @@ const sorted = {
   V: 'ੜ',
 };
 
-const sortUni = (firstEl, secondEl) => {
-  const sortedPunjabi = Object.values(sorted);
-  return sortedPunjabi.indexOf(firstEl) > sortedPunjabi.indexOf(secondEl);
-};
+let sortedValues;
 
-const sortEng = (firstEl, secondEl) => {
-  const sortedEnglish = Object.keys(sorted);
-  return sortedEnglish.indexOf(firstEl) > sortedEnglish.indexOf(secondEl);
+const customSort = (firstEl, secondEl) => {
+  const firstIndex = sortedValues.indexOf(firstEl[0]);
+  const secondIndex = sortedValues.indexOf(secondEl[0]);
+  return firstIndex > secondIndex;
 };
 
 const getKeyByValue = (object, value) => Object.keys(object).find(key => object[key] === value);
 
 function alphabetize(sentenceArray, type = 'english') {
+  if (type === 'unicode') {
+    sortedValues = Object.values(sorted);
+  } else if (type === 'english') {
+    sortedValues = Object.keys(sorted);
+  }
   const sentenceObj = {};
   sentenceArray.forEach((sentence) => {
-    const firstAlphabet = firstLetters(sentence)[0];
-    sentenceObj[sentence] = firstAlphabet;
+    // removes matras from the shabad
+    const arr = sentence.split('').filter(a => sortedValues.indexOf(a) > 0);
+    sentenceObj[sentence] = arr.join('');
   });
-  let sortedValues;
 
-  if (type === 'unicode') {
-    sortedValues = Object.values(sentenceObj).sort(sortUni);
-  } else if (type === 'english') {
-    sortedValues = Object.values(sentenceObj).sort(sortEng);
-  }
+  const sortedResult = Object.values(sentenceObj).sort(customSort);
 
-  return sortedValues.map(value => getKeyByValue(sentenceObj, value));
+  return sortedResult.map(value => getKeyByValue(sentenceObj, value));
 }
 
 module.exports = alphabetize;
