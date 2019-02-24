@@ -236,8 +236,10 @@ module.exports = (gurmukhi = '') => {
       'aeiou ooaiee'.indexOf(thisLetter.toLowerCase()) === -1 && // 2.1.2. does not exist in this string (capital or lowercase): "aeou ooaiee"
       /^[a-zA-Z]+$/.test(thisLetter) && // 2.1.3. It is alphanumeric
         // 2.1.4. It is not "(n)", "(N)", "hoo", "ye", "noo(n)", "ik", "Oankaar", "ay"
+        // 2.1.5. It is not "R"
         thisLetter !== step2Values[step2Keys.indexOf('N')] &&
         thisLetter !== step2Values[step2Keys.indexOf('M')] &&
+        thisLetter !== step2Values[step2Keys.indexOf('R')] &&
         thisLetter !== 'hoo' &&
         thisLetter !== 'ye' &&
         thisLetter !== 'noo(n)' &&
@@ -312,7 +314,7 @@ module.exports = (gurmukhi = '') => {
 
   // 4. Transliterate 'ie' to 'i' if both are true:
   // 4.1 preceeded by a vowel in the string ' aeiou' or one of 'oo,ai,ee'
-  // 4.2 proceeded by (case sensitive) by the string "Aw"
+  // 4.2 preceeded by (case sensitive) by the string "Aw"
   const regex3 = /([aeiou]|oo|ai|ee)(ie)aaa/gm;
   trans = trans.replace(regex3, full => full.replace('ie', 'i'));
 
