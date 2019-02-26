@@ -272,7 +272,7 @@ module.exports = (gurmukhi = '') => {
       thisLetter === step2Values[step2Keys.indexOf('i')] && // current letter is sihari
       nextLetter === step2Values[step2Keys.indexOf('R')] // next letter is pehar rara
     ) {
-      thisLetter = 'ri'
+      thisLetter = 'ri';
     }
 
     // save
