@@ -125,5 +125,20 @@ module.exports = gurmukhi =>
       str = str.replace(gurmukhiLetter, devnagriUnicode, 'g');
     }
 
+    const fixes = [
+      ['इी', 'ई'],
+      ['अै', 'ऐ'],
+      ['इि', 'इ'],
+      ['उु', 'उ'],
+      ['इे', 'ए'],
+      ['ऄ', 'ओ'],
+      ['मि्र', 'मृ'],
+      ['कां', 'काँ'],
+    ];
+
+    fixes.forEach((e) => {
+      str = str.replace(new RegExp(e[0], 'g'), e[1]);
+    });
+
     return str;
   }, gurmukhi);
