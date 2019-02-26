@@ -266,7 +266,7 @@ module.exports = (gurmukhi = '') => {
     ) {
       thisLetter = 'i';
     }
-    
+
     // 4 Transliterate as "ri" if
     if (
       thisLetter === step2Values[step2Keys.indexOf('i')] && // current letter is sihari
