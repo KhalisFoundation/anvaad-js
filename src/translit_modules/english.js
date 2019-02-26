@@ -278,8 +278,16 @@ module.exports = (gurmukhi = '') => {
   // 4.1 it is at the end of a word
   // 4.2 it is preceeded by any letter in the string "aeiouy"
   // 4.3 it is preceeded by rara
-  const regex1 = /[^aeiouyr]i(\s|$|\|)/gm;
+  const regex1 = /[^aeiouy]i(\s|$|\|)/gm;
   trans = trans.replace(regex1, full => full.replace('i', ''));
+  
+  // 4.4 move i after pehar rara
+  if (
+    thisLetter == step2Values[step2Keys.indexOf('i')] && // current letter is sihari
+    nextLetter == step2Values[step2Keys.indexOf('R')] // next letter is pehar rara
+  ) {
+    thisLetter = 'ri'
+  }
 
   // 5. If a number is preceeded by ‘m:’, ‘mhlw’, ‘mhlu’, ‘Gr’, Transliterate numerals as:
   // regex values account for current state of translit
