@@ -236,10 +236,8 @@ module.exports = (gurmukhi = '') => {
       'aeiou ooaiee'.indexOf(thisLetter.toLowerCase()) === -1 && // 2.1.2. does not exist in this string (capital or lowercase): "aeou ooaiee"
       /^[a-zA-Z]+$/.test(thisLetter) && // 2.1.3. It is alphanumeric
         // 2.1.4. It is not "(n)", "(N)", "hoo", "ye", "noo(n)", "ik", "Oankaar", "ay"
-        // 2.1.5. It is not "R"
         thisLetter !== step2Values[step2Keys.indexOf('N')] &&
         thisLetter !== step2Values[step2Keys.indexOf('M')] &&
-        thisLetter !== step2Values[step2Keys.indexOf('R')] &&
         thisLetter !== 'hoo' &&
         thisLetter !== 'ye' &&
         thisLetter !== 'noo(n)' &&
@@ -279,7 +277,8 @@ module.exports = (gurmukhi = '') => {
   // 4. remove i when
   // 4.1 it is at the end of a word
   // 4.2 it is preceeded by any letter in the string "aeiouy"
-  const regex1 = /[^aeiouy]i(\s|$|\|)/gm;
+  // 4.3 it is preceeded by rara
+  const regex1 = /[^aeiouyr]i(\s|$|\|)/gm;
   trans = trans.replace(regex1, full => full.replace('i', ''));
 
   // 5. If a number is preceeded by ‘m:’, ‘mhlw’, ‘mhlu’, ‘Gr’, Transliterate numerals as:
