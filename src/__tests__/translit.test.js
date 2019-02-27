@@ -15,7 +15,7 @@ describe('translit', () => {
       .toBe('"laal ra(n)g tis kau lagaa jis ke vaddabhaagaa || mailaa kadhe na hoviee neh laagai dhaagaa ||1||"');
   });
   it('Should return only english transliteration of Gurmukhi', () => {
-  expect(JSON.stringify(translit('AKI sUqku vyKxw pr iqRA pr Dn rUpu ]')))
+    expect(JSON.stringify(translit('AKI sUqku vyKxw pr iqRA pr Dn rUpu ]')))
       .toBe('"akhee sootak vekhanaa par tria par dhan roop ||"');
   });
   it('Should return only the ipa transliteration of Gurmukhi', () => {
