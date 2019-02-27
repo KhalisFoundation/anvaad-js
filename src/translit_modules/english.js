@@ -274,7 +274,7 @@ module.exports = (gurmukhi = '') => {
        trans[x-1] = 'r';
     }
     if (
-      thisLetter === step2Values[step2Keys.indexOf('R')] &&
+      thisLetter === step2Values[step2Keys.indexOf('R')]
      ) {
        thisLetter = 'r';
     }
