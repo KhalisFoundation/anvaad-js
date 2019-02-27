@@ -269,7 +269,7 @@ module.exports = (gurmukhi = '') => {
 
     // 4 Transliterate as "ri" if
     if (
-      thisLetter === "i" //step2Values[step2Keys.indexOf('i')] && // current letter is sihari
+      thisLetter === 'i' //step2Values[step2Keys.indexOf('i')] && // current letter is sihari
       trans[x + 2] === step2Values[step2Keys.indexOf('R')]  // letter afeter next is pehar rara
       // nextLetter === step2Values[step2Keys.indexOf('R')] // next letter is pehar rara
     ) {
