@@ -267,7 +267,8 @@ module.exports = (gurmukhi = '') => {
       thisLetter = 'i';
     }
     if (
-      thisLetter === step2Values[step2Keys.indexOf('R')] &&
+      // thisLetter === step2Values[step2Keys.indexOf('R')] &&
+      step2Keys.indexOf('R') &&
       trans[x - 1] === 'i' 
      ) {
        // trans = trans.replace(regex8, full => full.replace('ir', 'ri'));
