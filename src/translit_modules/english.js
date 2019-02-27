@@ -312,7 +312,7 @@ module.exports = (gurmukhi = '') => {
 
   // 4. Transliterate 'ie' to 'i' if both are true:
   // 4.1 preceeded by a vowel in the string ' aeiou' or one of 'oo,ai,ee'
-  // 4.2 preceeded by (case sensitive) by the string "Aw"
+  // 4.2 proceeded by (case sensitive) by the string "Aw"
   const regex3 = /([aeiou]|oo|ai|ee)(ie)aaa/gm;
   trans = trans.replace(regex3, full => full.replace('ie', 'i'));
 
