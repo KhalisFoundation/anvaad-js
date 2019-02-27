@@ -114,7 +114,7 @@ module.exports = (gurmukhi = '') => {
       ['O', 'au'],
       ['P', 'f'],
       ['Q', 'th'],
-      ['R', 'rxz'],
+      ['R', 'x'],
       ['S', 'sh'],
       ['T', 'Th'],
       ['U', 'oo'],
