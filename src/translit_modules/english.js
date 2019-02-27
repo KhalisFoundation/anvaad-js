@@ -270,15 +270,12 @@ module.exports = (gurmukhi = '') => {
       thisLetter === step2Values[step2Keys.indexOf('R')] &&
       trans[x - 1] === 'i' 
      ) {
-       // trans = trans.replace(regex8, full => full.replace('ir', 'ri'));
        thisLetter = 'i';
        trans[x-1] = 'r';
     }
     if (
       thisLetter === step2Values[step2Keys.indexOf('R')] &&
-      trans[x - 1] !== 'i' 
      ) {
-       // trans = trans.replace(regex8, full => full.replace('ir', 'ri'));
        thisLetter = 'r';
     }
     // save
