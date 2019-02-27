@@ -17,6 +17,7 @@ describe('translit', () => {
   it('Should return only english transliteration of Gurmukhi', () => {
     expect(JSON.stringify(translit('AMqir iprI ipAwru ikau ipr ibnu jIvIAY rwm ]')))
       .toBe('"a(n)tar piree piaar kiau pir bin jeeveeaai raam ||"');
+  });
   it('Should return only english transliteration of Gurmukhi', () => {
     expect(JSON.stringify(translit('hir hir nwmu iDAweIAY ijs nau ikrpw kry rjwie ]3]')))
       .toBe('"har har naam dhiaaieeaai jis nau kirapaa kare rajai ||3||"');
