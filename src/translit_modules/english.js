@@ -336,7 +336,7 @@ module.exports = (gurmukhi = '') => {
   trans = trans.replace(regex7, full => full.replace('mana', 'man'));
 
   // 10. pehar rara second option
-  const regex8 = /ir[pa][a-zA-Z]+/gm;
+  const regex8 = /ir[a-zA-Z]+/gm;
   trans = trans.replace(regex8, full => full.replace('ir', 'ri'));
 
   //* *********************
