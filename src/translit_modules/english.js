@@ -273,11 +273,6 @@ module.exports = (gurmukhi = '') => {
        thisLetter = 'i';
        trans[x-1] = 'r';
     }
-    if (
-      thisLetter === 'x'
-     ) {
-       thisLetter = 'r';
-    }
     // save
     trans[x] = thisLetter;
   } // end loop
@@ -346,9 +341,9 @@ module.exports = (gurmukhi = '') => {
   const regex7 = /mana[m][a-zA-Z]+/gm;
   trans = trans.replace(regex7, full => full.replace('mana', 'man'));
 
-  //   // 10. pehar rara second option
-  //   const regex8 = /ir[a-zA-Z]+/gm;
-  //   trans = trans.replace(regex8, full => full.replace('ir', 'ri'));
+   // 10. fix pehar rara
+   const regex8 = /x[a-zA-Z]+/gm;
+   trans = trans.replace(regex8, full => full.replace('x', 'r'));
 
   //* *********************
   //    STEP 4
