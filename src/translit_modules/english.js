@@ -228,7 +228,7 @@ module.exports = (gurmukhi = '') => {
     //* *********************
     //    RESUME STEP 3
     //* *********************
-
+    const regex8 = /ir[a-zA-Z]+/gm;
     // 2. Add an "a" after this letter if the following is true for the
     if (
     // 2.1. current letter:
@@ -266,7 +266,12 @@ module.exports = (gurmukhi = '') => {
     ) {
       thisLetter = 'i';
     }
-
+    if (
+      thisLetter === step2Values[step2Keys.indexOf('R')] &&
+      trans[x - 2] === 'i' 
+     ) {
+        trans = trans.replace(regex8, full => full.replace('ir', 'ri'));
+    }
     // save
     trans[x] = thisLetter;
   } // end loop
@@ -335,9 +340,9 @@ module.exports = (gurmukhi = '') => {
   const regex7 = /mana[m][a-zA-Z]+/gm;
   trans = trans.replace(regex7, full => full.replace('mana', 'man'));
 
-  // 10. pehar rara second option
-  const regex8 = /ir[a-zA-Z]+/gm;
-  trans = trans.replace(regex8, full => full.replace('ir', 'ri'));
+  //   // 10. pehar rara second option
+  //   const regex8 = /ir[a-zA-Z]+/gm;
+  //   trans = trans.replace(regex8, full => full.replace('ir', 'ri'));
 
   //* *********************
   //    STEP 4
