@@ -267,14 +267,14 @@ module.exports = (gurmukhi = '') => {
       thisLetter = 'i';
     }
 
-    // 4 Transliterate as "ri" if
-    if (
-      thisLetter === 'i' && //step2Values[step2Keys.indexOf('i')] && // current letter is sihari
-      // trans[x + 2] === step2Values[step2Keys.indexOf('R')]  // letter afeter next is pehar rara
-      nextLetter === step2Values[step2Keys.indexOf('R')] // next letter is pehar rara
-    ) {
-      thisLetter = 'ri';
-    }
+//     // 4 Transliterate as "ri" if
+//     if (
+//       thisLetter === 'i' && //step2Values[step2Keys.indexOf('i')] && // current letter is sihari
+//       trans[x + 2] === step2Values[step2Keys.indexOf('R')]  // letter after next is pehar rara
+//       // nextLetter === step2Values[step2Keys.indexOf('R')] // next letter is pehar rara
+//     ) {
+//       thisLetter = 'ri';
+//     }
 
     // save
     trans[x] = thisLetter;
@@ -343,6 +343,10 @@ module.exports = (gurmukhi = '') => {
   // 9.2 manamukh
   const regex7 = /mana[m][a-zA-Z]+/gm;
   trans = trans.replace(regex7, full => full.replace('mana', 'man'));
+  
+  // 10. pehar rara second option
+  const regex8 = /ir[a-zA-Z]+/gm;
+  trans = trans.replace(regex8, full => full.replace('ir', 'ri'));
 
 
   //* *********************
