@@ -1,5 +1,6 @@
 const translit = require('../translit');
 
+// TO-DO update test below to be nitprat (need work on sihari and pehar rara handling)
 describe('translit', () => {
   it('Should return transliteration of Gurmukhi', () => {
     expect(JSON.stringify(translit('CMqu ] ijau jwnhu iqau rwKu hir pRB qyirAw ] kyqy gnau AsMK Avgx myirAw ] AsMK Avgx Kqy Pyry inqpRiq sd BUlIAY ] moh mgn ibkrwl mwieAw qau pRswdI GUlIAY ] lUk krq ibkwr ibKVy pRB nyr hU qy nyirAw ] ibnvMiq nwnk dieAw Dwrhu kwiF Bvjl PyirAw ]1]', 'all')))
@@ -12,6 +13,10 @@ describe('translit', () => {
   it('Should return only english transliteration of Gurmukhi', () => {
     expect(JSON.stringify(translit('lwl rMgu iqs kau lgw ijs ky vfBwgw ] mYlw kdy n hoveI nh lwgY dwgw ]1]')))
       .toBe('"laal ra(n)g tis kau lagaa jis ke vaddabhaagaa || mailaa kadhe na hoviee neh laagai dhaagaa ||1||"');
+  });
+  it('Should return only english transliteration of Gurmukhi', () => {
+  expect(JSON.stringify(translit('AKI sUqku vyKxw pr iqRA pr Dn rUpu ]')))
+      .toBe('"akhee sootak vekhanaa par tria par dhan roop ||"');
   });
   it('Should return only the ipa transliteration of Gurmukhi', () => {
     expect(JSON.stringify(translit('lwl rMgu iqs kau lgw ijs ky vfBwgw ] mYlw kdy n hoveI nh lwgY dwgw ]1]', 'ipa')))
