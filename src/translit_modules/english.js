@@ -344,8 +344,8 @@ module.exports = (gurmukhi = '') => {
   const regex8 = /x[a-zA-Z]+/gm;
   trans = trans.replace(regex8, full => full.replace('x', 'r'));
   // 10.1 fix pehar rara for 'a(n)mirat' -> 'a(n)mrit'
-  const regex9 = /a(n)mirat[a-zA-Z]+/gm;
-  trans = trans.replace(regex9, full => full.replace('a(n)mirat', 'a(n)mrit'));
+  const regex9 = /mirat[a-zA-Z]+/gm;
+  trans = trans.replace(regex9, full => full.replace('mirat', 'mrit'));
   //* *********************
   //    STEP 4
   //* *********************
