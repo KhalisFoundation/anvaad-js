@@ -17,7 +17,7 @@ padStart.shim();
 
 function ascii(string = '') {
   if (string === '' || typeof string !== 'string') {
-    return string;
+  return string;
   }
   return `,${
     string
