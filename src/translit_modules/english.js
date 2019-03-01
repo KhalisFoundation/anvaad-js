@@ -114,7 +114,7 @@ module.exports = (gurmukhi = '') => {
       ['O', 'au'],
       ['P', 'f'],
       ['Q', 'th'],
-      ['R', 'r'],
+      ['R', 'x'], // using 'x' to deal with pehar rara handling - this gets replaced below
       ['S', 'sh'],
       ['T', 'Th'],
       ['U', 'oo'],
@@ -228,7 +228,6 @@ module.exports = (gurmukhi = '') => {
     //* *********************
     //    RESUME STEP 3
     //* *********************
-
     // 2. Add an "a" after this letter if the following is true for the
     if (
     // 2.1. current letter:
@@ -266,7 +265,13 @@ module.exports = (gurmukhi = '') => {
     ) {
       thisLetter = 'i';
     }
-
+    if (
+      thisLetter === step2Values[step2Keys.indexOf('R')] &&
+      trans[x - 1] === 'i'
+    ) {
+      thisLetter = 'i';
+      trans[x - 1] = 'r';
+    }
     // save
     trans[x] = thisLetter;
   } // end loop
@@ -335,7 +340,12 @@ module.exports = (gurmukhi = '') => {
   const regex7 = /mana[m][a-zA-Z]+/gm;
   trans = trans.replace(regex7, full => full.replace('mana', 'man'));
 
-
+  // 10. fix pehar rara
+  const regex8 = /x[a-zA-Z]+/gm;
+  trans = trans.replace(regex8, full => full.replace('x', 'r'));
+  // 10.1 fix pehar rara for 'a(n)mirat' -> 'a(n)mrit'
+  const regex9 = /mirat[a-zA-Z]+/gm;
+  trans = trans.replace(regex9, full => full.replace('mirat', 'mrit'));
   //* *********************
   //    STEP 4
   //* *********************
