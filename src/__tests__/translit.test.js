@@ -13,20 +13,16 @@ describe('translit', () => {
   it('Test for english transliteration of Gurmukhi (including several edge cases)', () => {
     expect(JSON.stringify(translit('lwl rMgu iqs kau lgw ijs ky vfBwgw ] mYlw kdy n hoveI nh lwgY dwgw ]1]')))
       .toBe('"laal ra(n)g tis kau lagaa jis ke vaddabhaagaa || mailaa kadhe na hoviee neh laagai dhaagaa ||1||"');
-  }
-  {
+
     expect(JSON.stringify(translit('AMqir iprI ipAwru ikau ipr ibnu jIvIAY rwm ]')))
       .toBe('"a(n)tar piree piaar kiau pir bin jeeveeaai raam ||"');
-  }
- {
+
     expect(JSON.stringify(translit('jb lgu drsu n hoie ikau AMimRqu pIvIAY rwm ]')))
       .toBe('"jab lag dharas na hoi kiau a(n)mrit peeveeaai raam ||"');
-  }
-  {
+
     expect(JSON.stringify(translit('hir hir nwmu iDAweIAY ijs nau ikrpw kry rjwie ]3]')))
       .toBe('"har har naam dhiaaieeaai jis nau kirapaa kare rajai ||3||"');
-  }
-  {
+
     expect(JSON.stringify(translit('AKI sUqku vyKxw pr iqRA pr Dn rUpu ]')))
       .toBe('"akhee sootak vekhanaa par tria par dhan roop ||"');
   });
