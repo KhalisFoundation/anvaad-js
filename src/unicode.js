@@ -122,10 +122,16 @@ function unicode(text = '') {
       if (nextChar != null) {
         if (nextChar === 'e') {
           convertedText += 'ਇ';
-        } else if (nextNextChar === 'R' || nextNextChar === 'H' ||
-                            nextNextChar === 'Í' || nextNextChar === 'ç' ||
-                            nextNextChar === '†' || nextNextChar === 'œ' ||
-                            nextNextChar === '~' || nextNextChar === '®') {
+        } else if (
+          nextNextChar === 'R' ||
+          nextNextChar === 'H' ||
+          nextNextChar === 'Í' ||
+          nextNextChar === 'ç' ||
+          nextNextChar === '†' ||
+          nextNextChar === 'œ' ||
+          nextNextChar === '~' ||
+          nextNextChar === '®'
+        ) {
           convertedText += mapping[nextChar];
           convertedText += mapping[nextNextChar];
           convertedText += 'ਿ';
@@ -188,7 +194,12 @@ function unicode(text = '') {
     } else if (currentChar === 'u' && nextChar === 'o') {
       convertedText += 'ੋੁ';
       j += 1;
-    } else if ((currentChar === '@' && nextChar === 'Y') || (currentChar === '@' && nextChar === 'y') || (currentChar === '@' && nextChar === 'o') || (currentChar === '@' && nextChar === 'O')) {
+    } else if (
+      (currentChar === '@' && nextChar === 'Y') ||
+      (currentChar === '@' && nextChar === 'y') ||
+      (currentChar === '@' && nextChar === 'o') ||
+      (currentChar === '@' && nextChar === 'O')
+    ) {
       convertedText += mapping[nextChar];
       convertedText += '੍';
       j += 1;
@@ -196,7 +207,12 @@ function unicode(text = '') {
       convertedText += '੍ਹ';
       convertedText += mapping[nextChar];
       j += 1;
-    } else if ((currentChar === 'N' && nextChar === 'I') || (currentChar === 'M' && (nextChar === 'U' || nextChar === 'u' || nextChar === 'ü')) || (currentChar === 'ˆ' && nextChar === 'I') || (currentChar === 'N' && nextChar === 'y')) {
+    } else if (
+      (currentChar === 'N' && nextChar === 'I') ||
+      (currentChar === 'M' && (nextChar === 'U' || nextChar === 'u' || nextChar === 'ü')) ||
+      (currentChar === 'ˆ' && nextChar === 'I') ||
+      (currentChar === 'N' && nextChar === 'y')
+    ) {
       convertedText += mapping[nextChar];
       convertedText += mapping[currentChar];
       j += 1;

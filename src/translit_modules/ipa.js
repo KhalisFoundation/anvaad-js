@@ -14,7 +14,7 @@ const unescape = require('lodash.unescape');
  * // => "əɑeɪ mɪl Gʊrəsɪkʰ əɑeɪ mɪl t̪u mere Gʊru ke pɪəɑre."
  */
 
-module.exports = (gurmukhi) => {
+module.exports = gurmukhi => {
   let trans = gurmukhi;
   //* *********************
   //    STEP 1
@@ -29,7 +29,12 @@ module.exports = (gurmukhi) => {
 
   // 1. If current letter is "i", move after next letter
   const regex = /i./gm;
-  trans = trans.replace(regex, full => full.split('').reverse().join(''));
+  trans = trans.replace(regex, full =>
+    full
+      .split('')
+      .reverse()
+      .join(''),
+  );
 
   // break into single characters
   trans = trans.split('');
@@ -43,7 +48,6 @@ module.exports = (gurmukhi) => {
     //* *********************
     //    STEP 2
     //* *********************
-
 
     const step2 = [
       ['E', 'o'],
@@ -154,11 +158,12 @@ module.exports = (gurmukhi) => {
       ['\u0192', 'nuŋ'],
     ];
 
-    const ourCharset = 'EauaUAAwAYAOieeIeysShkK^gZG\\cCjzJtTfFxqQdDnpP&bBmXrlLvVੱNM´¨µ®@˜†0123456789açeHiIÍîÎoOØœRŧuUÚüwWyYƒəɑɛɔɪiesʃhkkʰqʰGgʰGʰə̀Nt͡ʃɕd͡ʒzɖ͡ʐŋʈʈʰɖʈə̀ɳt̪t̪ʰd̪t̪ə̀npfɸbɓmjrllʰʋɽੱⁿŋjuɪk oənkɑɾⁿ\/ʳ@nʈot͡ʃeʰɪiʋjjɔɒt̪ɹʊuʊɑɑⁿeænu';
+    const ourCharset =
+      'EauaUAAwAYAOieeIeysShkK^gZG\\cCjzJtTfFxqQdDnpP&bBmXrlLvVੱNM´¨µ®@˜†0123456789açeHiIÍîÎoOØœRŧuUÚüwWyYƒəɑɛɔɪiesʃhkkʰqʰGgʰGʰə̀Nt͡ʃɕd͡ʒzɖ͡ʐŋʈʈʰɖʈə̀ɳt̪t̪ʰd̪t̪ə̀npfɸbɓmjrllʰʋɽੱⁿŋjuɪk oənkɑɾⁿ/ʳ@nʈot͡ʃeʰɪiʋjjɔɒt̪ɹʊuʊɑɑⁿeænu';
 
     const step2Keys = [];
     const step2Values = [];
-    step2.forEach((e) => {
+    step2.forEach(e => {
       step2Keys.push(e[0]);
       step2Values.push(e[1]);
     });
@@ -178,18 +183,19 @@ module.exports = (gurmukhi) => {
     //* *********************
 
     // 2. Add an "a" after this letter if the following is true for the
+    // prettier-ignore
     if (
-    // 2.1. current letter:
+      // 2.1. current letter:
       thisLetter !== '' && // 2.1.1. Is not empty
       'əɑeɔɵ uæijɪəɛʊ̀'.indexOf(thisLetter) === -1 && // 2.1.2. does not exist in this string (capital or lowercase): "aeou ooaiee"
       (/^[a-zA-Z]+$/.test(thisLetter) || ourCharset.indexOf(thisLetter) > -1) && // 2.1.3. It is alphanumeric
-        // 2.1.4. It is not "(n)", "(N)", "hoo", "ye", "noo(n)", "ik", "Oankaar", "ay"
-        thisLetter !== step2Values[step2Keys.indexOf('N')] &&
-        thisLetter !== step2Values[step2Keys.indexOf('M')] &&
-        thisLetter !== 'nuⁿ' &&
-        thisLetter !== step2Values[step2Keys.indexOf('<')] &&
-        thisLetter !== step2Values[step2Keys.indexOf('>')] &&
-        thisLetter !== 'e' &&
+      // 2.1.4. It is not "(n)", "(N)", "hoo", "ye", "noo(n)", "ik", "Oankaar", "ay"
+      thisLetter !== step2Values[step2Keys.indexOf('N')] &&
+      thisLetter !== step2Values[step2Keys.indexOf('M')] &&
+      thisLetter !== 'nuⁿ' &&
+      thisLetter !== step2Values[step2Keys.indexOf('<')] &&
+      thisLetter !== step2Values[step2Keys.indexOf('>')] &&
+      thisLetter !== 'e' &&
       // 2.2. next letter:
       nextLetter && nextLetter !== '' && // 2.2.1. It is not empty; end of line
       'iaɑeouywɪə̀ɛʊ'.indexOf(nextLetter.toLowerCase()) === -1 && // 2.2.2. It does not exist in this string (capital or lowercase): "iaeouyw"
@@ -216,7 +222,8 @@ module.exports = (gurmukhi) => {
   const regex2 = /((m:|məhəlɑ|məhəlɵ|Gʰə̀ɾɵ|Gʰə̀ɾ)\s*([0-9]0?))/gm;
 
   function translitNumbers(full, full2, header, num) {
-    const formalNumbers = [' ',
+    const formalNumbers = [
+      ' ',
       'pəhɪlɑ',
       'd̪ud͡ʒɑ',
       't̪id͡ʒɑ',
@@ -244,14 +251,13 @@ module.exports = (gurmukhi) => {
   const regex3 = /ə̀[iaɑeouywɪəʊ̀ɔ]/gm;
   trans = trans.replace(regex3, full => full.replace('ə̀', ''));
 
-
   // **********************
   //    STEP 4
   // **********************
 
-
   const step4 = [
     // regexes
+    // prettier-ignore
     ['(?!(\s)).rəɓ(?!(\s)).', full => full.replace('rəɓ', 'rɓ')],
     // letter fixes
     ['eiə', 'ei'],
@@ -272,7 +278,7 @@ module.exports = (gurmukhi) => {
   ];
 
   // replace step 4 values
-  step4.forEach((e) => {
+  step4.forEach(e => {
     trans = trans.replace(new RegExp(e[0], 'g'), e[1]);
   });
 

@@ -28,7 +28,11 @@ function firstLetters(words = '', eng = false) {
     return '';
   }
 
-  return newWords.split(' ').map(firstLetter).join('').replace(/\|/g, '');
+  return newWords
+    .split(' ')
+    .map(firstLetter)
+    .join('')
+    .replace(/\|/g, '');
 }
 
 module.exports = firstLetters;

@@ -19,12 +19,10 @@ function ascii(string = '') {
   if (string === '' || typeof string !== 'string') {
     return string;
   }
-  return `,${
-    string
-      .split('')
-      .map(char => String(char.charCodeAt(0)).padStart(3, '0'))
-      .join(',')
-  },`;
+  return `,${string
+    .split('')
+    .map(char => String(char.charCodeAt(0)).padStart(3, '0'))
+    .join(',')},`;
 }
 
 module.exports = ascii;

@@ -118,7 +118,8 @@ module.exports = gurmukhi =>
         full
           .split('')
           .reverse()
-          .join(''));
+          .join(''),
+      );
     }
 
     while (str.includes(gurmukhiLetter)) {
@@ -136,7 +137,7 @@ module.exports = gurmukhi =>
       ['कां', 'काँ'],
     ];
 
-    fixes.forEach((e) => {
+    fixes.forEach(e => {
       str = str.replace(new RegExp(e[0], 'g'), e[1]);
     });
 

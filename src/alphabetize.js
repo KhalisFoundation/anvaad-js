@@ -38,7 +38,7 @@
  *   "quDu ivxu isDI iknY n pweIAw ]",
  *   "ibnu siqgur iknY n pwieE kir vyKhu min vIcwir ]",
  * ]
-*/
+ */
 
 const sorted = {
   a: 'ੳ',
@@ -78,11 +78,7 @@ const sorted = {
   V: 'ੜ',
 };
 
-const matraFixes = [
-  ['[ਉ, ਊ]', 'ੳ'],
-  ['[ਆ, ਆਂ, ਐ, ਔ]', 'ਅ'],
-  ['[ਈ, ਏ]', 'ੲ'],
-];
+const matraFixes = [['[ਉ, ਊ]', 'ੳ'], ['[ਆ, ਆਂ, ਐ, ਔ]', 'ਅ'], ['[ਈ, ਏ]', 'ੲ']];
 
 let sortedValues;
 
@@ -104,10 +100,10 @@ function alphabetize(sentenceArray, type = 'english') {
     sortedValues = Object.keys(sorted);
   }
   const sentenceObj = {};
-  sentenceArray.forEach((sentence) => {
+  sentenceArray.forEach(sentence => {
     // Ignores matras from the shabad
     let newSentence;
-    matraFixes.forEach((e) => {
+    matraFixes.forEach(e => {
       newSentence = sentence.replace(new RegExp(e[0], 'g'), e[1]);
     });
     const arr = newSentence.split('').filter(a => sortedValues.indexOf(a) > 0);

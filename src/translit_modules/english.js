@@ -35,7 +35,7 @@ module.exports = (gurmukhi = '') => {
     ['ey', 'e'],
   ];
 
-  step1.forEach((e) => {
+  step1.forEach(e => {
     trans = trans.replace(new RegExp(e[0], 'g'), e[1]);
   });
 
@@ -48,7 +48,12 @@ module.exports = (gurmukhi = '') => {
 
   // 1. If current letter is "i", move behind next letter
   const regex = /i./gm;
-  trans = trans.replace(regex, full => full.split('').reverse().join(''));
+  trans = trans.replace(regex, full =>
+    full
+      .split('')
+      .reverse()
+      .join(''),
+  );
 
   // break into single characters
   trans = trans.split('');
@@ -62,7 +67,6 @@ module.exports = (gurmukhi = '') => {
     //* *********************
     //    STEP 2
     //* *********************
-
 
     const step2 = [
       ['!', '!'],
@@ -79,6 +83,7 @@ module.exports = (gurmukhi = '') => {
       [',', ','],
       ['-', '-'],
       ['.', '.'],
+      // prettier-ignore
       ['\/', '-'],
       [0, '0'],
       [1, '1'],
@@ -210,7 +215,7 @@ module.exports = (gurmukhi = '') => {
 
     const step2Keys = [];
     const step2Values = [];
-    step2.forEach((e) => {
+    step2.forEach(e => {
       step2Keys.push(e[0]);
       step2Values.push(e[1]);
     });
@@ -230,23 +235,25 @@ module.exports = (gurmukhi = '') => {
     //* *********************
     // 2. Add an "a" after this letter if the following is true for the
     if (
-    // 2.1. current letter:
+      // 2.1. current letter:
       thisLetter !== '' && // 2.1.1. Is not empty
       'aeiou ooaiee'.indexOf(thisLetter.toLowerCase()) === -1 && // 2.1.2. does not exist in this string (capital or lowercase): "aeou ooaiee"
       /^[a-zA-Z]+$/.test(thisLetter) && // 2.1.3. It is alphanumeric
-        // 2.1.4. It is not "(n)", "(N)", "hoo", "ye", "noo(n)", "ik", "Oankaar", "ay"
-        thisLetter !== step2Values[step2Keys.indexOf('N')] &&
-        thisLetter !== step2Values[step2Keys.indexOf('M')] &&
-        thisLetter !== 'hoo' &&
-        thisLetter !== 'ye' &&
-        thisLetter !== 'noo(n)' &&
-        thisLetter !== step2Values[step2Keys.indexOf('<')] &&
-        thisLetter !== step2Values[step2Keys.indexOf('>')] && // thisLetter !== 'ay' &&
+      // 2.1.4. It is not "(n)", "(N)", "hoo", "ye", "noo(n)", "ik", "Oankaar", "ay"
+      thisLetter !== step2Values[step2Keys.indexOf('N')] &&
+      thisLetter !== step2Values[step2Keys.indexOf('M')] &&
+      thisLetter !== 'hoo' &&
+      thisLetter !== 'ye' &&
+      thisLetter !== 'noo(n)' &&
+      thisLetter !== step2Values[step2Keys.indexOf('<')] &&
+      thisLetter !== step2Values[step2Keys.indexOf('>')] && // thisLetter !== 'ay' &&
       // 2.2. next letter:
-      nextLetter && nextLetter !== '' && // 2.2.1. It is not empty; end of line
+      nextLetter &&
+      nextLetter !== '' && // 2.2.1. It is not empty; end of line
       'iaeouyw'.indexOf(nextLetter.toLowerCase()) === -1 && // 2.2.2. It does not exist in this string (capital or lowercase): "iaeouyw"
       'I@ HRªÅÆÇÍÏÒÓÔØÚåæçüŒœ:[]()'.indexOf(nextLetter) === -1 && // 2.2.3. It does not exist in this string (case sensitive): "@ HRªÅÆÇÍÏÒÓÔØÚåæçüŒœ:[]()"
       // 2.3. THIS IS NOT TRUE:
+      // prettier-ignore
       !(
         nextLetter.toLowerCase().indexOf('i') > -1 && // 2.3.0 nextLetter is i
         // 2.3.1 letter after the next letter:
@@ -265,10 +272,7 @@ module.exports = (gurmukhi = '') => {
     ) {
       thisLetter = 'i';
     }
-    if (
-      thisLetter === step2Values[step2Keys.indexOf('R')] &&
-      trans[x - 1] === 'i'
-    ) {
+    if (thisLetter === step2Values[step2Keys.indexOf('R')] && trans[x - 1] === 'i') {
       thisLetter = 'i';
       trans[x - 1] = 'r';
     }
@@ -290,7 +294,8 @@ module.exports = (gurmukhi = '') => {
   const regex2 = /((m:|mahalaa|mahalu|ghar|gharu)\s*([0-9]0?))/gm;
 
   function translitNumbers(full, full2, header, num) {
-    const formalNumbers = [' ',
+    const formalNumbers = [
+      ' ',
       'pehilaa',
       'doojaa',
       'teejaa',
@@ -350,18 +355,22 @@ module.exports = (gurmukhi = '') => {
   //    STEP 4
   //* *********************
 
-
   const step4 = [
     ['uu', 'au'],
+    // prettier-ignore
     [' ju ', '\* JU \*'],
+    // prettier-ignore
     [' su ', '\* SU \*'],
+    // prettier-ignore
     ['ahu ', '\*AHU \*'],
+    // prettier-ignore
     ['au ', '\*AU \*'],
     ['u ', ' '],
     ['\\* JU \\*', ' ju '],
     ['\\* SU \\*', ' su '],
     ['\\*AHU \\*', 'ahu '],
     ['\\*AU \\*', 'au '],
+    // prettier-ignore
     ['hi ', '\*HI \*'],
     ['i ', ' '],
     ['\\*HI \\*', 'hi '],
@@ -387,7 +396,7 @@ module.exports = (gurmukhi = '') => {
   ];
 
   // replace step 4 values
-  step4.forEach((e) => {
+  step4.forEach(e => {
     trans = trans.replace(new RegExp(e[0], 'g'), e[1]);
   });
 

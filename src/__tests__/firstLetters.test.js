@@ -2,22 +2,18 @@ const firstLetters = require('../firstLetters');
 
 describe('firstLetters', () => {
   it('Should return first letters of each word', () => {
-    expect(firstLetters('Awie imlu gurisK Awie imlu qU myry gurU ky ipAwry ]'))
-      .toBe('AmgAmqmgkp');
+    expect(firstLetters('Awie imlu gurisK Awie imlu qU myry gurU ky ipAwry ]')).toBe('AmgAmqmgkp');
   });
 
   it('Should return first letters of each word and only 2 letters', () => {
-    expect(firstLetters('srbM dyvM ]'))
-      .toBe('sd');
+    expect(firstLetters('srbM dyvM ]')).toBe('sd');
   });
 
   it('Should return an empty string when no argument', () => {
-    expect(firstLetters())
-      .toBe('');
+    expect(firstLetters()).toBe('');
   });
 
   it('Should return null when passed as an argument', () => {
-    expect(firstLetters(null))
-      .toBeNull();
+    expect(firstLetters(null)).toBeNull();
   });
 });
