@@ -15,7 +15,7 @@ const map = [
   ['g', 'ग'],
   ['G', 'घ'],
   ['|', 'ङ'],
-  ['V', 'ड'],
+  ['V', 'ड़'],
   ['F', 'ढ'],
   ['c', 'च'],
   ['C', 'छ'],
@@ -50,6 +50,7 @@ const map = [
   ['G', 'ज्ञ'],
   ['A', 'अ'],
   ['Aw', 'आ'],
+  ['AO', 'औ'],
   ['a', 'उ'],
   ['w', 'ा'],
   ['W', 'ां'],
@@ -72,17 +73,17 @@ const map = [
   ['®', '्र'],
   ['Ú', ':'],
   ['ü', 'ु'],
-  ['@', ''], // halant
+  ['@', '्ह'], // halant
   ['E', 'ऄ'], // open oora
   ['H', 'ह्'], // pair haha
   ['L', 'ऴ'], // lala pair bindi
   ['N', 'ं'], // tippee
   ['Z', 'ग़'], // gaga pair bindi
   ['^', 'ख़'], // khakha pair bindi
-  ['`', 'ँ'], // adhak over letter
+  ['`', 'ॅ'], // adhak over letter
   ['z', 'ज़'], // jaja pair bindi zaza
-  ['~', 'ँ'], // adhak after letter
-  ['¤', 'ँ'], // adhak after letter
+  ['~', 'ॅ'], // adhak after letter
+  ['¤', 'ॅ'], // adhak after letter
   ['´', 'य्'], // yakash (pair yaya)
   ['µ', 'ं'], // bindi
   ['Í', 'व्'], // pair vava
@@ -119,10 +120,12 @@ module.exports = gurmukhi =>
       ['अै', 'ऐ'],
       ['इि', 'इ'],
       ['उु', 'उ'],
+      ['उू', 'ऊ'],
       ['इे', 'ए'],
       ['ऄ', 'ओ'],
       ['मि्र', 'मृ'],
-      ['कां', 'काँ'],
+      ['गि्र', 'गृ'],
+      ['कां', 'काँ']
     ];
 
     fixes.forEach((e) => {
