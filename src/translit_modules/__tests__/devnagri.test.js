@@ -86,6 +86,11 @@ const tests = [
   ['kÎ KÎ dÎ nÎ', 'क्य ख्य द्य न्य'],
   ['dÍ hÍ jÍ qÍ sÍ CÍ KÍ pÍ', 'द्व ह्व ज्व त्व स्व छ्व ख्व प्व'],
   ['s˜ sœ gœ s† sç', 'स्न स्त ग्त स्ट स्च'],
+
+  // tests for chand-bindi edge-cases
+  ['KKwiKKIKuKUKoKOKMKWiKMKINKuMKUMKyNKYNKoNKON', 'खखाखिखीखुखूखोखौखंखाँखिंखींखुँखूँखेंखैंखोंखौं'],
+
+  ['isr msœk rK´w pwrbRhmM hsœ kwXw rK´w prmysÍrh ]', 'सिर मस्तक रख्या पारब्रहमं हस्त काया रख्या परमेस्वरह ॥'],
 ];
 
 describe('devnagri()', () => {
