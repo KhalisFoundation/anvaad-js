@@ -42,11 +42,11 @@ const map = [
   ['l', 'ल'],
   ['v', 'व'],
   ['S', 'श'],
-  ['S', 'ष'],
+  // ['S', 'ष'], special case (kept for reference)
   ['s', 'स'],
   ['h', 'ह'],
-  ['l', 'ळ'],
-  ['S', 'क्ष'],
+  // ['l', 'ळ'], special case (kept for reference)
+  // ['S', 'क्ष'], special case (kept for reference)
   ['G', 'ज्ञ'],
   ['A', 'अ'],
   ['Aw', 'आ'],
@@ -75,8 +75,8 @@ const map = [
   ['ü', 'ु'],
   ['@', '्ह'], // halant
   ['E', 'ऄ'], // open oora
-  ['H', 'ह्'], // pair haha
-  ['L', 'ऴ'], // lala pair bindi
+  ['H', '्ह'], // pair haha
+  ['L', 'ळ'], // equivalent of lala pair bindi, (ऴ is sanskritized, not used in hindi)
   ['N', 'ं'], // tippee
   ['Z', 'ग़'], // gaga pair bindi
   ['^', 'ख़'], // khakha pair bindi
@@ -84,16 +84,16 @@ const map = [
   ['z', 'ज़'], // jaja pair bindi zaza
   ['~', '्'], // adhak after letter, use halant to emphasize (replaced below)
   ['¤', '्'], // adhak after letter, use halant to emphasize (replaced below)
-  ['´', 'य्'], // yakash (pair yaya)
+  ['´', '्य'], // yakash (pair yaya)
   ['µ', 'ं'], // bindi
-  ['Í', 'व्'], // pair vava
-  ['Î', 'य्'], // half yaya
+  ['Í', '्व'], // pair vava
+  ['Î', '्य'], // half yaya
   ['Ø', ''], // extra top line (extender)
-  ['ç', 'च्'], // pair chacha
-  ['œ', 'त्'], // pair tata
+  ['ç', '्च'], // pair chacha
+  ['œ', '्त'], // pair tata
   ['ŧ', ''], // bad char
-  ['˜', 'न्'], // pair nana
-  ['†', 'ट्'], // pair tanka
+  ['˜', '्न'], // pair nana
+  ['†', '्ट'], // pair tanka
 ];
 
 module.exports = gurmukhi =>
@@ -133,9 +133,8 @@ module.exports = gurmukhi =>
       ['उू', 'ऊ'],
       ['इे', 'ए'],
       ['ऄ', 'ओ'],
-      ['मि्र', 'मृ'],
-      ['गि्र', 'गृ'],
       ['कां', 'काँ'],
+      ['ि्र', 'ृ'],
     ];
 
     fixes.forEach((e) => {
