@@ -80,10 +80,10 @@ const map = [
   ['N', 'ं'], // tippee
   ['Z', 'ग़'], // gaga pair bindi
   ['^', 'ख़'], // khakha pair bindi
-  ['`', 'ॅ'], // adhak over letter
+  ['`', '्'], // adhak over letter, use halant to emphasize (replaced below)
   ['z', 'ज़'], // jaja pair bindi zaza
-  ['~', 'ॅ'], // adhak after letter
-  ['¤', 'ॅ'], // adhak after letter
+  ['~', '्'], // adhak after letter, use halant to emphasize (replaced below)
+  ['¤', '्'], // adhak after letter, use halant to emphasize (replaced below)
   ['´', 'य्'], // yakash (pair yaya)
   ['µ', 'ं'], // bindi
   ['Í', 'व्'], // pair vava
@@ -109,6 +109,16 @@ module.exports = gurmukhi =>
           .split('')
           .reverse()
           .join(''));
+    }
+
+    // Adhiks: the akhar proceeding the adikh is meant to be emphasized,
+    // therefore, this char should be transformed to the appropriate emphasized variant in devnagri
+    // this is acheived by combining (original char)+(halant)+(original char)
+    if (gurmukhiLetter === '`') {
+      str = str.replace(/(`|~|¤)./gm, full =>
+        full
+          .repeat(2)
+          .slice(1));
     }
 
     while (str.includes(gurmukhiLetter)) {

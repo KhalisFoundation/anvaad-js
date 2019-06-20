@@ -29,7 +29,7 @@ const tests = [
 
   [
     'ikv sicAwrw hoeIAY ikv kUVY qutY pwil ]',
-    'किव सचिअारा होईऐ किव कूडै तुटै पालि ॥',
+    'किव सचिअारा होईऐ किव कूड़ै तुटै पालि ॥',
   ],
   [
     'hukim rjweI clxw nwnk iliKAw nwil ]1]',
@@ -70,13 +70,15 @@ const tests = [
   ],
 
   // ['BWfw Bwau AMimRqu iqqu Fwil ]', 'भांडा भाउु अ ंम्रितु तितु ढालि ॥'],
-  ['GVIAY sbdu scI tkswl ]', 'घडीऐ सबदु सची टकसाल ॥'],
+  ['GVIAY sbdu scI tkswl ]', 'घड़ीऐ सबदु सची टकसाल ॥'],
   /*
   [
     'cMigAweIAw buirAweIAw vwcY Drmu hdUir ]',
     'च ंगिअाइीअा बुरिअाइीअा वाचै धरमु हदूरि ॥',
   ],
   */
+  // ਅੱਲਖ: A`lK or A~lK (a-lakh) should map to अल्लख, not अँलख
+  ['A`lK', 'अल्लख'],
 ];
 
 describe('devnagri()', () => {
