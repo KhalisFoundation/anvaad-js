@@ -111,9 +111,9 @@ module.exports = gurmukhi =>
           .join(''));
     }
 
-    // Adhiks: the akhar proceeding the adikh is meant to be emphasized,
-    // therefore, this char should be transformed to the appropriate emphasized variant in devnagri
-    // this is acheived by combining (original char)+(halant)+(original char)
+    // Adhiks: the akhar proceeding the adikh is meant to be emphasized
+    // devnagri uses a half/full variant of each akhar to indicate emphasis
+    // ex: ल + ् + ल = ल्ल -> repeat ' ्+(char) ' twice, then remove first ' ् '
     if (gurmukhiLetter === '`') {
       str = str.replace(/(`|~|¤)./gm, full =>
         full
@@ -133,10 +133,22 @@ module.exports = gurmukhi =>
       ['उू', 'ऊ'],
       ['इे', 'ए'],
       ['ऄ', 'ओ'],
+      // exceptions for bindi + kanna/unkar/dulainkar
       ['ुं', 'ुँ'],
       ['ूं', 'ूँ'],
       ['ां', 'ाँ'],
+      // exception for sihaaree + pair-rarra
       ['ि्र', 'ृ'],
+      // exceptions for the emphasized (adhik) variants of certain akhars
+      ['ख्ख', 'क्ख'],
+      ['घ्घ', 'ग्घ'],
+      ['छ्छ', 'च्छ'],
+      ['झ्झ', 'ज्झ'],
+      ['ठ्ठ', 'ट्ठ'],
+      ['ढ्ढ', 'ड्ढ'],
+      ['थ्थ', 'त्थ'],
+      ['ध्ध', 'द्ध'],
+      ['भ्भ', 'ब्भ'],
     ];
 
     fixes.forEach((e) => {
