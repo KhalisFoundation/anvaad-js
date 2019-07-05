@@ -29,7 +29,7 @@ const tests = [
 
   [
     'ikv sicAwrw hoeIAY ikv kUVY qutY pwil ]',
-    'किव सचिअारा होईऐ किव कूडै तुटै पालि ॥',
+    'किव सचिअारा होईऐ किव कूड़ै तुटै पालि ॥',
   ],
   [
     'hukim rjweI clxw nwnk iliKAw nwil ]1]',
@@ -70,13 +70,27 @@ const tests = [
   ],
 
   // ['BWfw Bwau AMimRqu iqqu Fwil ]', 'भांडा भाउु अ ंम्रितु तितु ढालि ॥'],
-  ['GVIAY sbdu scI tkswl ]', 'घडीऐ सबदु सची टकसाल ॥'],
+  ['GVIAY sbdu scI tkswl ]', 'घड़ीऐ सबदु सची टकसाल ॥'],
   /*
   [
     'cMigAweIAw buirAweIAw vwcY Drmu hdUir ]',
     'च ंगिअाइीअा बुरिअाइीअा वाचै धरमु हदूरि ॥',
   ],
   */
+  // ਅੱਲਖ: A`lK or A~lK (a-lakh) should map to अल्लख, not अँलख
+  ['A`lK', 'अल्लख'],
+
+  // tests for various pair-akhars
+  ['isR ihR ikR igR iGR iqR iQR idR iDR inR ipR ibR iBR imR ivR iSR', 'सृ हृ कृ गृ घृ तृ थृ दृ धृ नृ पृ बृ भृ मृ वृ शृ'],
+  ['l´ K´ g´ q´ d´ D´ p´ j´ r´ b´ s´ m´ f´ n´', 'ल्य ख्य ग्य त्य द्य ध्य प्य ज्य र्य ब्य स्य म्य ड्य न्य'],
+  ['kÎ KÎ dÎ nÎ', 'क्य ख्य द्य न्य'],
+  ['dÍ hÍ jÍ qÍ sÍ CÍ KÍ pÍ', 'द्व ह्व ज्व त्व स्व छ्व ख्व प्व'],
+  ['s˜ sœ gœ s† sç', 'स्न स्त ग्त स्ट स्च'],
+
+  // tests for chand-bindi edge-cases
+  ['KKwiKKIKuKUKoKOKMKWiKMKINKuMKUMKyNKYNKoNKON', 'खखाखिखीखुखूखोखौखंखाँखिंखींखुँखूँखेंखैंखोंखौं'],
+
+  ['isr msœk rK´w pwrbRhmM hsœ kwXw rK´w prmysÍrh ]', 'सिर मस्तक रख्या पारब्रहमं हस्त काया रख्या परमेस्वरह ॥'],
 ];
 
 describe('devnagri()', () => {

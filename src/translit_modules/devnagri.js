@@ -15,7 +15,7 @@ const map = [
   ['g', 'ग'],
   ['G', 'घ'],
   ['|', 'ङ'],
-  ['V', 'ड'],
+  ['V', 'ड़'],
   ['F', 'ढ'],
   ['c', 'च'],
   ['C', 'छ'],
@@ -42,17 +42,18 @@ const map = [
   ['l', 'ल'],
   ['v', 'व'],
   ['S', 'श'],
-  ['S', 'ष'],
+  // ['S', 'ष'], special case (kept for reference)
   ['s', 'स'],
   ['h', 'ह'],
-  ['l', 'ळ'],
-  ['S', 'क्ष'],
+  // ['l', 'ळ'], special case (kept for reference)
+  // ['S', 'क्ष'], special case (kept for reference)
   ['G', 'ज्ञ'],
   ['A', 'अ'],
   ['Aw', 'आ'],
+  ['AO', 'औ'],
   ['a', 'उ'],
   ['w', 'ा'],
-  ['W', 'ां'],
+  ['W', 'ाँ'],
   ['I', 'ी'],
   ['u', 'ु'],
   ['U', 'ू'],
@@ -64,46 +65,35 @@ const map = [
   ['M', 'ं'],
   ['R', '्र'],
   [']', '॥'],
-  ['!', '!'],
   ['&', 'फ़'], // phapha pair bindi
-  ["'", "'"],
-  ['(', '('],
-  [')', ')'],
-  [',', ','],
-  ['-', '-'],
-  ['/', '/'],
-  [':', ':'],
   ['<', 'ੴ'],
   ['>', ''],
-  ['?', '?'],
   ['[', '।'],
   ['¨', 'ू'],
   ['®', '्र'],
   ['Ú', ':'],
   ['ü', 'ु'],
-  ['‘', '‘'],
-  ['’', '’'],
-  ['@', ''], // halant
+  ['@', '्ह'], // halant
   ['E', 'ऄ'], // open oora
-  ['H', 'ह्'], // pair haha
-  ['L', 'ऴ'], // lala pair bindi
+  ['H', '्ह'], // pair haha
+  ['L', 'ळ'], // equivalent of lala pair bindi, (ऴ is sanskritized, not used in hindi)
   ['N', 'ं'], // tippee
   ['Z', 'ग़'], // gaga pair bindi
   ['^', 'ख़'], // khakha pair bindi
-  ['`', 'ँ'], // adhak over letter
+  ['`', '्'], // adhak over letter, use halant to emphasize (replaced below)
   ['z', 'ज़'], // jaja pair bindi zaza
-  ['~', 'ँ'], // adhak after letter
-  ['¤', 'ँ'], // adhak after letter
-  ['´', 'य्'], // yakash (pair yaya)
+  ['~', '्'], // adhak after letter, use halant to emphasize (replaced below)
+  ['¤', '्'], // adhak after letter, use halant to emphasize (replaced below)
+  ['´', '्य'], // yakash (pair yaya)
   ['µ', 'ं'], // bindi
-  ['Í', 'व्'], // pair vava
-  ['Î', 'य्'], // half yaya
+  ['Í', '्व'], // pair vava
+  ['Î', '्य'], // half yaya
   ['Ø', ''], // extra top line (extender)
-  ['ç', 'च्'], // pair chacha
-  ['œ', 'त्'], // pair tata
+  ['ç', '्च'], // pair chacha
+  ['œ', '्त'], // pair tata
   ['ŧ', ''], // bad char
-  ['˜', 'न्'], // pair nana
-  ['†', 'ट्'], // pair tanka
+  ['˜', '्न'], // pair nana
+  ['†', '्ट'], // pair tanka
 ];
 
 module.exports = gurmukhi =>
@@ -121,6 +111,16 @@ module.exports = gurmukhi =>
           .join(''));
     }
 
+    // Adhiks: the akhar proceeding the adikh is meant to be emphasized
+    // devnagri uses a half/full variant of each akhar to indicate emphasis
+    // ex: ल + ् + ल = ल्ल -> repeat ' ्+(char) ' twice, then remove first ' ् '
+    if (gurmukhiLetter === '`') {
+      str = str.replace(/(`|~|¤)./gm, full =>
+        full
+          .repeat(2)
+          .slice(1));
+    }
+
     while (str.includes(gurmukhiLetter)) {
       str = str.replace(gurmukhiLetter, devnagriUnicode, 'g');
     }
@@ -130,10 +130,25 @@ module.exports = gurmukhi =>
       ['अै', 'ऐ'],
       ['इि', 'इ'],
       ['उु', 'उ'],
+      ['उू', 'ऊ'],
       ['इे', 'ए'],
       ['ऄ', 'ओ'],
-      ['मि्र', 'मृ'],
-      ['कां', 'काँ'],
+      // exceptions for bindi + kanna/unkar/dulainkar
+      ['ुं', 'ुँ'],
+      ['ूं', 'ूँ'],
+      ['ां', 'ाँ'],
+      // exception for sihaaree + pair-rarra
+      ['ि्र', 'ृ'],
+      // exceptions for the emphasized (adhik) variants of certain akhars
+      ['ख्ख', 'क्ख'],
+      ['घ्घ', 'ग्घ'],
+      ['छ्छ', 'च्छ'],
+      ['झ्झ', 'ज्झ'],
+      ['ठ्ठ', 'ट्ठ'],
+      ['ढ्ढ', 'ड्ढ'],
+      ['थ्थ', 'त्थ'],
+      ['ध्ध', 'द्ध'],
+      ['भ्भ', 'ब्भ'],
     ];
 
     fixes.forEach((e) => {
