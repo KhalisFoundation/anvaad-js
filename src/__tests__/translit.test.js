@@ -1,4 +1,5 @@
 const translit = require('../translit');
+const wordMap = require('../wordMap');
 
 // TO-DO update test below to be nitprat (need work on sihari and pehar rara handling)
 describe('translit', () => {
@@ -7,6 +8,7 @@ describe('translit', () => {
       .toBe(JSON.stringify({
         english: 'chha(n)t || jiau jaanahu tiau raakh har prabh teriaa || kete ganau asa(n)kh avagan meriaa || asa(n)kh avagan khate fere nitaprat sadh bhooleeaai || moh magan bikaraal maiaa tau prasaadhee ghooleeaai || look karat bikaar bikhaRe prabh ner hoo te neriaa || binava(n)t naanak dhiaa dhaarahu kaadd bhavajal feriaa ||1||',
         english_v2: 'chhaⁿt || jiau jaanahu tiau raakh har pᵣabh teyariAaa || keyatey ganau Asaⁿkh Avagann meyariAaa || Asaⁿkh Avagann khatey feyarey nitapᵣat sad bhooleeAa || moh magan bikaraal maiAaa tau pᵣasaadee ghooleeAa || look karat bikaar bikharrey pᵣabh neyar hoo tey neyariAaa || binavaⁿt naanak diAaa dhaarahu kaaddh bhavajal feyariAaa ||1||',
+        english_v3: "chhaⁿt || jeau jaa'anahu teau raa'akh hare pᵣabh tayareAaa || kayatay ganau Asaⁿkh Avagann mayareAaa || Asaⁿkh Avagann khatay phayaray netapᵣate sad bhooleeAai || moh magan bekaraa'al maieAaa tau pᵣasaa'adee ghooleeAai || look karat bekaa'ar bekharray pᵣabh nayar hoo tay nayareAaa || benavaⁿte naa'anak dieAaa dhaa'arahu kaa'addhe bhavajal phayareAaa ||1||",
         devnagri: 'छंतु ॥ जिउ जानहु तिउ राखु हरि प्रभ तेरिअा ॥ केते गनउ असंख अवगण मेरिअा ॥ असंख अवगण खते फेरे नितप्रति सद भूलीऐ ॥ मोह मगन बिकराल माइअा तउ प्रसादी घूलीऐ ॥ लूक करत बिकार बिखड़े प्रभ नेर हू ते नेरिअा ॥ बिनवंति नानक दइअा धारहु काढि भवजल फेरिअा ॥१॥',
         ipa: 'ɕəŋt̪. d͡ʒɪo d͡ʒɑnəh t̪ɪo rɑkʰ hər pɹəɓ t̪erɪəɑ. ket̪e Gəno əsəŋkʰ əʋəGəɳ merɪəɑ. əsəŋkʰ əʋəGəɳ kʰət̪e fere nɪt̪əpɹət̪ səd̪ ɓuliæ. mɔh məGən bɪkərɑl mɑɪɑ t̪o pɹəsɑd̪i Gʰuliæ. luk kərət̪ bɪkɑr bɪkʰəɽe pɹəɓ ner hu t̪e nerɪəɑ. bɪnəʋəŋt̪ nɑnək d̪ɪɑ t̪ɑrəh kɑʈə̀ ɓəʋəd͡ʒəl ferɪəɑ.1.',
       }));
@@ -34,5 +36,9 @@ describe('translit', () => {
   it('Should return only the devnagri transliteration of Gurmukhi', () => {
     expect(JSON.stringify(translit('lwl rMgu iqs kau lgw ijs ky vfBwgw ] mYlw kdy n hoveI nh lwgY dwgw ]1]', 'devnagri')))
       .toBe('"लाल रंगु तिस कउ लगा जिस के वडभागा ॥ मैला कदे न होवई नह लागै दागा ॥१॥"');
+  });
+  it('Should return only the english_v3 transliteration of Gurmukhi using the english_v3 word mapping', () => {
+    expect(JSON.stringify(translit('lwl rMgu iqs kau lgw ijs ky vfBwgw ] mYlw kdy n hoveI nh lwgY dwgw ]1]', 'english_v3', wordMap('english_v3'))))
+      .toBe('"laal rangu tes kou lagaa jes kay vaddbhaagaa || mailaa kaday na hovaee naha laagai daagaa ||1||"');
   });
 });
