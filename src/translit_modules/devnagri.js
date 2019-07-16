@@ -149,9 +149,6 @@ module.exports = gurmukhi =>
       ['थ्थ', 'त्थ'],
       ['ध्ध', 'द्ध'],
       ['भ्भ', 'ब्भ'],
-      // fixes for rendering issues with अ
-      // ['अा', 'आ'],
-      // ['अौ', 'औ'],
     ];
 
     fixes.forEach((e) => {
