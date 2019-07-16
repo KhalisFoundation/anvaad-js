@@ -48,9 +48,9 @@ const map = [
   // ['l', 'ळ'], special case (kept for reference)
   // ['S', 'क्ष'], special case (kept for reference)
   ['G', 'ज्ञ'],
-  ['A', 'अ'],
   ['Aw', 'आ'],
   ['AO', 'औ'],
+  ['A', 'अ'],
   ['a', 'उ'],
   ['w', 'ा'],
   ['W', 'ाँ'],
@@ -149,6 +149,9 @@ module.exports = gurmukhi =>
       ['थ्थ', 'त्थ'],
       ['ध्ध', 'द्ध'],
       ['भ्भ', 'ब्भ'],
+      // fixes for rendering issues with अ
+      // ['अा', 'आ'],
+      // ['अौ', 'औ'],
     ];
 
     fixes.forEach((e) => {
