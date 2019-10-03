@@ -49,8 +49,6 @@ const map = [
   // ['S', 'क्ष'], special case (kept for reference)
   ['G', 'ज्ञ'],
   ['A', 'अ'],
-  ['Aw', 'आ'],
-  ['AO', 'औ'],
   ['a', 'उ'],
   ['w', 'ा'],
   ['W', 'ाँ'],
@@ -74,7 +72,8 @@ const map = [
   ['Ú', ':'],
   ['ü', 'ु'],
   ['@', '्ह'], // halant
-  ['E', 'ऄ'], // open oora
+  // ['E', 'ऄ'], // open oora
+  ['E', 'ओ'], // open oora
   ['H', '्ह'], // pair haha
   ['L', 'ळ'], // equivalent of lala pair bindi, (ऴ is sanskritized, not used in hindi)
   ['N', 'ं'], // tippee
@@ -132,11 +131,12 @@ module.exports = gurmukhi =>
       ['उु', 'उ'],
       ['उू', 'ऊ'],
       ['इे', 'ए'],
-      ['ऄ', 'ओ'],
       // exceptions for bindi + kanna/unkar/dulainkar
       ['ुं', 'ुँ'],
       ['ूं', 'ूँ'],
       ['ां', 'ाँ'],
+      ['आं', 'आँ'], // आ + ं
+      ['अां', 'आँ'], // अ + ा + ं
       // exception for sihaaree + pair-rarra
       ['ि्र', 'ृ'],
       // exceptions for the emphasized (adhik) variants of certain akhars
@@ -149,6 +149,10 @@ module.exports = gurmukhi =>
       ['थ्थ', 'त्थ'],
       ['ध्ध', 'द्ध'],
       ['भ्भ', 'ब्भ'],
+      // rendering fixes for Aw, AO
+      ['अा', 'आ'], // अ + ा (also handles AW)
+      ['अो', 'ओ'], // अो + ो (redundant, Ao does not exist)
+      ['अौ', 'औ'], // अ + ौ
     ];
 
     fixes.forEach((e) => {

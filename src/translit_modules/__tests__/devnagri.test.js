@@ -24,24 +24,24 @@ const tests = [
   */
   [
     'shs isAwxpw lK hoih q iek n clY nwil ]',
-    'सहस सिअाणपा लख होहि त इक न चलै नालि ॥',
+    'सहस सिआणपा लख होहि त इक न चलै नालि ॥',
   ],
 
   [
     'ikv sicAwrw hoeIAY ikv kUVY qutY pwil ]',
-    'किव सचिअारा होईऐ किव कूड़ै तुटै पालि ॥',
+    'किव सचिआरा होईऐ किव कूड़ै तुटै पालि ॥',
   ],
   [
     'hukim rjweI clxw nwnk iliKAw nwil ]1]',
-    'हुकमि रजाई चलणा नानक लिखिअा नालि ॥१॥',
+    'हुकमि रजाई चलणा नानक लिखिआ नालि ॥१॥',
   ],
   [
     'hukmI hovin Awkwr hukmu n kihAw jweI ]',
-    'हुकमी होवनि अाकार हुकमु न कहिअा जाई ॥',
+    'हुकमी होवनि आकार हुकमु न कहिआ जाई ॥',
   ],
   [
     'hukmI hovin jIA hukim imlY vifAweI ]',
-    'हुकमी होवनि जीअ हुकमि मिलै वडिअाई ॥',
+    'हुकमी होवनि जीअ हुकमि मिलै वडिआई ॥',
   ],
   [
     'hukmI auqmu nIcu hukim iliK duK suK pweIAih ]',
@@ -61,12 +61,12 @@ const tests = [
     'nwnk hukmY jy buJY q haumY khY n koie ]2]',
     'नानक हुकमै जे बुझै त हउमै कहै न कोइ ॥२॥',
   ],
-  ['gwvY ko gux vifAweIAw cwr ]', 'गावै को गुण वडिअाईअा चार ॥'],
+  ['gwvY ko gux vifAweIAw cwr ]', 'गावै को गुण वडिआईआ चार ॥'],
   // ['jugw jugMqir KwhI Kwih ]', 'जुगा जुग ंतरि खाही खाहि ॥'],
   ['hukmI hukmu clwey rwhu ]', 'हुकमी हुकमु चलाए राहु ॥'],
   [
     'swcw swihbu swcu nwie BwiKAw Bwau Apwru ]',
-    'साचा साहिबु साचु नाइ भाखिअा भाउ अपारु ॥',
+    'साचा साहिबु साचु नाइ भाखिआ भाउ अपारु ॥',
   ],
 
   // ['BWfw Bwau AMimRqu iqqu Fwil ]', 'भांडा भाउु अ ंम्रितु तितु ढालि ॥'],
