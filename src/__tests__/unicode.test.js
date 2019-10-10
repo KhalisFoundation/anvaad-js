@@ -16,6 +16,10 @@ describe('unicode', () => {
     expect(unicode('rwm jpau jIA AYsy AYsy ] DR¨ pRihlwd jipE hir jYsy ]1]'))
       .toBe('ਰਾਮ ਜਪਉ ਜੀਅ ਐਸੇ ਐਸੇ ॥ ਧ੍ਰੂ ਪ੍ਰਹਿਲਾਦ ਜਪਿਓ ਹਰਿ ਜੈਸੇ ॥੧॥');
 
+    // General pair-bindi
+    expect(unicode('ijgw CqR jVwv kælZI cOr mukqw lwlrI'))
+      .toBe('ਜਿਗਾ ਛਤ੍ਰ ਜੜਾਵ ਕ਼ਲਗ਼ੀ ਚੌਰ ਮੁਕਤਾ ਲਾਲਰੀ');
+
     // MU
     expect(unicode('hMU'))
       .toBe('ਹੂੰ');
