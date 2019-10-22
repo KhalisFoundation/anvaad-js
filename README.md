@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/KhalisFoundation/anvaad-js.svg?branch=master)](https://travis-ci.org/KhalisFoundation/anvaad-js) [![Coverage Status](https://coveralls.io/repos/github/KhalisFoundation/anvaad-js/badge.svg)](https://coveralls.io/github/KhalisFoundation/anvaad-js)
 
-## Playground 
+## Playground
 
 Visit [playground](https://khalisfoundation.github.io/anvaad-js/) website to try the API methods.
 
@@ -175,6 +175,7 @@ All letter conversions at a minimum must address the following letters that are 
 &
 ˜
 †
+æ
 0
 1
 2
