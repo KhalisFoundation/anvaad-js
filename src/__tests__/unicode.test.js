@@ -132,7 +132,7 @@ describe('unicode', () => {
       .toBe('ਸਲੋਕ ਮਃ ੩ ॥');
 
     expect(unicode('hir Awpy kwn@ü aupwiedw myry goivdw hir Awpy gopI KojI jIau ]'))
-      .toBe('ਹਰਿ ਆਪੇ ਕਾਨ੍ਹੁ ਉਪਾਇਦਾ ਮੇਰੇ ਗੋਵਿਦਾ ਹਰਿ ਆਪੇ ਗੋਪੀ ਖੋਜੀ ਜੀਉ ॥');
+      .toBe('ਹਰਿ ਆਪੇ ਕਾਨੑੁ ਉਪਾਇਦਾ ਮੇਰੇ ਗੋਵਿਦਾ ਹਰਿ ਆਪੇ ਗੋਪੀ ਖੋਜੀ ਜੀਉ ॥');
 
     expect(unicode('Xky dwnh muMgo idZr nu^d nIm ]45]'))
       .toBe('ਯਕੇ ਦਾਨਹ ਮੁੰਗੋ ਦਿਗ਼ਰ ਨੁਖ਼ਦ ਨੀਮ ॥੪੫॥');
