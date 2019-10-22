@@ -26,11 +26,11 @@ describe('unicode', () => {
 
     // @w
     expect(unicode('El@w'))
-      .toBe('ਓਲ੍ਹਾ');
+      .toBe('ਓਲੑਾ');
 
     // @y
     expect(unicode('aulwm@y'))
-      .toBe('ਉਲਾਮੇ੍');
+      .toBe('ਉਲਾਮੑੇ');
 
     // uo
     expect(unicode('suohwgix'))
