@@ -77,6 +77,7 @@ const map = [
   ['H', '्ह'], // pair haha
   ['L', 'ळ'], // equivalent of lala pair bindi, (ऴ is sanskritized, not used in hindi)
   ['N', 'ं'], // tippee
+  ['æ', '़'], // pair bindi
   ['Z', 'ग़'], // gaga pair bindi
   ['^', 'ख़'], // khakha pair bindi
   ['`', '्'], // adhak over letter, use halant to emphasize (replaced below)
