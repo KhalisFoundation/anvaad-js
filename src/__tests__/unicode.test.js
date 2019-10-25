@@ -16,17 +16,21 @@ describe('unicode', () => {
     expect(unicode('rwm jpau jIA AYsy AYsy ] DR¨ pRihlwd jipE hir jYsy ]1]'))
       .toBe('ਰਾਮ ਜਪਉ ਜੀਅ ਐਸੇ ਐਸੇ ॥ ਧ੍ਰੂ ਪ੍ਰਹਿਲਾਦ ਜਪਿਓ ਹਰਿ ਜੈਸੇ ॥੧॥');
 
+    // General pair-bindi
+    expect(unicode('ijgw CqR jVwv kælZI cOr mukqw lwlrI'))
+      .toBe('ਜਿਗਾ ਛਤ੍ਰ ਜੜਾਵ ਕ਼ਲਗ਼ੀ ਚੌਰ ਮੁਕਤਾ ਲਾਲਰੀ');
+
     // MU
     expect(unicode('hMU'))
       .toBe('ਹੂੰ');
 
     // @w
     expect(unicode('El@w'))
-      .toBe('ਓਲ੍ਹਾ');
+      .toBe('ਓਲੑਾ');
 
     // @y
     expect(unicode('aulwm@y'))
-      .toBe('ਉਲਾਮੇ੍');
+      .toBe('ਉਲਾਮੑੇ');
 
     // uo
     expect(unicode('suohwgix'))
@@ -128,7 +132,7 @@ describe('unicode', () => {
       .toBe('ਸਲੋਕ ਮਃ ੩ ॥');
 
     expect(unicode('hir Awpy kwn@ü aupwiedw myry goivdw hir Awpy gopI KojI jIau ]'))
-      .toBe('ਹਰਿ ਆਪੇ ਕਾਨ੍ਹੁ ਉਪਾਇਦਾ ਮੇਰੇ ਗੋਵਿਦਾ ਹਰਿ ਆਪੇ ਗੋਪੀ ਖੋਜੀ ਜੀਉ ॥');
+      .toBe('ਹਰਿ ਆਪੇ ਕਾਨੑੁ ਉਪਾਇਦਾ ਮੇਰੇ ਗੋਵਿਦਾ ਹਰਿ ਆਪੇ ਗੋਪੀ ਖੋਜੀ ਜੀਉ ॥');
 
     expect(unicode('Xky dwnh muMgo idZr nu^d nIm ]45]'))
       .toBe('ਯਕੇ ਦਾਨਹ ਮੁੰਗੋ ਦਿਗ਼ਰ ਨੁਖ਼ਦ ਨੀਮ ॥੪੫॥');

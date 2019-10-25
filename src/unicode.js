@@ -66,6 +66,7 @@ const mapping = {
   œ: '੍ਤ',
   '˜': '੍ਨ',
   '´': 'ੵ',
+  æ: '਼',
   Î: '੍ਯ',
   1: '੧',
   2: '੨',
@@ -85,7 +86,7 @@ const mapping = {
   ']': '॥',
   '<': 'ੴ',
   Ú: 'ਃ',
-  '@': '੍ਹ',
+  '@': 'ੑ',
   '‚': '❁',
   ' ': ' ',
 };
@@ -187,14 +188,6 @@ function unicode(text = '') {
       }
     } else if (currentChar === 'u' && nextChar === 'o') {
       convertedText += 'ੋੁ';
-      j += 1;
-    } else if ((currentChar === '@' && nextChar === 'Y') || (currentChar === '@' && nextChar === 'y') || (currentChar === '@' && nextChar === 'o') || (currentChar === '@' && nextChar === 'O')) {
-      convertedText += mapping[nextChar];
-      convertedText += '੍';
-      j += 1;
-    } else if (currentChar === '@' && nextChar === 'w') {
-      convertedText += '੍ਹ';
-      convertedText += mapping[nextChar];
       j += 1;
     } else if ((currentChar === 'N' && nextChar === 'I') || (currentChar === 'M' && (nextChar === 'U' || nextChar === 'u' || nextChar === 'ü')) || (currentChar === 'ˆ' && nextChar === 'I') || (currentChar === 'N' && nextChar === 'y')) {
       convertedText += mapping[nextChar];
