@@ -71,7 +71,8 @@ const map = [
   ['®', '्र'],
   ['Ú', ':'],
   ['ü', 'ु'],
-  ['@', '्ह'], // halant
+  // ['@', ' ॑ '], // udaat (used in sanskrit)
+  ['@', '्'], // halant (replaced below)
   // ['E', 'ऄ'], // open oora
   ['E', 'ओ'], // open oora
   ['H', '्ह'], // pair haha
@@ -112,13 +113,23 @@ module.exports = gurmukhi =>
     }
 
     // Adhiks: the akhar proceeding the adikh is meant to be emphasized
-    // devnagri uses a half/full variant of each akhar to indicate emphasis
-    // ex: ल + ् + ल = ल्ल -> repeat ' ्+(char) ' twice, then remove first ' ् '
+    // hindi uses a half+full variant of each akhar to indicate emphasis
+    // ex: ल + ् + ल = ल्ल
     if (gurmukhiLetter === '`') {
       str = str.replace(/(`|~|¤)./gm, full =>
         full
           .repeat(2)
           .slice(1));
+    }
+
+    // Udaats (ੑ): the tone of the akhar under which the udaat is placed is made higher
+    // closest approximation in modern hindi is the half+full variant akhar
+    // ex: न + ् + न = न्न
+    if (gurmukhiLetter === '@') {
+      str = str.replace(/.@/gm, full =>
+        full
+          .repeat(2)
+          .slice(0, -1));
     }
 
     while (str.includes(gurmukhiLetter)) {
