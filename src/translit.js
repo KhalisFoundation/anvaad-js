@@ -1,7 +1,6 @@
 /* load modules */
 const languages = {};
 languages.english = require('./translit_modules/english');
-languages.english_v2 = require('./translit_modules/english_v2');
 languages.english_v3 = require('./translit_modules/english_v3');
 languages.devnagri = require('./translit_modules/devnagri');
 languages.ipa = require('./translit_modules/ipa');
@@ -30,12 +29,12 @@ function translit(gurmukhi, language = 'english', map = null) {
   }
   function getMappedWord(word) {
     if (map != null) {
+      // remove embedded vishraams before mapping
+      const vishraamRegex = /[.,;]$/;
+      const vishraam = word.match(vishraamRegex);
+      word = word.replace(vishraamRegex, '');
       const result = map.get(word);
       if (result) {
-        // remove embedded vishraams before mapping
-        const vishraamRegex = /[.,;]$/;
-        const vishraam = word.match(vishraamRegex);
-        word = word.replace(vishraamRegex, '');
         if (vishraam != null) {
           return result + vishraam;
         }

@@ -19,6 +19,7 @@ module.exports = (gurmukhi = '') => {
     return gurmukhi;
   }
   let trans = gurmukhi;
+  let isColoured = true;
   //* *********************
   //    STEP 1
   //* *********************
@@ -90,6 +91,10 @@ module.exports = (gurmukhi = '') => {
       [7, '7'],
       [8, '8'],
       [9, '9'],
+      ['‹', '‹'],
+      ['›', '›'],
+      ['«', '«'],
+      ['»', '»'],
       [':', ':'],
       [';', ';'],
       ['<', 'ik'],
@@ -114,7 +119,7 @@ module.exports = (gurmukhi = '') => {
       ['O', 'au'],
       ['P', 'ph'],
       ['Q', 'th'],
-      ['R', 'x'], // using 'x' to deal with pehar rara handling - this gets replaced below
+      ['R', 'ᵣ'],
       ['S', 'sh'],
       ['T', 'tth'],
       ['U', 'oo'],
@@ -174,7 +179,7 @@ module.exports = (gurmukhi = '') => {
       ['\u00b5', 'ⁿ'],
       ['\u00b6', '\u00b6'],
       ['\u00b7', '\u00b7'],
-      ['\u00bf', 'x'],
+      ['\u00bf', 'ᵣ'],
       ['\u00c5', 'ek'],
       ['\u00c6', 'Oaⁿkaar'],
       ['\u00c7', ''],
@@ -341,11 +346,18 @@ module.exports = (gurmukhi = '') => {
   trans = trans.replace(regex7, full => full.replace('mana', 'man'));
 
   // 10. fix pehar rara
-  const regex8 = /x[a-zA-Z]+/gm;
-  trans = trans.replace(regex8, full => full.replace('x', 'ᵣ'));
+  // const regex8 = /x[a-zA-Z]+/gm;
+  // trans = trans.replace(regex8, full => full.replace('x', 'r'));
   // 10.1 fix pehar rara for 'a(n)mirat' -> 'a(n)mrit'
   const regex9 = /mirat[a-zA-Z]+/gm;
   trans = trans.replace(regex9, full => full.replace('mirat', 'mrit'));
+
+  // 11. enclose all vowels and adhey akhar in quotations for later parsing
+  const regex10 = /(aa|ee|e|u|oo|ay|ai|o|au|ⁿ|ᵣ|ₑ|ₜ|ₜₜ)/gm;
+  if (isColoured) {
+    trans = trans.replace(regex10, '‹$&›');
+  }
+
   //* *********************
   //    STEP 4
   //* *********************

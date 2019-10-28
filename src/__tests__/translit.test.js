@@ -37,8 +37,24 @@ describe('translit', () => {
     expect(JSON.stringify(translit('lwl rMgu iqs kau lgw ijs ky vfBwgw ] mYlw kdy n hoveI nh lwgY dwgw ]1]', 'devnagri')))
       .toBe('"लाल रंगु तिस कउ लगा जिस के वडभागा ॥ मैला कदे न होवई नह लागै दागा ॥१॥"');
   });
-  it('Should return only the english_v3 transliteration of Gurmukhi using the english_v3 word mapping', () => {
+  it('english_v3 transliteration using english_v3 word mapping', () => {
     expect(JSON.stringify(translit('lwl rMgu iqs kau lgw ijs ky vfBwgw ] mYlw kdy n hoveI nh lwgY dwgw ]1]', 'english_v3', wordMap('english_v3'))))
       .toBe('"laal rangu tes kou lagaa jes kay vaddbhaagaa || mailaa kaday na hovaee naha laagai daagaa ||1||"');
+  });
+  it('english_v3 transliteration using english_v3 word mapping with vishraams', () => {
+    expect(JSON.stringify(translit('lwl rMgu iqs kau lgw; ijs ky vfBwgw ] mYlw kdy n hoveI nh lwgY dwgw ]1]', 'english_v3', wordMap('english_v3'))))
+      .toBe('"laal rangu tes kou lagaa; jes kay vaddbhaagaa || mailaa kaday na hovaee naha laagai daagaa ||1||"');
+  });
+  it('english_v3 transliteration using a mix of english_v3 module with coloured vowels and english_v3 mapping', () => {
+    expect(JSON.stringify(translit('gurpRswid vwihgurU]vwihgurU srUp siqgurU swihbwn jI dI SuB', 'english_v3', wordMap('english_v3'))))
+      .toBe('"g‹u›rap‹ᵣ›s‹aa›ad v‹aa›ah‹e›g‹u›r‹oo›||v‹aa›ah‹e›g‹u›r‹oo› saroop sateguroo s‹aa›ah‹e›b‹aa›an jee dee sh‹u›bh"');
+  });
+  it('english_v3 transliteration using only english_v3 module with coloured vowels', () => {
+    expect(JSON.stringify(translit('gurpRswid vwihgurU]vwihgurU srUp siqgurU swihbwn jI dI SuB', 'english_v3')))
+      .toBe('"g‹u›rap‹ᵣ›s‹aa›ad‹e› v‹aa›ah‹e›g‹u›r‹oo›||v‹aa›ah‹e›g‹u›r‹oo› sar‹oo›p sat‹e›g‹u›r‹oo› s‹aa›ah‹e›b‹aa›an j‹ee› d‹ee› sh‹u›bh"');
+  });
+  it('english_v3 transliteration using only english_v3 module with coloured vowels and coloured segments', () => {
+    expect(JSON.stringify(translit('«gurpRswi» vwihgurU]vwihgurU', 'english_v3', wordMap('english_v3'))))
+      .toBe('"«g‹u›rap‹ᵣ›s‹aa›a» v‹aa›ah‹e›g‹u›r‹oo›||v‹aa›ah‹e›g‹u›r‹oo›"');
   });
 });
