@@ -10,12 +10,10 @@ const path = require('path');
  * @returns {Map} Returns a Map object representation of the word mapping csv
  */
 
-function wordMap(filename, dir = 'translit_modules') {
+function wordMap(filePath) {
   const map = new Map();
-  const filePath = `${dir}/${filename}.csv`;
-  const fileName = path.resolve(__dirname, filePath);
-  const mappingFile = fs.readFileSync(fileName, { encoding: 'utf8' });
-  const allWords = mappingFile.split('\r\n');
+  const file = fs.readFileSync(path.resolve(__dirname, filePath), { encoding: 'utf8' });
+  const allWords = file.split('\r\n');
   for (let i = 0; i < allWords.length; i += 1) {
     const mappedWord = allWords[i].split(',');
     map.set(mappedWord[0], mappedWord[1]);

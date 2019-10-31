@@ -1,7 +1,6 @@
 /* load modules */
 const languages = {};
 languages.english = require('./translit_modules/english');
-languages.english_v3 = require('./translit_modules/english_v3');
 languages.devnagri = require('./translit_modules/devnagri');
 languages.ipa = require('./translit_modules/ipa');
 
