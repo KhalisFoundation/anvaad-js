@@ -77,8 +77,11 @@ const tests = [
     'च ंगिअाइीअा बुरिअाइीअा वाचै धरमु हदूरि ॥',
   ],
   */
-  // ਅੱਲਖ: A`lK or A~lK (a-lakh) should map to अल्लख, not अँलख
+  // adhik: ਅੱਲਖ (A`lK), (a-lakh), 'ल' is emphasized using 'ल्ल'
   ['A`lK', 'अल्लख'],
+
+  // udaat: ਨੑਾਵਾ (n@wvw), (nhava), 'न' is emphasized using 'न्न'
+  ['n@wvw', 'न्नावा'],
 
   // tests for various pair-akhars
   ['isR ihR ikR igR iGR iqR iQR idR iDR inR ipR ibR iBR imR ivR iSR', 'सृ हृ कृ गृ घृ तृ थृ दृ धृ नृ पृ बृ भृ मृ वृ शृ'],
