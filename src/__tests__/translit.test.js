@@ -27,6 +27,10 @@ describe('translit', () => {
       .toBe('"akhee sootak vekhanaa par tria par dhan roop ||"');
     expect(JSON.stringify(translit('sUdR')))
       .toBe('"soodhr"');
+    expect(JSON.stringify(translit('cauboly')))
+      .toBe('"chaubole"');
+    expect(JSON.stringify(translit('Sbd hzwry')))
+      .toBe('"shabadh hazaare"');
   });
   it('Should return only the ipa transliteration of Gurmukhi', () => {
     expect(JSON.stringify(translit('lwl rMgu iqs kau lgw ijs ky vfBwgw ] mYlw kdy n hoveI nh lwgY dwgw ]1]', 'ipa')))
