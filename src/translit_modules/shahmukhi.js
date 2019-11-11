@@ -106,7 +106,7 @@ module.exports = gurmukhi =>
     }
 
     // Remove trailing u and i except when on h or on a standalone akhar
-    str = str.replace(/(\S[^h])([iu])/gm, '$1');
+    str = str.replace(/(\S[^h])([iu])/m, '$1');
 
     while (str.includes(gurmukhiLetter)) {
       str = str.replace(gurmukhiLetter, shamukhiUnicode);
