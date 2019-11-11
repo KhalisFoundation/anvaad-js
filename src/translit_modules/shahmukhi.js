@@ -93,6 +93,24 @@ const map = [
 ];
 
 module.exports = gurmukhi =>
-  map.reduce((_str, [gurmukhiLetter, smUnicode])  => [ new RegExp( escapeStringRegexp( exp ), 'g' ), sub ] );
+  map.reduce((_str, [gurmukhiLetter, shamukhiUnicode]) => {
+    let str = _str;
 
+    // Gurakhar places i before the letter it's applied to, while devnagri unicode placed it after.
+    if (gurmukhiLetter === 'i') {
+      str = str.replace(/i./gm, full =>
+        full
+          .split('')
+          .reverse()
+          .join(''));
+    }
 
+    // Remove trailing u and i except when on h or on a standalone akhar
+    str = str.replace(/(\S[^h])([iu])/gm, '$1');
+
+    while (str.includes(gurmukhiLetter)) {
+      str = str.replace(gurmukhiLetter, shamukhiUnicode, 'g');
+    }
+
+    return str;
+  }, gurmukhi);
