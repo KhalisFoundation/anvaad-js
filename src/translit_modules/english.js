@@ -57,7 +57,7 @@ module.exports = (gurmukhi = '') => {
   const transCount = trans.length;
   for (let x = 0; x < transCount; x += 1) {
     let thisLetter = trans[x];
-    const nextLetter = trans[x + 1] || '';
+    const nextLetter = trans[x + 1] || ' ' || '';
 
     //* *********************
     //    STEP 2
