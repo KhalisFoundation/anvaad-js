@@ -8,6 +8,7 @@ describe('translit', () => {
         english: 'chha(n)t || jiau jaanahu tiau raakh har prabh teriaa || kete ganau asa(n)kh avagan meriaa || asa(n)kh avagan khate fere nitaprat sadh bhooleeaai || moh magan bikaraal maiaa tau prasaadhee ghooleeaai || look karat bikaar bikhaRe prabh ner hoo te neriaa || binava(n)t naanak dhiaa dhaarahu kaadd bhavajal feriaa ||1||',
         devnagri: 'छंतु ॥ जिउ जानहु तिउ राखु हरि प्रभ तेरिआ ॥ केते गनउ असंख अवगण मेरिआ ॥ असंख अवगण खते फेरे नितप्रति सद भूलीऐ ॥ मोह मगन बिकराल माइआ तउ प्रसादी घूलीऐ ॥ लूक करत बिकार बिखड़े प्रभ नेर हू ते नेरिआ ॥ बिनवंति नानक दइआ धारहु काढि भवजल फेरिआ ॥१॥',
         ipa: 'ɕəŋt̪. d͡ʒɪo d͡ʒɑnəh t̪ɪo rɑkʰ hər pɹəɓ t̪erɪəɑ. ket̪e Gəno əsəŋkʰ əʋəGəɳ merɪəɑ. əsəŋkʰ əʋəGəɳ kʰət̪e fere nɪt̪əpɹət̪ səd̪ ɓuliæ. mɔh məGən bɪkərɑl mɑɪɑ t̪o pɹəsɑd̪i Gʰuliæ. luk kərət̪ bɪkɑr bɪkʰəɽe pɹəɓ ner hu t̪e nerɪəɑ. bɪnəʋəŋt̪ nɑnək d̪ɪɑ t̪ɑrəh kɑʈə̀ ɓəʋəd͡ʒəl ferɪəɑ.1.',
+        shahmukhi: 'چھںت ۔۔ جا جانهُ تا راکھ هر پربھ تےرآ ۔۔ کےتے گناُ اسںکھ اوگن مےرآ ۔۔ اسںکھ اوگن کھتے پھےرے نتپرت سد بھُولیاَے ۔۔ موه مگن بکرال مايا تاُ پرسادی گھُولیاَے ۔۔ لُوک کرت بکار بکھڑے پربھ نےر هُو تے نےرآ ۔۔ بنوںت نانک ديا دھارهُ کاڈھ بھوجل پھےرآ ۔۔۱۔۔',
       }));
   });
   it('Test for english transliteration of Gurmukhi (including several edge cases)', () => {
