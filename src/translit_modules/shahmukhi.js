@@ -109,7 +109,7 @@ module.exports = gurmukhi =>
     str = str.replace(/(\S[^h])([iu])/gm, '$1');
 
     while (str.includes(gurmukhiLetter)) {
-      str = str.replace(gurmukhiLetter, shamukhiUnicode, 'g');
+      str = str.replace(gurmukhiLetter, shamukhiUnicode);
     }
 
     return str;
