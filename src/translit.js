@@ -10,6 +10,8 @@ languages.shahmukhi = require('./translit_modules/shahmukhi');
  *
  * @since 1.0.0
  * @param {string} gurmukhi The string from to generate transliteration
+ * @param (optional) {string} language The name of language translit module to use
+ * @param (optional) {Map} map The name of language word map to use (for per-word translit)
  * @returns {string} Returns a string of text
  * @example
  *
@@ -17,7 +19,7 @@ languages.shahmukhi = require('./translit_modules/shahmukhi');
  * // => 'aai mil gursikh aai mil too mere guroo ke piaare ||'
  */
 
-function translit(gurmukhi, language = 'english') {
+function translit(gurmukhi, language = 'english', map = null) {
   if (language === 'all') {
     return Object.keys(languages).reduce((out, x) => {
       /* eslint no-param-reassign: 0 */
@@ -25,7 +27,24 @@ function translit(gurmukhi, language = 'english') {
       return out;
     }, {});
   }
+
+  if (map != null) {
+    return gurmukhi.split(' ').map((word) => {
+      // remove embedded vishraams before checking map
+      const vishraamRegex = /[.,;]$/;
+      const vishraam = word.match(vishraamRegex);
+      word = word.replace(vishraamRegex, '');
+      const result = map.get(word);
+      if (result) {
+        if (vishraam != null) {
+          return result + vishraam;
+        }
+        return result;
+      }
+      // fallback to transliteration module
+      return languages[language](word);
+    }).join(' ');
+  }
   return languages[language](gurmukhi);
 }
-
 module.exports = translit;
