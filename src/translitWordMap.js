@@ -6,13 +6,18 @@ const path = require('path');
  * Returns a map of words to be used in a word-by-word transliteration
  *
  * @since 1.0.0
- * @param {string} filename The name of the language mapping file
- * @returns {Map} Returns a Map object representation of the word mapping csv
+ * @param {string} filePath The path to the csv file representing the word map
+ * @returns {Map} Returns a Map object representation of the input csv file
  */
 
-function wordMap(filePath) {
+function translitWordMap(filePath) {
   const map = new Map();
-  const file = fs.readFileSync(path.resolve(__dirname, filePath), { encoding: 'utf8' });
+  let file;
+  try {
+    file = fs.readFileSync(path.resolve(__dirname, filePath), { encoding: 'utf8' });
+  } catch (error) {
+    return null;
+  }
   const allWords = file.split('\r\n');
   for (let i = 0; i < allWords.length; i += 1) {
     const mappedWord = allWords[i].split(',');
@@ -21,4 +26,4 @@ function wordMap(filePath) {
   return map;
 }
 
-module.exports = wordMap;
+module.exports = translitWordMap;

@@ -1,4 +1,5 @@
 const translit = require('../translit');
+const wordMap = require('../translitWordMap');
 
 // TO-DO update test below to be nitprat (need work on sihari and pehar rara handling)
 describe('translit', () => {
@@ -32,6 +33,10 @@ describe('translit', () => {
       .toBe('"chaubole"');
     expect(JSON.stringify(translit('Sbd hzwry')))
       .toBe('"shabadh hazaare"');
+
+    // transliterate using both english module and english_map_example map
+    expect(JSON.stringify(translit('lwl rMgu iqs kau lgw ijs ky vfBwgw ]', 'english', wordMap('translit_modules/english_map_example.csv'))))
+      .toBe('"LAAL RANG TIS KO LAGAA jis ke vaddabhaagaa ||"');
   });
   it('Should return only the ipa transliteration of Gurmukhi', () => {
     expect(JSON.stringify(translit('lwl rMgu iqs kau lgw ijs ky vfBwgw ] mYlw kdy n hoveI nh lwgY dwgw ]1]', 'ipa')))

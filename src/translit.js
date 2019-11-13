@@ -27,9 +27,10 @@ function translit(gurmukhi, language = 'english', map = null) {
       return out;
     }, {});
   }
-  function getMappedWord(word) {
-    if (map != null) {
-      // remove embedded vishraams before mapping
+
+  if (map != null) {
+    return gurmukhi.split(' ').map((word) => {
+      // remove embedded vishraams before checking map
       const vishraamRegex = /[.,;]$/;
       const vishraam = word.match(vishraamRegex);
       word = word.replace(vishraamRegex, '');
@@ -40,14 +41,10 @@ function translit(gurmukhi, language = 'english', map = null) {
         }
         return result;
       }
-    }
-    // use the specified translit module if word not in map
-    return languages[language](word);
-  }
-  if (map != null) {
-    return gurmukhi.split(' ').map(getMappedWord).join(' ');
+      // fallback to transliteration module
+      return languages[language](word);
+    }).join(' ');
   }
   return languages[language](gurmukhi);
 }
-
 module.exports = translit;
