@@ -77,21 +77,21 @@ const map = [
   ['^', ''],
   ['&', ''],
   ['\\', ''],
-  ['1', ''],
-  ['2', ''],
-  ['3', ''],
-  ['4', ''],
-  ['5', ''],
-  ['6', ''],
-  ['7', ''],
-  ['8', ''],
-  ['9', ''],
-  ['0', ''],
+  ['1', '一'],
+  ['2', '二'],
+  ['3', '三'],
+  ['4', '四'],
+  ['5', '五'],
+  ['6', '六'],
+  ['7', '七'],
+  ['8', '八'],
+  ['9', '九'],
+  ['0', '〇'],
   ['[', ''],
   [']', ''],
   ['਼', ''],
 ];
-
+# TO-DO: Mandarin has a different number (十) for 10 than just the numeral for 1 and 0 will need to add a regex for this
 module.exports = gurmukhi =>
   map.reduce((_str, [gurmukhiLetter, mandarinUnicode]) => {
     let str = _str;
