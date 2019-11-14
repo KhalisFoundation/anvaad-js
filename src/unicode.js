@@ -69,8 +69,8 @@ const mapping = {
   Ï: 'ੵ',
   æ: '਼',
   Î: '੍ਯ',
-  ì: 'ਯੑ', // should render as full yaiya with open top
-  í: '੍ਯੑ', // should render as half yaiya with open top
+  ì: 'ਯ',
+  í: '੍ਯ',
   1: '੧',
   2: '੨',
   3: '੩',
