@@ -95,6 +95,8 @@ const mapping = {
   '@': 'ੑ',
   '‚': '❁',
   '•': '𑇇',
+  '¹': '੍',
+  '²': '੍',
   ' ': ' ',
 };
 
@@ -140,6 +142,25 @@ function unicode(text = '') {
       'Ï',
       'í',
     ];
+
+    const subscriptNumbers = {
+      1: '',
+      2: '',
+      3: '',
+      4: '',
+      5: '',
+      6: '',
+      8: '',
+      15: '',
+    };
+
+    const subscriptNumbersShifted = {
+      1: '',
+      2: '',
+      3: '',
+      4: '',
+      6: '',
+    };
 
     if (currentChar === 'i') {
       if (nextChar != null) {
@@ -217,6 +238,15 @@ function unicode(text = '') {
     (currentChar === 'N' && nextChar === 'y')) {
       convertedText += mapping[nextChar];
       convertedText += mapping[currentChar];
+      j += 1;
+    } else if (currentChar === '¹' && nextChar === '1' && nextNextChar === '5') {
+      convertedText += '';
+      j += 2;
+    } else if (currentChar === '¹') {
+      convertedText += subscriptNumbers[nextChar];
+      j += 1;
+    } else if (currentChar === '²') {
+      convertedText += subscriptNumbersShifted[nextChar];
       j += 1;
     } else {
       convertedText += mapping[currentChar] || currentChar;

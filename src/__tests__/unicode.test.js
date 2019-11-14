@@ -23,6 +23,15 @@ describe('unicode', () => {
     // Adhik
     expect(unicode('s`uD ispwh durMq dubwh su swj snwh durjwn dlYNgy ]'))
       .toBe('ਸੁੱਧ ਸਿਪਾਹ ਦੁਰੰਤ ਦੁਬਾਹ ਸੁ ਸਾਜ ਸਨਾਹ ਦੁਰਜਾਨ ਦਲੈਂਗੇ ॥');
+
+    // ਪੈਰ ਅੰਕ ਸਿਰਲੇਖ ਵਿਚ
+    expect(unicode('rwgu gauVI pUrbI¹1 mhlw 5 ]'))
+      .toBe('ਰਾਗੁ ਗਉੜੀ ਪੂਰਬੀ ਮਹਲਾ ੫ ॥');
+
+    // ਪੈਰ ਅੰਕ ਸਿਰਲੇਖ ਵਿਚ, shifted right by one char
+    expect(unicode('rwgu gauVI pUrbI²1 mhlw 5 ]'))
+      .toBe('ਰਾਗੁ ਗਉੜੀ ਪੂਰਬੀ ਮਹਲਾ ੫ ॥');
+
     // MU
     expect(unicode('hMU'))
       .toBe('ਹੂੰ');
