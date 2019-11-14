@@ -20,6 +20,9 @@ describe('unicode', () => {
     expect(unicode('ijgw CqR jVwv kælZI cOr mukqw lwlrI'))
       .toBe('ਜਿਗਾ ਛਤ੍ਰ ਜੜਾਵ ਕ਼ਲਗ਼ੀ ਚੌਰ ਮੁਕਤਾ ਲਾਲਰੀ');
 
+    // Adhik
+    expect(unicode('s`uD ispwh durMq dubwh su swj snwh durjwn dlYNgy ]'))
+      .toBe('ਸੁੱਧ ਸਿਪਾਹ ਦੁਰੰਤ ਦੁਬਾਹ ਸੁ ਸਾਜ ਸਨਾਹ ਦੁਰਜਾਨ ਦਲੈਂਗੇ ॥');
     // MU
     expect(unicode('hMU'))
       .toBe('ਹੂੰ');
