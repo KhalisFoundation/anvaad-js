@@ -11,13 +11,40 @@
  * // => 'AmgAmqmgkp'
  */
 
+const simplifications = [
+  ['E', 'a'],
+  ['ਓ', 'ੳ'],
+  ['L', 'l'],
+  ['ਲ਼', 'ਲ'],
+  ['S', 's'],
+  ['ਸ਼', 'ਸ'],
+  ['z', 'j'],
+  ['ਜ਼', 'ਜ'],
+  ['Z', 'g'],
+  ['ਗ਼', 'ਗ'],
+  ['\\^', 'K'],
+  ['ਖ਼', 'ਖ'],
+  ['ƒ', 'n'],
+  ['ਨੂੰ', 'ਨ'],
+  ['&', 'P'],
+  ['ਫ਼', 'ਫ'],
+];
+
 function firstLetters(words = '', eng = false) {
   if (words === '' || typeof words !== 'string') {
     return words;
   }
-  const newWords = words
+  let newWords = words;
+
+  simplifications.forEach((e) => {
+    newWords = newWords.replace(new RegExp(e[0], 'g'), e[1]);
+  });
+  newWords = newWords
     .replace(/\]/g, '')
-    .replace(/rhwa/g, '')
+    .replace(/॥/g, '')
+    .replace(/।/g, '')
+    .replace(/rhwau dUjw/g, '')
+    .replace(/rhwau/g, '')
     .replace(/[0-9]/g, '');
 
   function firstLetter(word) {
