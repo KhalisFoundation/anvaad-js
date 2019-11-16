@@ -92,11 +92,13 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ## mainLetters
 
-Removes vowel symbols from a Gurmukhi string
+Removes vowel symbols from a Gurmukhi string.
 
 **Parameters**
 
 -   `words` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The string from which to get main letters
+
+-   `simplify` **[boolean](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** Whether to simplify half charactesr to full characters (eg. R to r)
 
 **Examples**
 

@@ -3,6 +3,7 @@
  *
  * @since 1.0.0
  * @param {string} words The string from which to get main letters
+ * @param {boolean} simplify Whether to simplify half-chars
  * @returns {string} Returns a single string of characters
  * @example
  *
@@ -15,7 +16,7 @@ const simplifications1 = [
   ['L', 'l'],
   ['S', 's'],
   ['z', 'j'],
-  ['Z', 'G'],
+  ['Z', 'g'],
   ['\\^', 'K'],
   ['ƒ', 'n'],
   ['&', 'P'],
@@ -27,6 +28,8 @@ const simplifications2 = [
   ['®', 'r'],
   ['Í', 'v'],
   ['œ', 'q'],
+  ['ç', 'c'],
+  ['†', 't'],
   ['˜', 'n'],
   ['´', 'X'],
   ['Î', 'X'],
