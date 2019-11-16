@@ -21,7 +21,7 @@ describe('unicode', () => {
       .toBe('ਜਿਗਾ ਛਤ੍ਰ ਜੜਾਵ ਕ਼ਲਗ਼ੀ ਚੌਰ ਮੁਕਤਾ ਲਾਲਰੀ');
 
     // Adhik
-    expect(unicode('s`uD ispwh durMq dubwh su swj snwh durjwn dlYNgy ]'))
+    expect(unicode('su`D ispwh durMq dubwh su swj snwh durjwn dlYNgy ]'))
       .toBe('ਸੁੱਧ ਸਿਪਾਹ ਦੁਰੰਤ ਦੁਬਾਹ ਸੁ ਸਾਜ ਸਨਾਹ ਦੁਰਜਾਨ ਦਲੈਂਗੇ ॥');
 
     // ਪੈਰ ਅੰਕ ਸਿਰਲੇਖ ਵਿਚ
@@ -33,7 +33,7 @@ describe('unicode', () => {
       .toBe('ਰਾਗੁ ਗਉੜੀ ਪੂਰਬੀ ਮਹਲਾ ੫ ॥');
 
     // MU
-    expect(unicode('hMU'))
+    expect(unicode('hUM'))
       .toBe('ਹੂੰ');
 
     // @w

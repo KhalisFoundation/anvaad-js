@@ -100,6 +100,40 @@ const mapping = {
   ' ': ' ',
 };
 
+const halfChars = [
+  'H',
+  'R',
+  '®',
+  'Í',
+  'ç',
+  '†',
+  'œ',
+  '˜',
+  '´',
+  'Î',
+  'Ï',
+  'í',
+];
+
+const subscriptNumbers = {
+  1: '',
+  2: '',
+  3: '',
+  4: '',
+  5: '',
+  6: '',
+  8: '',
+  15: '',
+};
+
+const subscriptNumbersShifted = {
+  1: '',
+  2: '',
+  3: '',
+  4: '',
+  6: '',
+};
+
 /**
  * Convert Gurmukhi script to Unicode
  *
@@ -128,39 +162,6 @@ function unicode(text = '') {
     const currentChar = chars[j];
     const nextChar = chars[j + 1];
     const nextNextChar = chars[j + 2];
-    const halfChars = [
-      'H',
-      'R',
-      '®',
-      'Í',
-      'ç',
-      '†',
-      'œ',
-      '˜',
-      '´',
-      'Î',
-      'Ï',
-      'í',
-    ];
-
-    const subscriptNumbers = {
-      1: '',
-      2: '',
-      3: '',
-      4: '',
-      5: '',
-      6: '',
-      8: '',
-      15: '',
-    };
-
-    const subscriptNumbersShifted = {
-      1: '',
-      2: '',
-      3: '',
-      4: '',
-      6: '',
-    };
 
     if (currentChar === 'i') {
       if (nextChar != null) {
@@ -228,16 +229,6 @@ function unicode(text = '') {
       }
     } else if (currentChar === 'u' && nextChar === 'o') {
       convertedText += 'ੋੁ';
-      j += 1;
-    } else if ((currentChar === 'N' && nextChar === 'I') ||
-    (
-      (currentChar === 'M' || currentChar === 'N' || currentChar === '`' || currentChar === '~') &&
-      (nextChar === 'U' || nextChar === 'u' || nextChar === 'ü')
-    ) ||
-    (currentChar === 'ˆ' && nextChar === 'I') ||
-    (currentChar === 'N' && nextChar === 'y')) {
-      convertedText += mapping[nextChar];
-      convertedText += mapping[currentChar];
       j += 1;
     } else if (currentChar === '¹' && nextChar === '1' && nextNextChar === '5') {
       convertedText += '';
