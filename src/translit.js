@@ -22,19 +22,20 @@ languages.shahmukhi = require('./translit_modules/shahmukhi');
 function translit(gurmukhi, language = 'english', map = null) {
   if (language === 'all') {
     return Object.keys(languages).reduce((out, x) => {
-      /* eslint no-param-reassign: 0 */
-      out[x] = languages[x](gurmukhi);
-      return out;
+      const output = out;
+      output[x] = languages[x](gurmukhi);
+      return output;
     }, {});
   }
 
   if (map != null) {
     return gurmukhi.split(' ').map((word) => {
       // remove embedded vishraams before checking map
+      let currentWord = word;
       const vishraamRegex = /[.,;]$/;
-      const vishraam = word.match(vishraamRegex);
-      word = word.replace(vishraamRegex, '');
-      const result = map.get(word);
+      const vishraam = currentWord.match(vishraamRegex);
+      currentWord = currentWord.replace(vishraamRegex, '');
+      const result = map.get(currentWord);
       if (result) {
         if (vishraam != null) {
           return result + vishraam;
@@ -42,7 +43,7 @@ function translit(gurmukhi, language = 'english', map = null) {
         return result;
       }
       // fallback to transliteration module
-      return languages[language](word);
+      return languages[language](currentWord);
     }).join(' ');
   }
   return languages[language](gurmukhi);

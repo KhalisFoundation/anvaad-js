@@ -123,10 +123,10 @@ function unicode(text = '') {
       if (nextChar != null) {
         if (nextChar === 'e') {
           convertedText += 'ਇ';
-        } else if (nextNextChar === 'R' || nextNextChar === 'H' ||
-                            nextNextChar === 'Í' || nextNextChar === 'ç' ||
-                            nextNextChar === '†' || nextNextChar === 'œ' ||
-                            nextNextChar === '~' || nextNextChar === '®') {
+        } else if (nextNextChar === 'R' || nextNextChar === 'H'
+                            || nextNextChar === 'Í' || nextNextChar === 'ç'
+                            || nextNextChar === '†' || nextNextChar === 'œ'
+                            || nextNextChar === '~' || nextNextChar === '®') {
           convertedText += mapping[nextChar];
           convertedText += mapping[nextNextChar];
           convertedText += 'ਿ';
