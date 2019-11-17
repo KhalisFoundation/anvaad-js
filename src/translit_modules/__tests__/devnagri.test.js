@@ -1,5 +1,3 @@
-/* globals describe, it, expect */
-
 /* Use https://www.lexilogos.com/keyboard/devanagari.htm to add devnagri Unicode */
 const lib = require('../devnagri');
 
