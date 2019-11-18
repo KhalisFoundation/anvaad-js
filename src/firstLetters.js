@@ -3,7 +3,8 @@
  *
  * @since 1.0.0
  * @param {string} words The string from which to get first letters
- * @param {boolean=} [eng=false] Whether the string is English
+ * @param {boolean} eng Whether the string is English (default=false)
+ * @param {boolean} simplify Whether to remove lagga matra/bindia (default=false)
  * @returns {string} Returns a single string of characters
  * @example
  *
@@ -30,15 +31,18 @@ const simplifications = [
   ['ਫ਼', 'ਫ'],
 ];
 
-function firstLetters(words = '', eng = false) {
+function firstLetters(words = '', eng = false, simplify = false) {
   if (words === '' || typeof words !== 'string') {
     return words;
   }
   let newWords = words;
 
-  simplifications.forEach((e) => {
-    newWords = newWords.replace(new RegExp(e[0], 'g'), e[1]);
-  });
+  if (simplify) {
+    simplifications.forEach((e) => {
+      newWords = newWords.replace(new RegExp(e[0], 'g'), e[1]);
+    });
+  }
+
   newWords = newWords
     .replace(/\]/g, '')
     .replace(/॥/g, '')

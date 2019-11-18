@@ -12,7 +12,7 @@ describe('mainLetters', () => {
   });
 
   it('Should remove vowel symbols and simplify half consonants to their full counterparts', () => {
-    expect(mainLetters('ik®s˜w qy jwnaU hir hir nwcMqI nwcnw ]1]', true))
+    expect(mainLetters('ik®s˜w qy jwnaU hir hir nwcMqI nwcnw ]1]', true, true))
       .toBe('krsn q jna hr hr ncq ncn');
   });
 
@@ -22,12 +22,12 @@ describe('mainLetters', () => {
   });
 
   it('Should remove vowel symbols and simplify half consonants to their full counterparts', () => {
-    expect(mainLetters('isr msœk rK´w pwrbRhmM hsœ kwXw rK´w prmysÍrh ]', true))
+    expect(mainLetters('isr msœk rK´w pwrbRhmM hsœ kwXw rK´w prmysÍrh ]', false, true))
       .toBe('sr msqk rKX prbrhm hsq kX rKX prmsvrh');
   });
 
   it('Should remove vowel symbols and simplify half consonants to their full counterparts', () => {
-    expect(mainLetters('Ehw pRym iprI ]1] rhwau ', true))
+    expect(mainLetters('Ehw pRym iprI ]1] rhwau ', true, true))
       .toBe('ah prm pr rha');
   });
 
