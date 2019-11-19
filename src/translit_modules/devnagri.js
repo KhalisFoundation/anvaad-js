@@ -97,79 +97,75 @@ const map = [
   ['†', '्ट'], // pair tanka
 ];
 
-module.exports = gurmukhi =>
-  map.reduce((_str, [gurmukhiLetter, devnagriUnicode]) => {
-    let str = _str;
+module.exports = (gurmukhi) => map.reduce((_str, [gurmukhiLetter, devnagriUnicode]) => {
+  let str = _str;
 
-    str = str.replace(/<>/gi, 'ੴ');
+  str = str.replace(/<>/gi, 'ੴ');
 
-    // Gurakhar places i before the letter it's applied to, while devnagri unicode placed it after.
-    if (gurmukhiLetter === 'i') {
-      str = str.replace(/i./gm, full =>
-        full
-          .split('')
-          .reverse()
-          .join(''));
-    }
+  // Gurakhar places i before the letter it's applied to, while devnagri unicode placed it after.
+  if (gurmukhiLetter === 'i') {
+    str = str.replace(/i./gm, (full) => full
+      .split('')
+      .reverse()
+      .join(''));
+  }
 
-    // Adhiks: the akhar proceeding the adikh is meant to be emphasized
-    // hindi uses a half+full variant of each akhar to indicate emphasis
-    // ex: ल + ् + ल = ल्ल
-    if (gurmukhiLetter === '`') {
-      str = str.replace(/(`|~|¤)./gm, full =>
-        full
-          .repeat(2)
-          .slice(1));
-    }
+  // Adhiks: the akhar proceeding the adikh is meant to be emphasized
+  // hindi uses a half+full variant of each akhar to indicate emphasis
+  // ex: ल + ् + ल = ल्ल
+  if (gurmukhiLetter === '`') {
+    str = str.replace(/(`|~|¤)./gm, (full) => full
+      .repeat(2)
+      .slice(1));
+  }
 
-    // Udaats (ੑ): the tone of the akhar under which the udaat is placed is made higher
-    // closest approximation in modern hindi is the half+full variant akhar
-    // ex: न + ् + न = न्न
-    if (gurmukhiLetter === '@') {
-      str = str.replace(/.@/gm, full =>
-        full
-          .repeat(2)
-          .slice(0, -1));
-    }
+  // Udaats (ੑ): the tone of the akhar under which the udaat is placed is made higher
+  // closest approximation in modern hindi is the half+full variant akhar
+  // ex: न + ् + न = न्न
+  if (gurmukhiLetter === '@') {
+    str = str.replace(/.@/gm, (full) => full
+      .repeat(2)
+      .slice(0, -1));
+  }
 
-    while (str.includes(gurmukhiLetter)) {
-      str = str.replace(gurmukhiLetter, devnagriUnicode, 'g');
-    }
+  while (str.includes(gurmukhiLetter)) {
+    str = str.replace(gurmukhiLetter, devnagriUnicode, 'g');
+  }
 
-    const fixes = [
-      ['इी', 'ई'],
-      ['अै', 'ऐ'],
-      ['इि', 'इ'],
-      ['उु', 'उ'],
-      ['उू', 'ऊ'],
-      ['इे', 'ए'],
-      // exceptions for bindi + kanna/unkar/dulainkar
-      ['ुं', 'ुँ'],
-      ['ूं', 'ूँ'],
-      ['ां', 'ाँ'],
-      ['आं', 'आँ'], // आ + ं
-      ['अां', 'आँ'], // अ + ा + ं
-      // exception for sihaaree + pair-rarra
-      ['ि्र', 'ृ'],
-      // exceptions for the emphasized (adhik) variants of certain akhars
-      ['ख्ख', 'क्ख'],
-      ['घ्घ', 'ग्घ'],
-      ['छ्छ', 'च्छ'],
-      ['झ्झ', 'ज्झ'],
-      ['ठ्ठ', 'ट्ठ'],
-      ['ढ्ढ', 'ड्ढ'],
-      ['थ्थ', 'त्थ'],
-      ['ध्ध', 'द्ध'],
-      ['भ्भ', 'ब्भ'],
-      // rendering fixes for Aw, AO
-      ['अा', 'आ'], // अ + ा (also handles AW)
-      ['अो', 'ओ'], // अो + ो (redundant, Ao does not exist)
-      ['अौ', 'औ'], // अ + ौ
-    ];
+  const fixes = [
+    ['इी', 'ई'],
+    ['अै', 'ऐ'],
+    ['इि', 'इ'],
+    ['उु', 'उ'],
+    ['उू', 'ऊ'],
+    ['इे', 'ए'],
+    // exceptions for bindi + kanna/unkar/dulainkar
+    ['ुं', 'ुँ'],
+    ['ूं', 'ूँ'],
+    ['ां', 'ाँ'],
+    ['आं', 'आँ'], // आ + ं
+    ['अां', 'आँ'], // अ + ा + ं
+    // exception for sihaaree + pair-rarra
+    ['ि्र', 'ृ'],
+    // exceptions for the emphasized (adhik) variants of certain akhars
+    ['ख्ख', 'क्ख'],
+    ['घ्घ', 'ग्घ'],
+    ['छ्छ', 'च्छ'],
+    ['झ्झ', 'ज्झ'],
+    ['ठ्ठ', 'ट्ठ'],
+    ['ढ्ढ', 'ड्ढ'],
+    ['थ्थ', 'त्थ'],
+    ['ध्ध', 'द्ध'],
+    ['भ्भ', 'ब्भ'],
+    // rendering fixes for Aw, AO
+    ['अा', 'आ'], // अ + ा (also handles AW)
+    ['अो', 'ओ'], // अो + ो (redundant, Ao does not exist)
+    ['अौ', 'औ'], // अ + ौ
+  ];
 
-    fixes.forEach((e) => {
-      str = str.replace(new RegExp(e[0], 'g'), e[1]);
-    });
+  fixes.forEach((e) => {
+    str = str.replace(new RegExp(e[0], 'g'), e[1]);
+  });
 
-    return str;
-  }, gurmukhi);
+  return str;
+}, gurmukhi);

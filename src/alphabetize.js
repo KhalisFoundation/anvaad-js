@@ -95,7 +95,7 @@ const customSort = (firstEl, secondEl) => {
   return firstIndex > secondIndex;
 };
 
-const getKeyByValue = (object, value) => Object.keys(object).find(key => object[key] === value);
+const getKeyByValue = (object, value) => Object.keys(object).find((key) => object[key] === value);
 
 function alphabetize(sentenceArray, type = 'english') {
   if (type === 'unicode') {
@@ -110,13 +110,13 @@ function alphabetize(sentenceArray, type = 'english') {
     matraFixes.forEach((e) => {
       newSentence = sentence.replace(new RegExp(e[0], 'g'), e[1]);
     });
-    const arr = newSentence.split('').filter(a => sortedValues.indexOf(a) > 0);
+    const arr = newSentence.split('').filter((a) => sortedValues.indexOf(a) > 0);
     sentenceObj[sentence] = arr.join('');
   });
 
   const sortedResult = Object.values(sentenceObj).sort(customSort);
 
-  return sortedResult.map(value => getKeyByValue(sentenceObj, value));
+  return sortedResult.map((value) => getKeyByValue(sentenceObj, value));
 }
 
 module.exports = alphabetize;

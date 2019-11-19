@@ -22,7 +22,7 @@ function ascii(string = '') {
   return `,${
     string
       .split('')
-      .map(char => String(char.charCodeAt(0)).padStart(3, '0'))
+      .map((char) => String(char.charCodeAt(0)).padStart(3, '0'))
       .join(',')
   },`;
 }
