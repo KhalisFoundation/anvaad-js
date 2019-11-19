@@ -32,6 +32,19 @@ describe('unicode', () => {
     expect(unicode('rwgu gauVI pUrbI²1 mhlw 5 ]'))
       .toBe('ਰਾਗੁ ਗਉੜੀ ਪੂਰਬੀ ਮਹਲਾ ੫ ॥');
 
+    // ik oangkaar using various char combinations
+    expect(unicode('<> siqgur pRswid ]'))
+      .toBe('ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥');
+
+    expect(unicode('1Eå siqgur pRswid ]'))
+      .toBe('ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥');
+
+    expect(unicode('¡ siqgur pRswid ]'))
+      .toBe('ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥');
+
+    expect(unicode('ÅÆ siqgur pRswid ]'))
+      .toBe('ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥');
+
     // MU
     expect(unicode('hUM'))
       .toBe('ਹੂੰ');

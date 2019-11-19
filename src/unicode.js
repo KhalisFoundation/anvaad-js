@@ -227,6 +227,9 @@ function unicode(text = '') {
         default:
           convertedText += mapping[currentChar];
       }
+    } else if (currentChar === '1' && nextChar === 'E' && nextNextChar === 'å') {
+      convertedText += 'ੴ';
+      j += 2;
     } else if (currentChar === 'u' && nextChar === 'o') {
       convertedText += 'ੋੁ';
       j += 1;
