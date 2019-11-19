@@ -87,6 +87,7 @@ const map = [
   ['¤', '्'], // adhak after letter, use halant to emphasize (replaced below)
   ['´', '्य'], // yakash (pair yaya)
   ['µ', 'ं'], // bindi
+  ['ˆ', 'ं'], // bindi
   ['Í', '्व'], // pair vava
   ['Î', '्य'], // half yaya
   ['Ø', ''], // extra top line (extender)
@@ -147,6 +148,8 @@ module.exports = (gurmukhi) => map.reduce((_str, [gurmukhiLetter, devnagriUnicod
     ['अां', 'आँ'], // अ + ा + ं
     // exception for sihaaree + pair-rarra
     ['ि्र', 'ृ'],
+    // exception for bindi before bihaaree
+    ['ंी', 'ीं'],
     // exceptions for the emphasized (adhik) variants of certain akhars
     ['ख्ख', 'क्ख'],
     ['घ्घ', 'ग्घ'],
