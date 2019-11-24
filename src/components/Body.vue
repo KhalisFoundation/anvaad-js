@@ -11,6 +11,9 @@
     <Usage name="firstLetters" description="Retrieve the first letter of each word from a string." />
     <Usage name="mainLetters" description="Removes vowel symbols from a Gurmukhi string." />
     <Usage name="translit.english" description="Returns an english transliteration of Gurmukhi script" />
+    <Usage name="translit.ipa" description="Returns an ipa(International Phonetic Alphabet) transliteration of Gurmukhi script" />
+    <Usage name="translit.devnagri" description="Returns an devnagri transliteration of Gurmukhi script" />
+    <Usage name="translit.shahmukhi" description="Returns an shahmukhi transliteration of Gurmukhi script" />
     <Usage name="unicode" description="Convert Gurmukhi script to Unicode" />
   </div>
 </template>

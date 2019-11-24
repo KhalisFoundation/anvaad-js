@@ -1,17 +1,21 @@
 {
-  "name": "website",
-  "version": "0.1.0",
+  "name": "anvaad-playground",
+  "version": "0.2.0",
   "private": true,
+  "author": "Khalis, Inc. <techsupport@khalisfoundation.org>",
+  "license": "MIT",
+  "description": "Utilities to prime Gurmukhi script for search. Unicode, first letters, main letters, transliteration.",
   "scripts": {
-    "pre-push":
-      "echo \"Building website!\" && npm run build && git add . -A && git commit --amend --no-edit",
+    "pre-push": "echo \"Building website!\" && npm run build && git add . -A && git commit --amend --no-edit",
     "serve": "vue-cli-service serve --open",
     "build": "vue-cli-service build && rm -rf css img js && mv dist/* ./",
     "lint": "vue-cli-service lint"
   },
-  "pre-push": ["pre-push"],
+  "pre-push": [
+    "pre-push"
+  ],
   "dependencies": {
-    "anvaad-js": "^1.0.3",
+    "anvaad-js": "^1.4.0",
     "vue": "^2.5.16"
   },
   "devDependencies": {
@@ -22,16 +26,25 @@
     "vue-template-compiler": "^2.5.13"
   },
   "babel": {
-    "presets": ["@vue/app"]
+    "presets": [
+      "@vue/app"
+    ]
   },
   "eslintConfig": {
     "root": true,
-    "extends": ["plugin:vue/essential", "eslint:recommended"]
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ]
   },
   "postcss": {
     "plugins": {
       "autoprefixer": {}
     }
   },
-  "browserslist": ["> 1%", "last 2 versions", "not ie <= 8"]
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
 }
