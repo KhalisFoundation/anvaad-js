@@ -233,10 +233,6 @@ function unicode(text = '') {
     } else if (currentChar === 'u' && nextChar === 'o') {
       convertedText += 'ੋੁ';
       j += 1;
-    } else if (currentChar === 'ˆ' && nextChar === 'I') {
-      convertedText += mapping[nextChar];
-      convertedText += mapping[currentChar];
-      j += 1;
     } else if (currentChar === '¹' && nextChar === '1' && nextNextChar === '5') {
       convertedText += '';
       j += 2;
