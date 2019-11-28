@@ -24,13 +24,17 @@ describe('unicode', () => {
     expect(unicode('su`D ispwh durMq dubwh su swj snwh durjwn dlYNgy ]'))
       .toBe('ਸੁੱਧ ਸਿਪਾਹ ਦੁਰੰਤ ਦੁਬਾਹ ਸੁ ਸਾਜ ਸਨਾਹ ਦੁਰਜਾਨ ਦਲੈਂਗੇ ॥');
 
-    // ਪੈਰ ਅੰਕ ਸਿਰਲੇਖ ਵਿਚ
-    expect(unicode('rwgu gauVI pUrbI¹1 mhlw 5 ]'))
-      .toBe('ਰਾਗੁ ਗਉੜੀ ਪੂਰਬੀ ਮਹਲਾ ੫ ॥');
+    // ਪੈਰ ਅੰਕ ਸਿਰਲੇਖ ਵਿਚ ੧
+    expect(unicode('rwgu gauVI pUrbI₁ mhlw 5'))
+      .toBe('ਰਾਗੁ ਗਉੜੀ ਪੂਰਬੀ ਮਹਲਾ ੫');
 
-    // ਪੈਰ ਅੰਕ ਸਿਰਲੇਖ ਵਿਚ, shifted right by one char
-    expect(unicode('rwgu gauVI pUrbI²1 mhlw 5 ]'))
-      .toBe('ਰਾਗੁ ਗਉੜੀ ਪੂਰਬੀ ਮਹਲਾ ੫ ॥');
+    // ਪੈਰ ਅੰਕ ਸਿਰਲੇਖ ਵਿਚ ੧੫
+    expect(unicode('gauVI kbIr jI iqpdy₁₅ ]'))
+      .toBe('ਗਉੜੀ ਕਬੀਰ ਜੀ ਤਿਪਦੇ ॥');
+
+    // ਪੈਰ ਅੰਕ combination using two individual glyphs
+    expect(unicode('vw₁₂h vw₄₆h vw₃₄h vwh₆₁'))
+      .toBe('ਵਾਹ ਵਾਹ ਵਾਹ ਵਾਹ');
 
     // ik oangkaar using various char combinations
     expect(unicode('<> siqgur pRswid ]'))
