@@ -101,10 +101,7 @@ const mapping = {
   '₄': '',
   '₅': '',
   '₆': '',
-  '₇': '₇',
   '₈': '',
-  '₉': '₉',
-  '₀': '₀',
   ' ': ' ',
 };
 
@@ -121,16 +118,6 @@ const halfChars = [
   'Î',
   'Ï',
   'í',
-];
-
-const subscriptNumbers = [
-  '₁',
-  '₂',
-  '₃',
-  '₄',
-  '₅',
-  '₆',
-  '₈',
 ];
 
 /**
@@ -239,32 +226,6 @@ function unicode(text = '') {
     } else if (currentChar === '₁' && nextChar === '₅') {
       convertedText += '';
       j += 1;
-    } else if (subscriptNumbers.includes(currentChar)) {
-      convertedText += mapping[currentChar];
-      switch (nextChar) {
-        case '₁':
-          convertedText += '';
-          j += 1;
-          break;
-        case '₂':
-          convertedText += '';
-          j += 1;
-          break;
-        case '₃':
-          convertedText += '';
-          j += 1;
-          break;
-        case '₄':
-          convertedText += '';
-          j += 1;
-          break;
-        case '₆':
-          convertedText += '';
-          j += 1;
-          break;
-        default:
-          break;
-      }
     } else {
       convertedText += mapping[currentChar] || currentChar;
     }
