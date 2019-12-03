@@ -32,10 +32,6 @@ describe('unicode', () => {
     expect(unicode('gauVI kbIr jI iqpdy₁₅ ]'))
       .toBe('ਗਉੜੀ ਕਬੀਰ ਜੀ ਤਿਪਦੇ ॥');
 
-    // ਪੈਰ ਅੰਕ combination using two individual glyphs
-    expect(unicode('vw₁₂h vw₄₆h vw₃₄h vwh₆₁'))
-      .toBe('ਵਾਹ ਵਾਹ ਵਾਹ ਵਾਹ');
-
     // ik oangkaar using various char combinations
     expect(unicode('<> siqgur pRswid ]'))
       .toBe('ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥');
