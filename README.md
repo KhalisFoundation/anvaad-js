@@ -179,6 +179,8 @@ All letter conversions at a minimum must address the following letters that are 
 ˜
 †
 æ
+¡
+Å
 0
 1
 2
@@ -211,6 +213,7 @@ I
 Í
 î
 Î
+Ï
 j
 J
 k

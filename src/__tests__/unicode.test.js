@@ -20,8 +20,33 @@ describe('unicode', () => {
     expect(unicode('ijgw CqR jVwv kælZI cOr mukqw lwlrI'))
       .toBe('ਜਿਗਾ ਛਤ੍ਰ ਜੜਾਵ ਕ਼ਲਗ਼ੀ ਚੌਰ ਮੁਕਤਾ ਲਾਲਰੀ');
 
+    // Adhik
+    expect(unicode('su`D ispwh durMq dubwh su swj snwh durjwn dlYNgy ]'))
+      .toBe('ਸੁੱਧ ਸਿਪਾਹ ਦੁਰੰਤ ਦੁਬਾਹ ਸੁ ਸਾਜ ਸਨਾਹ ਦੁਰਜਾਨ ਦਲੈਂਗੇ ॥');
+
+    // ਪੈਰ ਅੰਕ ਸਿਰਲੇਖ ਵਿਚ ੧
+    expect(unicode('rwgu gauVI pUrbI₁ mhlw 5'))
+      .toBe('ਰਾਗੁ ਗਉੜੀ ਪੂਰਬੀ ਮਹਲਾ ੫');
+
+    // ਪੈਰ ਅੰਕ ਸਿਰਲੇਖ ਵਿਚ ੧੫
+    expect(unicode('gauVI kbIr jI iqpdy₁₅ ]'))
+      .toBe('ਗਉੜੀ ਕਬੀਰ ਜੀ ਤਿਪਦੇ ॥');
+
+    // ik oangkaar using various char combinations
+    expect(unicode('<> siqgur pRswid ]'))
+      .toBe('ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥');
+
+    expect(unicode('1Eå siqgur pRswid ]'))
+      .toBe('ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥');
+
+    expect(unicode('¡ siqgur pRswid ]'))
+      .toBe('ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥');
+
+    expect(unicode('ÅÆ siqgur pRswid ]'))
+      .toBe('ੴ ਸਤਿਗੁਰ ਪ੍ਰਸਾਦਿ ॥');
+
     // MU
-    expect(unicode('hMU'))
+    expect(unicode('hUM'))
       .toBe('ਹੂੰ');
 
     // @w
