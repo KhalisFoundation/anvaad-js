@@ -246,7 +246,7 @@ const aboveChars = [
  */
 
 function ascii(text = '') {
-  let convertedText = [];
+  const convertedText = [];
 
   const chars = text.split('');
 
