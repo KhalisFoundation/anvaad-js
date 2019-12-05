@@ -181,6 +181,19 @@ describe('unicodereverse', () => {
     expect(unicode('੦੧੨੩੪੫੬੭੮੯!?()\'‘’:/', true))
       .toBe('0123456789!?()\'‘’:/');
 
+    // pairin ank
+    expect(unicode('           ', true))
+      .toBe('₁ ₂ ₃ ₄ ₅ ₆ ₈ ₁ ₂ ₃ ₄ ₆');
+
+    expect(unicode('', true))
+      .toBe('₁₅');
+
+    expect(unicode('ਰਾਗੁ ਗਉੜੀ ਪੂਰਬੀ ਮਹਲਾ ੫', true))
+      .toBe('rwgu gauVI₁ pUrbI mhlw 5');
+
+    expect(unicode('ਰਾਗੁ ਗਉੜੀ ਛੰਤ ਮਹਲਾ ੫', true))
+      .toBe('rwgu g₁auVI CMq mhlw 5');
+
     expect(unicode('ਹੇ ਮੇਰੇ ਗੁਰੂ ਦੇ ਪਿਆਰੇ ਸਿੱਖ! ਮੈਨੂੰ ਆ ਕੇ ਮਿਲ, ਮੈਨੂੰ ਆ ਕੇ ਮਿਲ ।ਰਹਾਉ।', true))
       .toBe('hy myry gurU dy ipAwry is`K! mYƒ Aw ky iml, mYƒ Aw ky iml [rhwau[');
 
