@@ -105,6 +105,112 @@ const mapping = {
   ' ': ' ',
 };
 
+const reverseMapping = {
+  ਇ: 'ie',
+  ਉ: 'au',
+  ਊ: 'aU',
+  ਆ: 'Aw',
+  ਆਂ: 'AW',
+  ਐ: 'AY',
+  ਔ: 'AO',
+  ਈ: 'eI',
+  ਏ: 'ey',
+  'ੋੁ': 'uo',
+  '੍ਵ': 'Í',
+  '੍ਚ': 'ç',
+  '੍ਟ': '†',
+  '੍ਤ': 'œ',
+  '੍ਨ': '˜',
+  'ੵ': '´',
+  '਼': 'æ',
+  '੍ਯ': 'Î',
+  ਨੂੰ: 'ƒ',
+  '੍ਹ': 'H',
+  '੍ਰ': 'R',
+  '': '₁₅',
+  '੦': '0',
+  '੧': '1',
+  '੨': '2',
+  '੩': '3',
+  '੪': '4',
+  '੫': '5',
+  '੬': '6',
+  '੭': '7',
+  '੮': '8',
+  '੯': '9',
+  ੳ: 'a',
+  ਅ: 'A',
+  ਸ: 's',
+  ਸ਼: 'S',
+  ਦ: 'd',
+  ਧ: 'D',
+  ਡ: 'f',
+  ਢ: 'F',
+  ਗ: 'g',
+  ਘ: 'G',
+  ਹ: 'h',
+  ਜ: 'j',
+  ਝ: 'J',
+  ਕ: 'k',
+  ਖ: 'K',
+  ਲ: 'l',
+  ਲ਼: 'L',
+  ਤ: 'q',
+  ਥ: 'Q',
+  'ਾ': 'w',
+  'ਾਂ': 'W',
+  ੲ: 'e',
+  ਓ: 'E',
+  ਰ: 'r',
+  ਟ: 't',
+  ਠ: 'T',
+  'ੇ': 'y',
+  'ੈ': 'Y',
+  'ੁ': 'u',
+  'ੂ': 'U',
+  'ਿ': 'i',
+  'ੀ': 'I',
+  'ੋ': 'o',
+  'ੌ': 'O',
+  ਪ: 'p',
+  ਫ: 'P',
+  ਜ਼: 'z',
+  ਗ਼: 'Z',
+  ਣ: 'x',
+  ਯ: 'X',
+  ਚ: 'c',
+  ਛ: 'C',
+  ਵ: 'v',
+  ੜ: 'V',
+  ਬ: 'b',
+  ਭ: 'B',
+  ਨ: 'n',
+  'ਂ': 'N',
+  ਮ: 'm',
+  'ੰ': 'M',
+  'ੱ': '`',
+  ਖ਼: '^',
+  ਫ਼: '&',
+  ਞ: '\\',
+  ਙ: '|',
+  '।': '[',
+  '॥': ']',
+  ੴ: '<>',
+  'ਃ': 'Ú',
+  '☬': 'Ç',
+  'ੑ': '@',
+  '❁': '‚',
+  '𑇇': '•',
+  '': '₁',
+  '': '₂',
+  '': '₃',
+  '': '₄',
+  '': '₅',
+  '': '₆',
+  '': '₈',
+  ' ': ' ',
+};
+
 const halfChars = [
   'H',
   'R',
@@ -120,11 +226,92 @@ const halfChars = [
   'í',
 ];
 
+const aboveChars = [
+  'ੇ',
+  'ੈ',
+  'ੋ',
+  'ੌ',
+];
+
+/**
+ * Convert Gurmukhi Unicode to ascii for webakhar
+ *
+ * @since 1.0.0
+ * @param {string} unicode text script to be converted
+ * @returns {string} Returns ascii text
+ * @example
+ *
+ * unicode('ਆਇ ਮਿਲੁ ਗੁਰਸਿਖ ਆਇ ਮਿਲੁ ਤੂ ਮੇਰੇ ਗੁਰੂ ਕੇ ਪਿਆਰੇ ॥');
+ * // => 'Awie imlu gurisK Awie imlu qU myry gurU ky ipAwry ]'
+ */
+
+function ascii(text = '') {
+  let convertedText = [];
+
+  const chars = text.split('');
+
+  for (let j = 0; j < chars.length; j += 1) {
+    const currentChar = chars[j];
+    const nextChar = chars[j + 1];
+    const nextNextChar = chars[j + 2];
+
+    if (currentChar === 'ਿ') {
+      const lastElement = convertedText.pop();
+      convertedText.push('i');
+      convertedText.push(lastElement);
+    } else if (currentChar === '੍') {
+      if (nextNextChar === 'ਿ') {
+        const lastElement = convertedText.pop();
+        convertedText.push('i');
+        convertedText.push(lastElement);
+        j += 1;
+      }
+      convertedText.push(reverseMapping[currentChar + nextChar]);
+      if (nextNextChar === 'ੁ') {
+        convertedText.push('ü');
+        j += 1;
+      } else if (nextNextChar === 'ੂ') {
+        convertedText.push('¨');
+        j += 1;
+      }
+      j += 1;
+    } else if (currentChar === 'ੑ') {
+      convertedText.push(reverseMapping[currentChar] || currentChar);
+      if (nextChar === 'ੁ') {
+        convertedText.push('ü');
+        j += 1;
+      } else if (nextChar === 'ੂ') {
+        convertedText.push('¨');
+        j += 1;
+      }
+    } else if (currentChar === 'ਨ' && nextChar === 'ੂ' && nextNextChar === 'ੰ') {
+      convertedText.push('ƒ');
+      j += 2;
+    } else if (currentChar === 'ੋ' && nextChar === 'ੁ') {
+      convertedText.push(reverseMapping[currentChar + nextChar]);
+      j += 1;
+    } else if (currentChar === 'ੱ' && aboveChars.includes(nextNextChar)) {
+      convertedText.push('¤');
+    } else if (currentChar === 'ਾ' && nextChar === 'ਂ') {
+      convertedText.push('W');
+      j += 1;
+    } else if (currentChar === 'ਆ' && nextChar === 'ਂ') {
+      convertedText.push('AW');
+      j += 1;
+    } else {
+      convertedText.push(reverseMapping[currentChar] || currentChar);
+    }
+  }
+
+  return convertedText.join('');
+}
+
 /**
  * Convert Gurmukhi script to Unicode
  *
  * @since 1.0.0
- * @param {string} text Gurbani Akhar script to be converted
+ * @param {string} text Gurbani Akhar or unicode script to be converted
+ * @param {boolean} do a unicode to ascii (true) or not (false)
  * @returns {string} Returns unicode text
  * @example
  *
@@ -132,10 +319,15 @@ const halfChars = [
  * // => 'ਆਇ ਮਿਲੁ ਗੁਰਸਿਖ ਆਇ ਮਿਲੁ ਤੂ ਮੇਰੇ ਗੁਰੂ ਕੇ ਪਿਆਰੇ ॥'
  */
 
-function unicode(text = '') {
+function unicode(text = '', reverse = false) {
   if (text === '' || typeof text !== 'string') {
     return text;
   }
+
+  if (reverse) {
+    return ascii(text);
+  }
+
   let convertedText = '';
 
   const chars = text
