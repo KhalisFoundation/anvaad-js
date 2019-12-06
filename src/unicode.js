@@ -246,7 +246,7 @@ const aboveChars = [
  * @returns {string} Returns ascii text
  * @example
  *
- * unicode('ਆਇ ਮਿਲੁ ਗੁਰਸਿਖ ਆਇ ਮਿਲੁ ਤੂ ਮੇਰੇ ਗੁਰੂ ਕੇ ਪਿਆਰੇ ॥');
+ * ascii('ਆਇ ਮਿਲੁ ਗੁਰਸਿਖ ਆਇ ਮਿਲੁ ਤੂ ਮੇਰੇ ਗੁਰੂ ਕੇ ਪਿਆਰੇ ॥');
  * // => 'Awie imlu gurisK Awie imlu qU myry gurU ky ipAwry ]'
  */
 
@@ -328,6 +328,9 @@ function ascii(text = '') {
  *
  * unicode('Awie imlu gurisK Awie imlu qU myry gurU ky ipAwry ]');
  * // => 'ਆਇ ਮਿਲੁ ਗੁਰਸਿਖ ਆਇ ਮਿਲੁ ਤੂ ਮੇਰੇ ਗੁਰੂ ਕੇ ਪਿਆਰੇ ॥'
+ *
+ * unicode('ਆਇ ਮਿਲੁ ਗੁਰਸਿਖ ਆਇ ਮਿਲੁ ਤੂ ਮੇਰੇ ਗੁਰੂ ਕੇ ਪਿਆਰੇ ॥', true);
+ * // => 'Awie imlu gurisK Awie imlu qU myry gurU ky ipAwry ]'
  */
 
 function unicode(text = '', reverse = false) {

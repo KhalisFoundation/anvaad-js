@@ -137,11 +137,11 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 ## unicode
 
-Convert Gurmukhi script to Unicode
+Convert Gurmukhi script to Unicode and back again.
 
 **Parameters**
 
--   `text` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Gurbani Akhar script to be converted
+-   `text` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Gurbani Akhar or Unicode script to be converted
 
 **Examples**
 
@@ -151,6 +151,13 @@ unicode('Awie imlu gurisK Awie imlu qU myry gurU ky ipAwry ]');
 ```
 
 Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Returns unicode text
+
+```javascript
+ * unicode('ਆਇ ਮਿਲੁ ਗੁਰਸਿਖ ਆਇ ਮਿਲੁ ਤੂ ਮੇਰੇ ਗੁਰੂ ਕੇ ਪਿਆਰੇ ॥', true);
+ * // => 'Awie imlu gurisK Awie imlu qU myry gurU ky ipAwry ]'
+```
+
+Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** Returns gurbani akhar ascii text
 
 **Meta**
 
