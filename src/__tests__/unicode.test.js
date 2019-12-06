@@ -194,6 +194,16 @@ describe('unicodereverse', () => {
     expect(unicode('ਰਾਗੁ ਗਉੜੀ ਛੰਤ ਮਹਲਾ ੫', true))
       .toBe('rwgu g₁auVI CMq mhlw 5');
 
+    // bindi before sihari
+    expect(unicode('ਗਲਂੀ ਅਸੀ ਚੰਗੀਆ ਆਚਾਰੀ ਬੁਰੀਆਹ ॥', true))
+      .toBe('glˆØI AsI cMgIAw AwcwrI burIAwh ]');
+
+    expect(unicode('ਗਲੀ ਅਸੀ ਚੰਗੀਆ ਆਚਾਰੀ ਬੁਰੀਆਹ ॥', true))
+      .toBe('glˆØI AsI cMgIAw AwcwrI burIAwh ]');
+
+    expect(unicode('ਊਪਰ ਕਉ ਮਾਂਗਉ ਖੀਂਧਾ ॥', true))
+      .toBe('aUpr kau mWgau KINDw ]');
+
     expect(unicode('ਹੇ ਮੇਰੇ ਗੁਰੂ ਦੇ ਪਿਆਰੇ ਸਿੱਖ! ਮੈਨੂੰ ਆ ਕੇ ਮਿਲ, ਮੈਨੂੰ ਆ ਕੇ ਮਿਲ ।ਰਹਾਉ।', true))
       .toBe('hy myry gurU dy ipAwry is`K! mYƒ Aw ky iml, mYƒ Aw ky iml [rhwau[');
 
