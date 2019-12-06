@@ -340,6 +340,19 @@ describe('unicodereverse', () => {
 
     expect(unicode('ਯਕੇ ਦਾਨਹ ਮੁੰਗੋ ਦਿਗ਼ਰ ਨੁਖ਼ਦ ਨੀਮ ॥੪੫॥', true))
       .toBe('Xky dwnh muMgo idZr nu^d nIm ]45]');
+
+    // pairin ank
+    expect(unicode('           ', true))
+      .toBe('₁ ₂ ₃ ₄ ₅ ₆ ₈ ₁ ₂ ₃ ₄ ₆');
+
+    expect(unicode('', true))
+      .toBe('₁₅');
+
+    expect(unicode('ਰਾਗੁ ਗਉੜੀ ਪੂਰਬੀ ਮਹਲਾ ੫', true))
+      .toBe('rwgu gauVI₁ pUrbI mhlw 5');
+
+    expect(unicode('ਰਾਗੁ ਗਉੜੀ ਛੰਤ ਮਹਲਾ ੫', true))
+      .toBe('rwgu g₁auVI CMq mhlw 5');
   });
 
   it('Should return an empty string when no argument', () => {
