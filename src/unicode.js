@@ -321,6 +321,37 @@ function ascii(text = '') {
     ) {
       convertedText.push('µØI');
       j += 1;
+    } else if (nextChar === '਼') {
+      switch (currentChar) {
+        case 'ਸ':
+          convertedText.push('S');
+          j += 1;
+          break;
+        case 'ਜ':
+          convertedText.push('z');
+          j += 1;
+          break;
+        case 'ਖ':
+          convertedText.push('^');
+          j += 1;
+          break;
+        case 'ਗ':
+          convertedText.push('Z');
+          j += 1;
+          break;
+        case 'ਫ':
+          convertedText.push('&');
+          j += 1;
+          break;
+        case 'ਲ':
+          convertedText.push('L');
+          j += 1;
+          break;
+        default:
+          convertedText.push(reverseMapping[currentChar]);
+          convertedText.push(reverseMapping[nextChar]);
+          j += 1;
+      }
     } else {
       convertedText.push(reverseMapping[currentChar] || currentChar);
     }

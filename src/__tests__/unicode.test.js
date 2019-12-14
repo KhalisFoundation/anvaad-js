@@ -20,6 +20,9 @@ describe('unicode', () => {
     expect(unicode('ijgw CqR jVwv kælZI cOr mukqw lwlrI'))
       .toBe('ਜਿਗਾ ਛਤ੍ਰ ਜੜਾਵ ਕ਼ਲਗ਼ੀ ਚੌਰ ਮੁਕਤਾ ਲਾਲਰੀ');
 
+    expect(unicode('ikRpws kæwkæm AqlsI bhu mol cIrn cusq nO ]'))
+      .toBe('ਕ੍ਰਿਪਾਸ ਕ਼ਾਕ਼ਮ ਅਤਲਸੀ ਬਹੁ ਮੋਲ ਚੀਰਨ ਚੁਸਤ ਨੌ ॥');
+
     // Adhik
     expect(unicode('su`D ispwh durMq dubwh su swj snwh durjwn dlYNgy ]'))
       .toBe('ਸੁੱਧ ਸਿਪਾਹ ਦੁਰੰਤ ਦੁਬਾਹ ਸੁ ਸਾਜ ਸਨਾਹ ਦੁਰਜਾਨ ਦਲੈਂਗੇ ॥');
@@ -207,7 +210,6 @@ describe('unicodereverse', () => {
     expect(unicode('ੲੰੀ ਈ ਤੰੀ ਤੀ', true))
       .toBe('eµØI eµØI qµØI qµØI');
 
-
     expect(unicode('ਊਪਰ ਕਉ ਮਾਂਗਉ ਖੀਂਧਾ ॥', true))
       .toBe('aUpr kau mWgau KINDw ]');
 
@@ -224,6 +226,12 @@ describe('unicodereverse', () => {
     // General pair-bindi
     expect(unicode('ਜਿਗਾ ਛਤ੍ਰ ਜੜਾਵ ਕ਼ਲਗ਼ੀ ਚੌਰ ਮੁਕਤਾ ਲਾਲਰੀ', true))
       .toBe('ijgw CqR jVwv kælZI cOr mukqw lwlrI');
+
+    expect(unicode('ਕ੍ਰਿਪਾਸ ਕ਼ਾਕ਼ਮ ਅਤਲਸੀ ਬਹੁ ਮੋਲ ਚੀਰਨ ਚੁਸਤ ਨੌ ॥', true))
+      .toBe('ikRpws kæwkæm AqlsI bhu mol cIrn cusq nO ]');
+
+    expect(unicode('ਰਮਲ ਜੋਤਿਸ਼ ਪ੍ਰਿਥਮ ਸੋਧ੍ਯੋ ਸੁਰ ਹਾਰਹੈਂ ਜੀਤੈਂ ਅਸੁਰ ॥', true))
+      .toBe('rml joiqS ipRQm soDÎo sur hwrhYN jIqYN Asur ]');
 
     // Adhik
     expect(unicode('ਸੁੱਧ ਸਿਪਾਹ ਦੁਰੰਤ ਦੁਬਾਹ ਸੁ ਸਾਜ ਸਨਾਹ ਦੁਰਜਾਨ ਦਲੈਂਗੇ ॥', true))
