@@ -303,11 +303,23 @@ function ascii(text = '') {
     } else if (currentChar === 'ਆ' && nextChar === 'ਂ') {
       convertedText.push('AW');
       j += 1;
+    } else if (currentChar === 'ਈ' && nextChar === '') {
+      convertedText.push('eˆØI');
+      j += 1;
+    } else if (currentChar === 'ਈ' && nextChar === '') {
+      convertedText.push('eµØI');
+      j += 1;
     } else if (
       (currentChar === 'ਂ' && nextChar === 'ੀ')
       || (currentChar === 'ੀ' && nextChar === '')
     ) {
       convertedText.push('ˆØI');
+      j += 1;
+    } else if (
+      (currentChar === 'ੰ' && nextChar === 'ੀ')
+      || (currentChar === 'ੀ' && nextChar === '')
+    ) {
+      convertedText.push('µØI');
       j += 1;
     } else {
       convertedText.push(reverseMapping[currentChar] || currentChar);
