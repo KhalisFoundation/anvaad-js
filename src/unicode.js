@@ -252,7 +252,7 @@ const aboveChars = [
  * // => 'Awie imlu gurisK Awie imlu qU myry gurU ky ipAwry ]'
  */
 
-function ascii(text = '', simplify = true) {
+function ascii(text = '', simplify = false) {
   const convertedText = [];
 
   const chars = text.split('');
@@ -377,7 +377,7 @@ function ascii(text = '', simplify = true) {
  * // => 'Awie imlu gurisK Awie imlu qU myry gurU ky ipAwry ]'
  */
 
-function unicode(text = '', reverse = false, simplify = true) {
+function unicode(text = '', reverse = false, simplify = false) {
   if (text === '' || typeof text !== 'string') {
     return text;
   }

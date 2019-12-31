@@ -235,7 +235,7 @@ describe('unicodereverse', () => {
       .toBe('ikRpws kæwkæm AqlsI bhu mol cIrn cusq nO ]');
 
     expect(unicode('ਰਮਲ ਜੋਤਿਸ਼ ਪ੍ਰਿਥਮ ਸੋਧ੍ਯੋ ਸੁਰ ਹਾਰਹੈਂ ਜੀਤੈਂ ਅਸੁਰ ॥', true))
-      .toBe('rml joiqS ipRQm soDÎo sur hwrhYN jIqYN Asur ]');
+      .toBe('rml joiqsæ ipRQm soDÎo sur hwrhYN jIqYN Asur ]');
 
     // convert ਸ਼ + ਼ separately since they are two code points
     expect(unicode('ਰਮਲ ਜੋਤਿਸ਼ ਪ੍ਰਿਥਮ ਸੋਧ੍ਯੋ ਸੁਰ ਹਾਰਹੈਂ ਜੀਤੈਂ ਅਸੁਰ ॥', true, false))
