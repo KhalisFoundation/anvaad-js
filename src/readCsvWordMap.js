@@ -10,7 +10,7 @@ const path = require('path');
  * @returns {Map} Returns a Map object representation of the input csv file
  */
 
-function translitWordMap(filePath) {
+function readCsvWordMap(filePath) {
   const map = new Map();
   let file;
   try {
@@ -26,4 +26,4 @@ function translitWordMap(filePath) {
   return map;
 }
 
-module.exports = translitWordMap;
+module.exports = readCsvWordMap;
