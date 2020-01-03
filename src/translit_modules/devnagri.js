@@ -1,4 +1,6 @@
 const map = [
+
+  // process these first
   ['Aw', 'आ'],
   ['ie', 'इ'],
   ['eI', 'ई'],
@@ -13,9 +15,9 @@ const map = [
   ['gæ', 'ग़'],
   ['jæ', 'ज़'],
   ['Pæ', 'फ़'],
-  ['n@', 'न्न'],
-  ['l@', 'ल्ल'],
-  ['m@', 'म्म'],
+  // ['n@', 'न्न'],
+  // ['l@', 'ल्ल'],
+  // ['m@', 'म्म'],
   ['r@', 'र्र'],
   ['V@', 'ढ़'],
   ['nH', 'न्ह'],
@@ -39,6 +41,8 @@ const map = [
   // ['bR', ''],
   // ['BR', ''],
   // ['mR', ''],
+
+  // then these
   ['l´', 'ल्य'],
   ['kÎ', 'क्य'],
   ['K´', 'ख्य'],
@@ -170,6 +174,21 @@ const map = [
   ['†', '्ट'], // pair tanka
 ];
 
+// const halfChars = [
+//   'H',
+//   'R',
+//   '®',
+//   'Í',
+//   'ç',
+//   '†',
+//   'œ',
+//   '˜',
+//   '´',
+//   'Î',
+//   'Ï',
+//   'í',
+// ];
+
 module.exports = (gurmukhi) => map.reduce((_str, [gurmukhiLetter, devnagriUnicode]) => {
   let str = _str;
 
@@ -181,6 +200,10 @@ module.exports = (gurmukhi) => map.reduce((_str, [gurmukhiLetter, devnagriUnicod
       .split('')
       .reverse()
       .join(''));
+    // str = str.replace(/i(H|R|®|Í|ç|†|œ|˜|´|Î|Ï|í)/gm, (full) => full
+    //   .split('')
+    //   .reverse()
+    //   .join(''));
   }
 
   // Adhiks: the akhar proceeding the adikh is meant to be emphasized
@@ -219,7 +242,7 @@ module.exports = (gurmukhi) => map.reduce((_str, [gurmukhiLetter, devnagriUnicod
     ['आं', 'आँ'], // आ + ं
     ['अां', 'आँ'], // अ + ा + ं
     // exception for sihaaree + pair-rarra
-    ['ि्र', 'ृ'],
+    // ['ि्र', 'ृ'],
     // exception for bindi before bihaaree
     ['ंी', 'ीं'],
     // exceptions for the emphasized (adhik) variants of certain akhars
