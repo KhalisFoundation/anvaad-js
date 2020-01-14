@@ -91,6 +91,30 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 -   **since**: 1.0.0
 
+## pauses
+
+Returns a list of all pauses for a string of Gurmukhi words
+
+**Parameters**
+
+-   `words` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The string from which to get pauses
+-   `large` **[string](https://developer.mozilla.org/docsx/Web/JavaScript/Reference/Global_Objects/String)** The symbol being used for a large pause, also known as a ਵਿਸ਼ਰਾਮ (vishraam) (default is ';')
+-   `medium` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The symbol being used for a medium pause, also known as a ਜਮਕੀ (jamki) (default is ',')
+-   `small` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The symbol being used for a medium pause, also known as a ਠਮਕੀ (thamki) (default is '.')
+
+**Examples**
+
+```javascript
+pauses('ieknw. hukmI bKsIs; ieik, hukmI sdw BvweIAih ]');
+// => '[{"p": 0, "t": "t"}, {"p": 2, "t": "v"}, {"p": 3, "t": "j"}]'
+```
+
+Returns **[JSON](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON)** Returns a JSON string containing position ('p') and the type of pause ('v' = 'vishraam', 'j' = 'jamki', 't' = 'thamki')
+
+**Meta**
+
+-   **since**: 1.0.0
+
 ## mainLetters
 
 Removes vowel symbols from a Gurmukhi string
