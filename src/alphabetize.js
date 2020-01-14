@@ -92,7 +92,7 @@ const customSort = (firstEl, secondEl) => {
   if (firstIndex === secondIndex) {
     return customSort(firstEl.substr(1), secondEl.substr(1));
   }
-  return firstIndex > secondIndex;
+  return firstIndex - secondIndex;
 };
 
 const getKeyByValue = (object, value) => Object.keys(object).find((key) => object[key] === value);
