@@ -1,11 +1,13 @@
 /**
  * Returns the position and types of pauses (vishraams) in a gurbani line
  *
- * @since 1.0.0
+ * @since 1.4.2
  * @param {string} words The string from which to get the pause positions
  * @param {string} large the symbol to use for a large pause (vishraam)
  * @param {string} medium the symbol to use for a medium pause (jamki)
  * @param {string} small the symbol to use for a small pause (thamki)
+ * @param {boolean} enableCharCount optionally include pause position
+ * in terms of non-whitespace character count
  * @returns {JSON} Returns the position and type for each pause
  * @example
  *
@@ -14,27 +16,43 @@
  */
 
 
-function pauses(words = '', large = ';', medium = ',', small = '.') {
+function pauses(words = '', enableCharCount = false, large = ';', medium = ',', small = '.') {
+  const vishraamList = [];
   if (words === '' || typeof words !== 'string') {
-    return words;
+    return vishraamList;
   }
 
-  const wordList = words.split(' ');
-  const vishraamList = [];
+  // words.split(' ').forEach((word, index) => {
+  //   const char = word.charAt(word.length - 1);
+  //   if (char === large) {
+  //     vishraamList.push({ p: index, t: 'v' });
+  //   } else if (char === medium) {
+  //     vishraamList.push({ p: index, t: 'j' });
+  //   } else if (char === small) {
+  //     vishraamList.push({ p: index, t: 't' });
+  //   }
+  // });
 
-  wordList.forEach((item, index) => {
-    const vishraam = {};
-    vishraam.p = index;
-    const char = item.charAt(item.length - 1);
-    if (char === large) {
-      vishraam.t = 'v';
-      vishraamList.push(vishraam);
-    } else if (char === medium) {
-      vishraam.t = 'j';
-      vishraamList.push(vishraam);
-    } else if (char === small) {
-      vishraam.t = 't';
-      vishraamList.push(vishraam);
+  let charCount = 0;
+  let wordCount = 0;
+  Array.from(words).forEach((char) => {
+    if (char === ' ' || char === '\u200B') {
+      wordCount += 1;
+    } else {
+      let count = wordCount;
+      if (enableCharCount) {
+        count = charCount;
+      }
+      if (char === large) {
+        vishraamList.push({ p: count, t: 'v' });
+      } else if (char === medium) {
+        vishraamList.push({ p: count, t: 'j' });
+      } else if (char === small) {
+        vishraamList.push({ p: count, t: 't' });
+      } else if (char !== '੍') {
+        // ignore the modifier char for backwards compatability with ascii
+        charCount += 1;
+      }
     }
   });
 
