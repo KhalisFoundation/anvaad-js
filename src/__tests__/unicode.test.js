@@ -13,6 +13,10 @@ describe('unicode', () => {
     expect(unicode('rzw b^So rwizk irhwko rhIm ]1]'))
       .toBe('ਰਜ਼ਾ ਬਖ਼ਸ਼ੋ ਰਾਜ਼ਿਕ ਰਿਹਾਕੋ ਰਹੀਮ ॥੧॥');
 
+    // convert s + æ as two distinct unicode characters
+    expect(unicode('rjæw bKæsæo rwijæk irhwko rhIm ]1]', false, false))
+      .toBe('ਰਜ਼ਾ ਬਖ਼ਸ਼ੋ ਰਾਜ਼ਿਕ ਰਿਹਾਕੋ ਰਹੀਮ ॥੧॥');
+
     expect(unicode('rwm jpau jIA AYsy AYsy ] DR¨ pRihlwd jipE hir jYsy ]1]'))
       .toBe('ਰਾਮ ਜਪਉ ਜੀਅ ਐਸੇ ਐਸੇ ॥ ਧ੍ਰੂ ਪ੍ਰਹਿਲਾਦ ਜਪਿਓ ਹਰਿ ਜੈਸੇ ॥੧॥');
 
@@ -231,7 +235,11 @@ describe('unicodereverse', () => {
       .toBe('ikRpws kæwkæm AqlsI bhu mol cIrn cusq nO ]');
 
     expect(unicode('ਰਮਲ ਜੋਤਿਸ਼ ਪ੍ਰਿਥਮ ਸੋਧ੍ਯੋ ਸੁਰ ਹਾਰਹੈਂ ਜੀਤੈਂ ਅਸੁਰ ॥', true))
-      .toBe('rml joiqS ipRQm soDÎo sur hwrhYN jIqYN Asur ]');
+      .toBe('rml joiqsæ ipRQm soDÎo sur hwrhYN jIqYN Asur ]');
+
+    // convert ਸ਼ + ਼ separately since they are two code points
+    expect(unicode('ਰਮਲ ਜੋਤਿਸ਼ ਪ੍ਰਿਥਮ ਸੋਧ੍ਯੋ ਸੁਰ ਹਾਰਹੈਂ ਜੀਤੈਂ ਅਸੁਰ ॥', true, false))
+      .toBe('rml joiqsæ ipRQm soDÎo sur hwrhYN jIqYN Asur ]');
 
     // Adhik
     expect(unicode('ਸੁੱਧ ਸਿਪਾਹ ਦੁਰੰਤ ਦੁਬਾਹ ਸੁ ਸਾਜ ਸਨਾਹ ਦੁਰਜਾਨ ਦਲੈਂਗੇ ॥', true))

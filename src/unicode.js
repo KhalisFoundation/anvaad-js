@@ -229,6 +229,7 @@ const halfChars = [
   'Î',
   'Ï',
   'í',
+  'æ',
 ];
 
 const aboveChars = [
@@ -243,6 +244,7 @@ const aboveChars = [
  *
  * @since 1.0.0
  * @param {string} unicode text script to be converted
+ * @param {boolean} do simplify bindi chars (true) or not (false)
  * @returns {string} Returns ascii text
  * @example
  *
@@ -250,7 +252,7 @@ const aboveChars = [
  * // => 'Awie imlu gurisK Awie imlu qU myry gurU ky ipAwry ]'
  */
 
-function ascii(text = '') {
+function ascii(text = '', simplify = false) {
   const convertedText = [];
 
   const chars = text.split('');
@@ -321,7 +323,7 @@ function ascii(text = '') {
     ) {
       convertedText.push('µØI');
       j += 1;
-    } else if (nextChar === '਼') {
+    } else if (simplify && nextChar === '਼') {
       switch (currentChar) {
         case 'ਸ':
           convertedText.push('S');
@@ -349,8 +351,6 @@ function ascii(text = '') {
           break;
         default:
           convertedText.push(reverseMapping[currentChar]);
-          convertedText.push(reverseMapping[nextChar]);
-          j += 1;
       }
     } else {
       convertedText.push(reverseMapping[currentChar] || currentChar);
@@ -366,6 +366,7 @@ function ascii(text = '') {
  * @since 1.0.0
  * @param {string} text Gurbani Akhar or unicode script to be converted
  * @param {boolean} do a unicode to ascii (true) or not (false)
+ * @param {boolean} do simplify bindi chars (true) or not (false)
  * @returns {string} Returns unicode text
  * @example
  *
@@ -376,13 +377,13 @@ function ascii(text = '') {
  * // => 'Awie imlu gurisK Awie imlu qU myry gurU ky ipAwry ]'
  */
 
-function unicode(text = '', reverse = false) {
+function unicode(text = '', reverse = false, simplify = false) {
   if (text === '' || typeof text !== 'string') {
     return text;
   }
 
   if (reverse) {
-    return ascii(text);
+    return ascii(text, simplify);
   }
 
   let convertedText = '';
@@ -471,6 +472,35 @@ function unicode(text = '', reverse = false) {
     } else if (currentChar === '₁' && nextChar === '₅') {
       convertedText += '';
       j += 1;
+    } else if (simplify && nextChar === 'æ') {
+      switch (currentChar) {
+        case 's':
+          convertedText += 'ਸ਼';
+          j += 1;
+          break;
+        case 'j':
+          convertedText += 'ਜ਼';
+          j += 1;
+          break;
+        case 'K':
+          convertedText += 'ਖ਼';
+          j += 1;
+          break;
+        case 'g':
+          convertedText += 'ਗ਼';
+          j += 1;
+          break;
+        case 'P':
+          convertedText += 'ਫ਼';
+          j += 1;
+          break;
+        case 'l':
+          convertedText += 'ਲ਼';
+          j += 1;
+          break;
+        default:
+          convertedText += mapping[currentChar];
+      }
     } else {
       convertedText += mapping[currentChar] || currentChar;
     }
