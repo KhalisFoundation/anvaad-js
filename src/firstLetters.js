@@ -45,6 +45,7 @@ function firstLetters(words = '', eng = false, simplify = false) {
 
   newWords = newWords
     .replace(/\]/g, '')
+    .replace(/\[/g, '')
     .replace(/॥/g, '')
     .replace(/।/g, '')
     .replace(/rhwau dUjw/g, '')
