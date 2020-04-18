@@ -46,6 +46,11 @@ describe('firstLetters', () => {
       .toBe('ਬਗਖਦਦਨ');
   });
 
+  it('Should return first letters of each word and omit dandiyaa(n)', () => {
+    expect(firstLetters('dMfIAW dMfhu [ muKwCr mMfhu ]'))
+      .toBe('ddmm');
+  });
+
   it('Should return an empty string when no argument', () => {
     expect(firstLetters())
       .toBe('');
