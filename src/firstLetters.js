@@ -60,7 +60,7 @@ function firstLetters(words = '', eng = false, simplify = false) {
     return '';
   }
 
-  return newWords.split(' ').map(firstLetter).join('').replace(/\|/g, '');
+  return newWords.split(' ').map(firstLetter).join('');
 }
 
 module.exports = firstLetters;
