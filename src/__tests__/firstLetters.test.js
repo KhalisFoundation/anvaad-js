@@ -55,7 +55,11 @@ describe('firstLetters', () => {
     expect(firstLetters('|M|w i|Awnu nhI muK bwqau ]'))
       .toBe('||nmb');
   });
-
+  
+  it('Should return first letters of each word, excluding the pipe char (|) when input is English', () => {
+    expect(firstLetters('|| Jap ||', true))
+      .toBe('j');
+  });
   it('Should return an empty string when no argument', () => {
     expect(firstLetters())
       .toBe('');
