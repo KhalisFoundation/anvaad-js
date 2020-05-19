@@ -33,7 +33,7 @@ describe('unicode', () => {
 
     // ਪੈਰ ਅੰਕ ਸਿਰਲੇਖ ਵਿਚ ੧
     expect(unicode('rwgu gauVI pUrbI₁ mhlw 5'))
-      .toBe('ਰਾਗੁ ਗਉੜੀ ਪੂਰਬੀ ਮਹਲਾ ੫');
+      .toBe('ਰਾਗੁ ਗਉੜੀ ਪੂਰਬੀ₁ ਮਹਲਾ ੫');
 
     // ਪੈਰ ਅੰਕ ਸਿਰਲੇਖ ਵਿਚ ੧੫
     expect(unicode('gauVI kbIr jI iqpdy₁₅ ]'))
