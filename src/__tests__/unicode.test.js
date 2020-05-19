@@ -37,7 +37,7 @@ describe('unicode', () => {
 
     // ਪੈਰ ਅੰਕ ਸਿਰਲੇਖ ਵਿਚ ੧੫
     expect(unicode('gauVI kbIr jI iqpdy₁₅ ]'))
-      .toBe('ਗਉੜੀ ਕਬੀਰ ਜੀ ਤਿਪਦੇ ॥');
+      .toBe('ਗਉੜੀ ਕਬੀਰ ਜੀ ਤਿਪਦੇ₁₅ ॥');
 
     // ik oangkaar using various char combinations
     expect(unicode('<> siqgur pRswid ]'))

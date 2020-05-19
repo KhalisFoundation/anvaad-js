@@ -462,9 +462,6 @@ function unicode(text = '', reverse = false, simplify = false) {
     } else if (currentChar === 'u' && nextChar === 'o') {
       convertedText += 'ੋੁ';
       j += 1;
-    } else if (currentChar === '₁' && nextChar === '₅') {
-      convertedText += '';
-      j += 1;
     } else if (simplify && nextChar === 'æ') {
       switch (currentChar) {
         case 's':
