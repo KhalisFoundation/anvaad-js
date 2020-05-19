@@ -16,7 +16,7 @@ const simplifications = [
   ['E', 'a'],
   ['ਓ', 'ੳ'],
   ['L', 'l'],
-  ['ਲ਼', 'ਲ'],
+  ['ਲ਼', 'ਲ'],
   ['S', 's'],
   ['ਸ਼', 'ਸ'],
   ['z', 'j'],
@@ -45,6 +45,7 @@ function firstLetters(words = '', eng = false, simplify = false) {
 
   newWords = newWords
     .replace(/\]/g, '')
+    .replace(/\[/g, '')
     .replace(/॥/g, '')
     .replace(/।/g, '')
     .replace(/rhwau dUjw/g, '')
@@ -59,7 +60,8 @@ function firstLetters(words = '', eng = false, simplify = false) {
     return '';
   }
 
-  return newWords.split(' ').map(firstLetter).join('').replace(/\|/g, '');
+  const letters = newWords.split(' ').map(firstLetter).join('');
+  return !eng ? letters : letters.replace(/\|/g, '');
 }
 
 module.exports = firstLetters;

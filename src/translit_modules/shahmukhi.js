@@ -1,6 +1,9 @@
+const unescape = require('lodash.unescape');
+
 const map = [
   ['ieAw', 'ایا'],
   ['iE', 'ؤ'],
+  ['Un', 'ٌ'],
   ['Mp', 'مپ'],
   ['Mn', 'نّ'],
   ['ie', 'ِا'],
@@ -12,6 +15,8 @@ const map = [
   ['AY', 'اَے'],
   ['AO', 'اَو'],
   ['AW', 'آں'],
+  ['XI', 'ی'],
+  ['kæ', 'ق'],
   ['<>', 'اک اونکار'],
   ['†', 'ٹ'],
   ['˜', 'ن'],
@@ -21,7 +26,7 @@ const map = [
   ['M', 'ں'],
   ['H', 'ھ'],
   ['i', 'ِ'],
-  ['I', 'ی'],
+  ['I', 'یِ'],
   ['u', 'ُ'],
   ['U', 'ُو'],
   ['y', 'ے'],
@@ -31,6 +36,7 @@ const map = [
   ['O', 'َو'],
   ['R', 'ر'],
   ['w', 'ا'],
+  ['W', 'اں'],
   ['´', 'ے'],
   ['@', 'ھ'],
   ['`', 'ّ'],
@@ -45,7 +51,7 @@ const map = [
   ['d', 'د'],
   ['D', 'دھ'],
   ['e', 'ا'],
-  ['E', 'اَو'],
+  ['E', 'او'],
   ['f', 'ڈ'],
   ['F', 'ڈھ'],
   ['g', 'گ'],
@@ -56,9 +62,10 @@ const map = [
   ['k', 'ک'],
   ['K', 'کھ'],
   ['l', 'ل'],
-  ['L', 'ل'],
+  ['L', 'لؕ'],
   ['m', 'م'],
   ['n', 'ن'],
+  // ['*n', 'نً'],
   ['p', 'پ'],
   ['P', 'پھ'],
   ['q', 'ت'],
@@ -70,7 +77,7 @@ const map = [
   ['T', 'ٹھ'],
   ['v', 'و'],
   ['V', 'ڑ'],
-  ['x', 'ن'],
+  ['x', 'ݨ'],
   ['X', 'ے'],
   ['z', 'ز'],
   ['Z', 'غ'],
@@ -89,11 +96,13 @@ const map = [
   ['0', '۰'],
   ['[', '۔'],
   [']', '۔۔'],
-  ['਼', ''],
+  ['æ', ''],
 ];
 
 module.exports = (gurmukhi) => map.reduce((_str, [gurmukhiLetter, shamukhiUnicode]) => {
   let str = _str;
+
+  str = unescape(str);
 
   // Gurakhar places i before the letter it's applied to, while devnagri unicode placed it after.
   if (gurmukhiLetter === 'i') {
@@ -109,6 +118,15 @@ module.exports = (gurmukhi) => map.reduce((_str, [gurmukhiLetter, shamukhiUnicod
   while (str.includes(gurmukhiLetter)) {
     str = str.replace(gurmukhiLetter, shamukhiUnicode);
   }
+
+  const fixes = [
+    // ['ِن', 'ٍن'], // ਿਨ
+    ['\u0650\u0646', '\u064D\u0646'], // ਿਨ
+  ];
+
+  fixes.forEach((e) => {
+    str = str.replace(new RegExp(e[0], 'g'), e[1]);
+  });
 
   return str;
 }, gurmukhi);
