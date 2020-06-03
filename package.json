@@ -3,6 +3,7 @@
   "version": "1.4.2",
   "description": "Utilities to prime Gurmukhi script for search. Unicode, first letters, main letters, transliteration.",
   "main": "dist/index.js",
+  "types": "src/index.d.ts",
   "dependencies": {
     "lodash.unescape": "^4.0.1",
     "string.prototype.padstart": "^3.0.0"
