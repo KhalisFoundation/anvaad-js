@@ -23,7 +23,7 @@
     "test": "jest && yarn lint",
     "lint": "eslint .",
     "coverage": "jest --coverage",
-    "build": "webpack -p",
+    "build": "webpack -p && mv src/index.d.ts dist/index.d.ts",
     "prepublishOnly": "npm run build"
   },
   "repository": {
