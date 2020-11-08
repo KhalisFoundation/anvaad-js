@@ -287,7 +287,7 @@ module.exports = (gurmukhi = '') => {
 
   // 5. If a number is preceeded by ‘m:’, ‘mhlw’, ‘mhlu’, ‘Gr’, Transliterate numerals as:
   // regex values account for current state of translit
-  const regex2 = /((m:|mahalaa|mahalu|ghar|gharu)\s*([0-9]0?))/gm;
+  const regex2 = /((m:|mahalaa|mahalu|ghar|gharu)\s*([0-9][0-7]?))/gm;
 
   function translitNumbers(full, full2, header, num) {
     const formalNumbers = [' ',
