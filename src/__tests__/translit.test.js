@@ -27,12 +27,18 @@ describe('translit', () => {
 
     expect(JSON.stringify(translit('AKI sUqku vyKxw pr iqRA pr Dn rUpu ]')))
       .toBe('"akhee sootak vekhanaa par tria par dhan roop ||"');
+
     expect(JSON.stringify(translit('sUdR')))
       .toBe('"soodhr"');
+
     expect(JSON.stringify(translit('cauboly')))
       .toBe('"chaubole"');
+
     expect(JSON.stringify(translit('Sbd hzwry')))
       .toBe('"shabadh hazaare"');
+
+    expect(JSON.stringify(translit('DnwsrI mhlw 5 Gru 12')))
+      .toBe('"dhanaasaree mahalaa panjavaa ghar baarvaa"');
 
     // transliterate using both english module and english_map_example map
     expect(JSON.stringify(translit('lwl rMgu iqs kau lgw ijs ky vfBwgw ]', 'english', wordMap('__tests__/english_map_example.csv'))))

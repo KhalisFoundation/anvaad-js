@@ -1,8 +1,9 @@
 {
   "name": "anvaad-js",
-  "version": "1.4.2",
+  "version": "1.4.3",
   "description": "Utilities to prime Gurmukhi script for search. Unicode, first letters, main letters, transliteration.",
   "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "dependencies": {
     "lodash.unescape": "^4.0.1",
     "string.prototype.padstart": "^3.0.0"
@@ -22,7 +23,7 @@
     "test": "jest && yarn lint",
     "lint": "eslint .",
     "coverage": "jest --coverage",
-    "build": "webpack -p",
+    "build": "webpack -p && mv src/index.d.ts dist/index.d.ts",
     "prepublishOnly": "npm run build"
   },
   "repository": {
