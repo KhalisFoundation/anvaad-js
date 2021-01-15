@@ -50,7 +50,8 @@ function firstLetters(words = '', eng = false, simplify = false) {
     .replace(/।/g, '')
     .replace(/rhwau dUjw/g, '')
     .replace(/rhwau/g, '')
-    .replace(/[0-9]/g, '');
+    .replace(/[0-9]/g, '')
+    .replace(/[;,.]/g, '');
 
   function firstLetter(word) {
     if (word) {
