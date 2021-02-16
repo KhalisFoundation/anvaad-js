@@ -60,6 +60,12 @@ describe('firstLetters', () => {
     expect(firstLetters('|| jap ||', true))
       .toBe('j');
   });
+
+  it('Should return first letters of each word, excluding vishraam chars (;,.)', () => {
+    expect(firstLetters('rwgu bsµqu, mhlw 1; Gru 1, caupdy; duquky', true))
+      .toBe('rbmGcd');
+  });
+
   it('Should return an empty string when no argument', () => {
     expect(firstLetters())
       .toBe('');
