@@ -209,6 +209,38 @@ const reverseMapping = {
   '': '₆',
 };
 
+const asciiCorrections = [
+  '@W',
+  '@w',
+  '@o',
+  '@O',
+  '@y',
+  '@Y',
+  '@ü',
+  '@`',
+  'ÍY',
+  'Ry',
+  'RY',
+  'RM',
+  'RN',
+  'YN',
+  'yN',
+  'YM',
+  'yM',
+  'uN',
+  'UN',
+  'üN',
+  'uM',
+  'UM',
+  'üM',
+  'R`',
+  'u`',
+  'U`',
+  'ü`',
+  'Iˆ',
+  'IN',
+];
+
 const halfChars = [
   'H',
   'R',
@@ -381,11 +413,20 @@ function unicode(text = '', reverse = false, simplify = false) {
 
   let convertedText = '';
 
-  const chars = text
+  let str = text
     .replace(/>/gi, '')
     .replace(/Ø/gi, '')
-    .replace(/Æ/g, '')
-    .split('');
+    .replace(/Æ/g, '');
+
+  asciiCorrections.forEach((e) => {
+    str = str.replace(new RegExp(e.split('').reverse().join(''), 'g'), e);
+  });
+
+  // asciiCorrections.forEach((e) => {
+  //   str = str.replace(new RegExp(e[0], 'g'), e[1]);
+  // });
+
+  const chars = str.split('');
 
   for (let j = 0; j < chars.length; j += 1) {
     const currentChar = chars[j];
