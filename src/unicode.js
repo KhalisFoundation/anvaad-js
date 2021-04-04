@@ -422,10 +422,6 @@ function unicode(text = '', reverse = false, simplify = false) {
     str = str.replace(new RegExp(e.split('').reverse().join(''), 'g'), e);
   });
 
-  // asciiCorrections.forEach((e) => {
-  //   str = str.replace(new RegExp(e[0], 'g'), e[1]);
-  // });
-
   const chars = str.split('');
 
   for (let j = 0; j < chars.length; j += 1) {
