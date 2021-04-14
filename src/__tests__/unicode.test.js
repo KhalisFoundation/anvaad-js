@@ -160,6 +160,15 @@ describe('unicode', () => {
     /* expect(unicode('lY AkR¨r kau Awpny sMg kihXo Ary kwnRh khMŧ kau pDwirXo ]'))
       .toBe('ਲੈ ਅਕ੍ਰੂਰ ਕਉ ਆਪਨੇ ਸੰਗ ਕਹਿਯੋ ਅਰੇ ਕਾਨ੍ਰਹ ਕਹੰŧ ਕਉ ਪਧਾਰਿਯੋ ॥'); */
 
+    expect(unicode('kW@n'))
+      .toBe('ਕੑਾਂਨ');
+
+    expect(unicode('s`uD ispwh durMq dubwh su swj snwh durjwn dlYNgy ]'))
+      .toBe('ਸੁੱਧ ਸਿਪਾਹ ਦੁਰੰਤ ਦੁਬਾਹ ਸੁ ਸਾਜ ਸਨਾਹ ਦੁਰਜਾਨ ਦਲੈਂਗੇ ॥');
+
+    expect(unicode('sq`Rün ko pl mo bD kIE ]386]'))
+      .toBe('ਸਤ੍ਰੁੱਨ ਕੋ ਪਲ ਮੋ ਬਧ ਕੀਓ ॥੩੮੬॥');
+
     expect(unicode('slok mÚ 3 ]'))
       .toBe('ਸਲੋਕ ਮਃ ੩ ॥');
 
