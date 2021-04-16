@@ -78,6 +78,7 @@ const map = [
   ['v', 'و'],
   ['V', 'ڑ'],
   ['x', 'ݨ'],
+  // ['x', 'نْ'], alternative
   ['X', 'ے'],
   ['z', 'ز'],
   ['Z', 'غ'],
@@ -107,6 +108,15 @@ module.exports = (gurmukhi) => map.reduce((_str, [gurmukhiLetter, shamukhiUnicod
   // Gurakhar places i before the letter it's applied to, while devnagri unicode placed it after.
   if (gurmukhiLetter === 'i') {
     str = str.replace(/i./gm, (full) => full
+      .split('')
+      .reverse()
+      .join(''));
+  }
+
+  // adhik: gurmukhi places the adhik before the character meant to be emphasized
+  // shahmukhi places the doubling character on the letter itself
+  if (gurmukhiLetter === '`') {
+    str = str.replace(/(`|~|¤)./gm, (full) => full
       .split('')
       .reverse()
       .join(''));
