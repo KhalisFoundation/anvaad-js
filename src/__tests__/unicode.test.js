@@ -190,7 +190,6 @@ describe('unicode', () => {
   });
 });
 
-
 describe('unicodereverse', () => {
   it('Should return ascii from unicode', () => {
     // Including grammatical characters
