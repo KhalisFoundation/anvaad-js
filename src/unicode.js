@@ -264,6 +264,24 @@ const aboveChars = [
   'ੌ',
 ];
 
+const supplementaryChars = [
+  'ਸ਼',
+  'ਖ਼',
+  'ਗ਼',
+  'ਜ਼',
+  'ਫ਼',
+  'ਲ਼',
+];
+
+const supplementaryCharMapping = {
+  ਸ਼: 'S',
+  ਖ਼: '^',
+  ਗ਼: 'Z',
+  ਜ਼: 'z',
+  ਫ਼: '&',
+  ਲ਼: 'L',
+};
+
 /**
  * Convert Gurmukhi Unicode to ascii for webakhar
  *
@@ -287,7 +305,14 @@ function ascii(text = '', simplify = false) {
     const nextChar = chars[j + 1];
     const nextNextChar = chars[j + 2];
 
-    if (currentChar === 'ਿ') {
+    if (supplementaryChars.includes(currentChar + nextChar)) {
+      if (simplify) {
+        convertedText.push(supplementaryCharMapping[currentChar + nextChar]);
+      } else {
+        convertedText.push(reverseMapping[currentChar] + reverseMapping[nextChar]);
+      }
+      j += 1;
+    } else if (currentChar === 'ਿ') {
       const lastElement = convertedText.pop();
       convertedText.push('i');
       convertedText.push(lastElement);
@@ -348,35 +373,6 @@ function ascii(text = '', simplify = false) {
     ) {
       convertedText.push('µØI');
       j += 1;
-    } else if (simplify && nextChar === '਼') {
-      switch (currentChar) {
-        case 'ਸ':
-          convertedText.push('S');
-          j += 1;
-          break;
-        case 'ਜ':
-          convertedText.push('z');
-          j += 1;
-          break;
-        case 'ਖ':
-          convertedText.push('^');
-          j += 1;
-          break;
-        case 'ਗ':
-          convertedText.push('Z');
-          j += 1;
-          break;
-        case 'ਫ':
-          convertedText.push('&');
-          j += 1;
-          break;
-        case 'ਲ':
-          convertedText.push('L');
-          j += 1;
-          break;
-        default:
-          convertedText.push(reverseMapping[currentChar]);
-      }
     } else {
       convertedText.push(reverseMapping[currentChar] || currentChar);
     }

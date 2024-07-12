@@ -44,7 +44,6 @@ module.exports = (gurmukhi) => {
     //    STEP 2
     //* *********************
 
-
     const step2 = [
       ['E', 'o'],
       ['au', 'o'],
@@ -245,11 +244,9 @@ module.exports = (gurmukhi) => {
   const regex3 = /ə̀[iaɑeouywɪəʊ̀ɔ]/gm;
   trans = trans.replace(regex3, (full) => full.replace('ə̀', ''));
 
-
   // **********************
   //    STEP 4
   // **********************
-
 
   const step4 = [
     // regexes

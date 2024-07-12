@@ -190,7 +190,6 @@ describe('unicode', () => {
   });
 });
 
-
 describe('unicodereverse', () => {
   it('Should return ascii from unicode', () => {
     // Including grammatical characters
@@ -395,6 +394,18 @@ describe('unicodereverse', () => {
 
     expect(unicode('ਰਾਗੁ ਗਉੜੀ ਛੰਤ ਮਹਲਾ ੫', true))
       .toBe('rwgu g₁auVI CMq mhlw 5');
+
+    expect(unicode('ਸ', true))
+      .toBe('s');
+
+    expect(unicode('ਸ਼', true))
+      .toBe('sæ');
+
+    expect(unicode('ਸ਼ਿ', true))
+      .toBe('isæ');
+
+    expect(unicode('ਸ਼ਿਸ਼', true))
+      .toBe('isæsæ');
   });
 
   it('Should return an empty string when no argument', () => {
@@ -405,5 +416,16 @@ describe('unicodereverse', () => {
   it('Should return null when passed as an argument', () => {
     expect(unicode(null, true))
       .toBeNull();
+  });
+
+  it('Should return ascii(simplified) from unicode', () => {
+    expect(unicode('ਸ਼', true, true))
+      .toBe('S');
+
+    expect(unicode('ਸ਼ਿ', true, true))
+      .toBe('iS');
+
+    expect(unicode('ਸ਼ਿਸ਼', true, true))
+      .toBe('iSS');
   });
 });

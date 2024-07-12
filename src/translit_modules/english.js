@@ -63,7 +63,6 @@ module.exports = (gurmukhi = '') => {
     //    STEP 2
     //* *********************
 
-
     const step2 = [
       ['!', '!'],
       ['"', '"'],
@@ -349,7 +348,6 @@ module.exports = (gurmukhi = '') => {
   //* *********************
   //    STEP 4
   //* *********************
-
 
   const step4 = [
     ['uu', 'au'],
