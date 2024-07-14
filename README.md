@@ -113,7 +113,7 @@ Returns **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/G
 
 **Meta**
 
--   **since**: 1.0.0
+-   **since**: 1.4.4
 
 ## pauses
 
@@ -122,9 +122,11 @@ Returns a list of all pauses for a string of Gurmukhi words
 **Parameters**
 
 -   `words` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The string from which to get pauses
--   `large` **[string](https://developer.mozilla.org/docsx/Web/JavaScript/Reference/Global_Objects/String)** The symbol being used for a large pause, also known as a ਵਿਸ਼ਰਾਮ (vishraam) (default is ';')
--   `medium` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The symbol being used for a medium pause, also known as a ਜਮਕੀ (jamki) (default is ',')
--   `small` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The symbol being used for a medium pause, also known as a ਠਮਕੀ (thamki) (default is '.')
+- `enableCharCount` **[boolean](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean)** An optional flag to output the pause position as a count of non-whitespace characters, useful for larivaar text (default is False); *Note: when used with Unicode text, the output character length may be different from ASCII text as Unicode Gurmukhi uses additional characters to render certain combinations.*
+- `pauseChars` **[object](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object)** The collection of large, medium and small pauses, described below:
+    -   `largePauseChar` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The symbol being used for a large pause, also known as a ਵਿਸ਼ਰਾਮ (vishraam) (default is ';')
+    -   `mediumPauseChar` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The symbol being used for a medium pause, also known as a ਜਮਕੀ (jamki) (default is ',')
+    -   `smallPauseChar` **[string](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/String)** The symbol being used for a medium pause, also known as a ਠਮਕੀ (thamki) (default is '.')
 
 **Examples**
 

@@ -1,6 +1,5 @@
 const pauses = require('../pauses');
 
-
 describe('vishraams', () => {
   it('Should return the position and type of each vishraam symbol (; and ./)', () => {
     expect(pauses('ikv. sicAwrw hoeIAY; ikv. kUVY qutY pwil ]'))
@@ -30,5 +29,15 @@ describe('vishraams', () => {
   it('Should return the position and type of each vishraam symbol', () => {
     expect(pauses('isr msœk rK´w pwrbRhmM; hsœ kwXw rK´w prmysÍrh ]', true))
       .toEqual(JSON.parse('[{"p": 19, "t": "v"}]'));
+  });
+
+  it('Should return an empty list', () => {
+    expect(pauses('', true))
+      .toEqual(JSON.parse('[]'));
+  });
+
+  it('Should return an empty list', () => {
+    expect(pauses(0, true))
+      .toEqual(JSON.parse('[]'));
   });
 });
