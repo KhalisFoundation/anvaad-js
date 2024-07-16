@@ -332,7 +332,7 @@ function ascii(text = '', simplify = false) {
         j += 1;
       }
       j += 1;
-    } else if (currentChar === 'ੑ') {
+    } else if (currentChar === 'ੑ' || currentChar === 'ੵ') {
       convertedText.push(reverseMapping[currentChar] || currentChar);
       if (nextChar === 'ੁ') {
         convertedText.push('ü');

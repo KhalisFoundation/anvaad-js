@@ -370,8 +370,11 @@ describe('unicodereverse', () => {
     expect(unicode('ਕਵਨੁ ਜੋਗੁ ਕਉਨੁ ਗੵਾਨੁ ਧੵਾਨੁ ਕਵਨ ਬਿਧਿ ਉਸ੍ਤਤਿ ਕਰੀਐ ॥', true))
       .toBe('kvnu jogu kaunu g´wnu D´wnu kvn ibiD ausœiq krIAY ]');
 
-    /* expect(unicode('ਲੈ ਅਕ੍ਰੂਰ ਕਉ ਆਪਨੇ ਸੰਗ ਕਹਿਯੋ ਅਰੇ ਕਾਨ੍ਰਹ ਕਹੰŧ ਕਉ ਪਧਾਰਿਯੋ ॥', true))
-      .toBe('lY AkR¨r kau Awpny sMg kihXo Ary kwnRh khMŧ kau pDwirXo ]'); */
+    expect(unicode('ਲੈ ਅਕ੍ਰੂਰ ਕਉ ਆਪਨੇ ਸੰਗ ਕਹਿਯੋ ਅਰੇ ਕਾਨ੍ਰਹ ਕਹੰŧ ਕਉ ਪਧਾਰਿਯੋ ॥', true))
+      .toBe('lY AkR¨r kau Awpny sMg kihXo Ary kwnRh khMŧ kau pDwirXo ]');
+
+    expect(unicode('ਮ੍ਰਿਤੵੁ ਜਨਮ ਭ੍ਰਮੰਤਿ ਨਰਕਹ; ਅਨਿਕ ਉਪਾਵੰ, ਨ ਸਿਧੵਤੇ ॥', true))
+      .toBe('imRq´ü jnm BRmMiq nrkh; Aink aupwvM, n isD´qy ]');
 
     expect(unicode('ਸਲੋਕ ਮਃ ੩ ॥', true))
       .toBe('slok mÚ 3 ]');
