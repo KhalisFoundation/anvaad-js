@@ -15,6 +15,8 @@
 const simplifications = [
   ['E', 'a'],
   ['ਓ', 'ੳ'],
+  ['<>', 'a'],
+  ['ੴ', 'ੳ'],
   ['L', 'l'],
   ['ਲ਼', 'ਲ'],
   ['S', 's'],
@@ -29,6 +31,17 @@ const simplifications = [
   ['ਨੂੰ', 'ਨ'],
   ['&', 'P'],
   ['ਫ਼', 'ਫ'],
+];
+
+const vowels = [
+  ['ਆ', 'ਅ'],
+  ['ਇ', 'ੲ'],
+  ['ਈ', 'ੲ'],
+  ['ਉ', 'ੳ'],
+  ['ਊ', 'ੳ'],
+  ['ਏ', 'ੲ'],
+  ['ਐ', 'ਅ'],
+  ['ਔ', 'ਅ'],
 ];
 
 function firstLetters(words = '', eng = false, simplify = false) {
@@ -50,7 +63,10 @@ function firstLetters(words = '', eng = false, simplify = false) {
     .replace(/।/g, '')
     .replace(/rhwau dUjw/g, '')
     .replace(/rhwau/g, '')
+    .replace(/ਰਹਾਉ/g, '')
+    .replace(/ਰਹਾਉ ਦੂਜਾ/g, '')
     .replace(/[0-9]/g, '')
+    .replace(/[੦-੯]/g, '')
     .replace(/[;,.]/g, '');
 
   function firstLetter(word) {
@@ -61,7 +77,10 @@ function firstLetters(words = '', eng = false, simplify = false) {
     return '';
   }
 
-  const letters = newWords.split(' ').map(firstLetter).join('');
+  let letters = newWords.split(' ').map(firstLetter).join('');
+  vowels.forEach((e) => {
+    letters = letters.replace(new RegExp(e[0], 'g'), e[1]);
+  });
   return !eng ? letters : letters.replace(/\|/g, '');
 }
 

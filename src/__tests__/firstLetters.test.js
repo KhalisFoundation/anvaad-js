@@ -11,6 +11,11 @@ describe('firstLetters', () => {
       .toBe('sd');
   });
 
+  it('Should return first letters of each word and return ੧ from ੴ', () => {
+    expect(firstLetters('<> siq nwmu krqw purKu inrBau inrvYru Akwl mUriq AjUnI sYBM gur pRswid ]', false, true))
+      .toBe('asnkpnnAmAsgp');
+  });
+
   it('Should return first letters of each word and simplify ਖ਼ to ਖ', () => {
     expect(firstLetters('^wlsw myro rUp hY ^ws ]', false, true))
       .toBe('KmrhK');
@@ -34,6 +39,26 @@ describe('firstLetters', () => {
   it('Should return first letters of each word in gurmukhi unicode', () => {
     expect(firstLetters('ਸਿਰ ਮਸ੍ਤਕ ਰਖੵਾ ਪਾਰਬ੍ਰਹਮੰ ਹਸ੍ਤ ਕਾਯਾ ਰਖੵਾ ਪਰਮੇਸ੍ਵਰਹ'))
       .toBe('ਸਮਰਪਹਕਰਪ');
+  });
+
+  it('Should return first letters of each word in gurmukhi unicode, without vowel accents', () => {
+    expect(firstLetters('ਅ ਆ ਇ ਈ ਉ ਊ ਏ ਐ ਓ ਔ ਅੰ ਆਂ'))
+      .toBe('ਅਅੲੲੳੳੲਅਓਅਅਅ');
+  });
+
+  it('Should return first letters of each word in gurmukhi unicode, without vowel accents', () => {
+    expect(firstLetters('ਮੈ ਏਹਾ ਆਸ ਏਹੋ ਆਧਾਰੁ ॥੧॥ ਰਹਾਉ ॥ '))
+      .toBe('ਮੲਅੲਅ');
+  });
+
+  it('Should return first letters of each word in gurmukhi unicode, without vowel accents and simplify ਓ to ੳ', () => {
+    expect(firstLetters('ਓਨਾ ਇਕੋ ਨਾਮੁ ਅਧਾਰੁ ਇਕਾ ਉਨ ਭਤਿਆ ॥', false, true))
+      .toBe('ੳੲਨਅੲੳਭ');
+  });
+
+  it('Should return first letters of each word and return ੧ from ੴ', () => {
+    expect(firstLetters('ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ ਨਿਰਭਉ ਨਿਰਵੈਰੁ ਅਕਾਲ ਮੂਰਤਿ ਅਜੂਨੀ ਸੈਭੰ ਗੁਰ ਪ੍ਰਸਾਦਿ ॥', false, true))
+      .toBe('ੳਸਨਕਪਨਨਅਮਅਸਗਪ');
   });
 
   it('Should return first letters of each word in gurmukhi unicode as is', () => {
