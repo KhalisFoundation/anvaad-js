@@ -11,7 +11,7 @@ describe('firstLetters', () => {
       .toBe('sd');
   });
 
-  it('Should return first letters of each word and return ੧ from ੴ', () => {
+  it('Should return first letters of each word and return ੳ from ੴ', () => {
     expect(firstLetters('<> siq nwmu krqw purKu inrBau inrvYru Akwl mUriq AjUnI sYBM gur pRswid ]', false, true))
       .toBe('asnkpnnAmAsgp');
   });
@@ -56,7 +56,7 @@ describe('firstLetters', () => {
       .toBe('ੳੲਨਅੲੳਭ');
   });
 
-  it('Should return first letters of each word and return ੧ from ੴ', () => {
+  it('Should return first letters of each word and return ੳ from ੴ', () => {
     expect(firstLetters('ੴ ਸਤਿ ਨਾਮੁ ਕਰਤਾ ਪੁਰਖੁ ਨਿਰਭਉ ਨਿਰਵੈਰੁ ਅਕਾਲ ਮੂਰਤਿ ਅਜੂਨੀ ਸੈਭੰ ਗੁਰ ਪ੍ਰਸਾਦਿ ॥', false, true))
       .toBe('ੳਸਨਕਪਨਨਅਮਅਸਗਪ');
   });
