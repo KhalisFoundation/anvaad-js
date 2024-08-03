@@ -13,6 +13,9 @@ module.exports = {
       {
         test: /\.js$/,
         loaders: ['babel-loader'],
+        options: {
+          presets: ['@babel/preset-env'],
+        }
       },
     ],
   },
