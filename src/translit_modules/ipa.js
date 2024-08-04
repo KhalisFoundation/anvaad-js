@@ -240,7 +240,7 @@ module.exports = (gurmukhi) => {
 
   trans = trans.replace(regex2, translitNumbers);
 
-  // eslint-disable-next-line no-misleading-character-class
+   
   const regex3 = /ə̀[iaɑeouywɪəʊ̀ɔ]/gm;
   trans = trans.replace(regex3, (full) => full.replace('ə̀', ''));
 
