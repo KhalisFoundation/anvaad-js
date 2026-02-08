@@ -5,8 +5,11 @@ module.exports = {
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname, 'dist'),
-    library: 'anvaad-js',
-    libraryTarget: 'umd',
+    library: {
+      name: 'anvaad-js',
+      type: 'umd',
+    },
+    globalObject: 'this',
   },
   module: {
     rules: [
